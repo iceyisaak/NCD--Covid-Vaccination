@@ -1,201 +1,212 @@
 import { logging } from 'near-sdk-as'
-import { vacunas, Vacuna, personas, Persona, certificados, Certificado, contagios, Infeccion} from "./models";
+import { vaccines, Vaccine, persons, Person, certificates, Certificate, infections, Infection } from "./models";
 
 // Método de Vacunate
-export function vacunate(): string {
-  return '¡Vacunate!';
+export function vaccinate(): string {
+  return 'Get Vaccinated!';
 }
 
-// ------------------------- Métodos del smart contract de Vacunas ------------------------- //
+// ------------------------- Vaccines smart contract methods ----------------- -------- //
 
-// Método para registrar una nueva Vacuna
-export function setVacuna(id: string, nombre: string, fabricante: string, tipo: string, administracion: string, dosis: string): void{
-  assert(id.length>0,"ID de Vacuna es requerido");
-  assert(nombre.length>0 ,"El nombre de la Vacuna es requerido");
-  assert(fabricante.length>0,"El fabricante es requerido");
-  assert(tipo.length>0,"El tipo de vacuna es requerido");
-  assert(administracion.length>0,"El tipo de administración de la Vacuna es requerido");
-  assert(dosis.length>0,"El número de dosis es requerido");
-  let vacuna = new Vacuna(id, nombre, fabricante, tipo, administracion, dosis);
-  vacunas.push(vacuna);
+// Method to register a new Vaccine
+export function addVaccine(id: string, name: string, manufacturer: string, type: string, administration: string, dose: string): void {
+  assert(id.length > 0, "Vaccine ID is required");
+  assert(name.length > 0, "Vaccine name is required");
+  assert(manufacturer.length > 0, "Manufacturer is required");
+  assert(type.length > 0, "Vaccine type is required");
+  assert(administration.length > 0, "Vaccine administration type is required");
+  assert(dose.length > 0, "The number of doses is required");
+  let vaccine = new Vaccine(id, name, manufacturer, type, administration, dose);
+  vaccines.push(vaccine);
 }
 
-// Método para consultar todos los tipos de Vacuna
-export function getVacunas(): Array<Vacuna>{
-  let result = new Array<Vacuna>(vacunas.length);
-  for (let i = 0; i < vacunas.length; i++){
-    let vacuna = vacunas[i];
-    result[i] = vacuna;
+// Method to consult all types of Vaccine
+export function getVaccines(): Array<Vaccine> {
+  let result = new Array<Vaccine>(vaccines.length);
+  for (let i = 0; i < vaccines.length; i++) {
+    let vaccine = vaccines[i];
+    result[i] = vaccine;
   }
   return result;
 }
 
-// Método para consultar un vacuna por id de vacuna
-export function getVacuna(id: string): Vacuna | null {
-  assert(id.length>0,"ID de vacuna es requerido");
-  for (let i = 0; i < vacunas.length; i++) {
-    if (vacunas[i].id == id) {
-      let find = vacunas[i];
+// Method to query a vaccine by vaccine id
+export function getVaccine(id: string): Vaccine | null {
+  assert(id.length > 0, "Vaccine ID is required");
+  for (let i = 0; i < vaccines.length; i++) {
+    if (vaccines[i].id == id) {
+      let find = vaccines[i];
       return find;
     }
   }
   return null;
 }
 
-// ------------------------- Métodos del smart contract de Personas ------------------------- //
-// Método para registrar una nueva Vacuna
-export function setPersona(id: string, nacionalidad: string, nombre: string, foto: string, fecha_nacimiento:string): void{
-  assert(id.length>0,"ID es requerido");
-  assert(nacionalidad.length>0 ,"La nacionalidad  es requerida");
-  assert(nombre.length>0,"El nombre es requerido");
-  assert(foto.length>0,"La URL de la foto es requerida");
-  assert(fecha_nacimiento.length>0,"La fecha de Nacimiento es requerida");
-  let persona = new Persona(id, nacionalidad, nombre, foto, fecha_nacimiento);
-  personas.push(persona);
+// ------------------------- People smart contract methods ----------------- -------- //
+
+// Method to register a new Vaccine
+export function setPerson(id: string, nationality: string, name: string, photo: string, birthdate: string): void {
+  assert(id.length > 0, "ID es requerido");
+  assert(nationality.length > 0, "La nacionalidad  es requerida");
+  assert(name.length > 0, "El nombre es requerido");
+  assert(photo.length > 0, "La URL de la foto es requerida");
+  assert(birthdate.length > 0, "La fecha de Nacimiento es requerida");
+  let person = new Person(id, nationality, name, photo, birthdate);
+  persons.push(person);
 }
-// Método para consultar todas las personas
-export function getPersonas(): Array<Persona>{
-  let result = new Array<Persona>(personas.length);
-  for (let i = 0; i < personas.length; i++){
-    let persona = personas[i];
-    result[i] = persona;
+
+
+// Method to query all people
+export function getPersons(): Array<Person> {
+  let result = new Array<Person>(persons.length);
+  for (let i = 0; i < persons.length; i++) {
+    let person = persons[i];
+    result[i] = person;
   }
   return result;
 }
 
-// Método para consultar un Persona por id
-export function getPersona(id: string): Persona | null {
-  assert(id.length>0,"ID es requerido");
-  for (let i = 0; i < personas.length; i++) {
-    if (personas[i].id == id) {
-      let find = personas[i];
+// Method to query a Person by id
+export function getPersonByID(id: string): Person | null {
+  assert(id.length > 0, "ID is required");
+  for (let i = 0; i < persons.length; i++) {
+    if (persons[i].id == id) {
+      let find = persons[i];
       return find;
     }
   }
   return null;
 }
 
-// ------------------------- Métodos del smart contract de Certificados de Vacunación ------------------------- //
-// Método para registrar un certificado
-export function setCertificado(id: string, vacuna_id: string, persona_id: string, pais: string, fecha_aplicacion: string, lote_vacuna: string, sello_digital: u64): void{
-  assert(id.length>0,"ID de Vacuna es requerido");
-  assert(vacuna_id.length>0 ,"El nombre de la Vacuna es requerido");
-  assert(persona_id.length>0,"El fabricante es requerido");
-  assert(pais.length>0,"El tipo de vacuna es requerido");
-  assert(fecha_aplicacion.length>0,"El tipo de administración de la Vacuna es requerido");
-  assert(lote_vacuna.length>0,"El número de dosis es requerido");
-  assert(sello_digital>0,"El sello es requerido");
-  let certificado = new Certificado(id, vacuna_id, persona_id, pais, fecha_aplicacion, lote_vacuna, sello_digital);
-  certificados.push(certificado);
+
+// ------------------------- Methods of the smart contract of Vaccination Certificates --------------- ---------- //
+
+// Method to register a certificate
+export function setCertificado(id: string, vaccine_id: string, person_id: string, country: string, application_date: string, vaccine_lot: string, digital_stamp: u64): void {
+  assert(id.length > 0, "Vaccine ID is required");
+  assert(vaccine_id.length > 0, "Vaccine name is required");
+  assert(person_id.length > 0, "Manufacturer is required");
+  assert(country.length > 0, "Vaccine type is required");
+  assert(application_date.length > 0, "The type of administration of the Vaccine is required");
+  assert(vaccine_lot.length > 0, "The number of doses is required");
+  assert(digital_stamp > 0, "The stamp is required");
+  let certificate = new Certificate(id, vaccine_id, person_id, country, application_date, vaccine_lot, digital_stamp);
+  certificates.push(certificate);
 }
-// Método para listar todas los certificados
-export function getCertificados(): Array<Certificado>{
-  let result = new Array<Certificado>(certificados.length);
-  for (let i = 0; i < certificados.length; i++){
-    let list = certificados[i];
+
+
+// Method to list all certificates
+export function getCertificates(): Array<Certificate> {
+  let result = new Array<Certificate>(certificates.length);
+  for (let i = 0; i < certificates.length; i++) {
+    let list = certificates[i];
     result[i] = list;
   }
   return result;
 }
-// Método para consultar certificado por id
-export function getCertificado(id: string): Certificado | null {
-  assert(id.length>0,"ID es requerido");
-  for (let i = 0; i < certificados.length; i++) {
-    if (certificados[i].id == id) {
-      let find = certificados[i];
+
+// Method to query certificate by id
+export function getCertificate(id: string): Certificate | null {
+  assert(id.length > 0, "ID is required");
+  for (let i = 0; i < certificates.length; i++) {
+    if (certificates[i].id == id) {
+      let find = certificates[i];
       return find;
     }
   }
   return null;
 }
 
-// Método para consultar certificado por id de persona
-export function getCertificadoPersona(id: string): Certificado | null {
-  assert(id.length>0,"ID es requerido");
-  for (let i = 0; i < certificados.length; i++) {
-    if (certificados[i].persona_id == id) {
-      let find = certificados[i];
+// Method to query certificate by person id
+export function getCertificateByPersonID(id: string): Certificate | null {
+  assert(id.length > 0, "ID is required");
+  for (let i = 0; i < certificates.length; i++) {
+    if (certificates[i].person_id == id) {
+      let find = certificates[i];
       return find;
     }
   }
   return null;
 }
 
-// Método para consultar certificado por id de vacuna
-export function getCertificadoVacuna(id: string): Certificado | null {
-  assert(id.length>0,"ID es requerido");
-  for (let i = 0; i < certificados.length; i++) {
-    if (certificados[i].vacuna_id == id) {
-      let find = certificados[i];
+// Method to query certificate by vaccine id
+export function getCertificateByVaccineID(id: string): Certificate | null {
+  assert(id.length > 0, "ID is required");
+  for (let i = 0; i < certificates.length; i++) {
+    if (certificates[i].vaccine_id == id) {
+      let find = certificates[i];
       return find;
     }
   }
   return null;
 }
 
-// Método para consultar certificado por País
-export function getCertificadoPais(pais: string): Certificado | null {
-  assert(pais.length>0,"País es requerido");
-  for (let i = 0; i < certificados.length; i++) {
-    if (certificados[i].pais == pais) {
-      let find = certificados[i];
+// Method to consult certificate by Country
+export function getCertificateByCountry(country: string): Certificate | null {
+  assert(country.length > 0, "Country is required");
+  for (let i = 0; i < certificates.length; i++) {
+    if (certificates[i].country == country) {
+      let find = certificates[i];
       return find;
     }
   }
   return null;
 }
 
-// ------------------------- Métodos del smart contract de Certificados de Contagios ------------------------- //
-// Método para registrar un certificado
-export function setContagio(id:string, persona_id: string, certificado_id: string, fecha_contagio: string, fecha_recuperacion: string, nivel_infeccion: string): void{
-  assert(id.length>0,"ID de Vacuna es requerido");
-  assert(persona_id.length>0 ,"persona_id es requerido");
-  assert(certificado_id.length>0,"certificado_id es requerido");
-  assert(fecha_contagio.length>0,"Fecha de contagio es requerida");
-  assert(fecha_recuperacion.length>0,"Fecha de recuperacion es requerida");
-  assert(nivel_infeccion.length>0,"Nivel de infección es requerido");
-  let contagio = new Infeccion(id, persona_id, certificado_id, fecha_contagio, fecha_recuperacion, nivel_infeccion);
-  contagios.push(contagio);
+
+// ------------------------- Methods of the smart contract for Contagious Certificates --------------- ---------- //
+// Method to register a certificate
+export function setInfection(id: string, person_id: string, certificate_id: string, infection_date: string, recovery_date: string, infection_level: string): void {
+  assert(id.length > 0, "Vaccine ID is required");
+  assert(person_id.length > 0, "persona_id is required");
+  assert(certificate_id.length > 0, "certificado_id is required");
+  assert(infection_date.length > 0, "Closing contagion is required");
+  assert(recovery_date.length > 0, "Closing recovery is required");
+  assert(infection_level.length > 0, "Level of infection is required");
+  let infection = new Infection(id, person_id, certificate_id, infection_date, recovery_date, infection_level);
+  infections.push(infection);
 }
-// Método para listar todas los contagios
-export function getContagios(): Array<Infeccion>{
-  let result = new Array<Infeccion>(contagios.length);
-  for (let i = 0; i < contagios.length; i++){
-    let list = contagios[i];
+
+// Method to list all contagions
+export function getInfections(): Array<Infection> {
+  let result = new Array<Infection>(infections.length);
+  for (let i = 0; i < infections.length; i++) {
+    let list = infections[i];
     result[i] = list;
   }
   return result;
 }
-// Método para consultar contagio por id
-export function getContagio(id: string): Infeccion | null {
-  assert(id.length>0,"ID es requerido");
-  for (let i = 0; i < contagios.length; i++) {
-    if (contagios[i].id == id) {
-      let find = contagios[i];
+
+// Method to query contagion by id
+export function getInfectionByID(id: string): Infection | null {
+  assert(id.length > 0, "ID is required");
+  for (let i = 0; i < infections.length; i++) {
+    if (infections[i].id == id) {
+      let find = infections[i];
       return find;
     }
   }
   return null;
 }
 
-// Método para consultar contagio por persona_id
-export function getContagioPersona(id: string): Infeccion | null {
-  assert(id.length>0,"ID es requerido");
-  for (let i = 0; i < contagios.length; i++) {
-    if (contagios[i].persona_id == id) {
-      let find = contagios[i];
+// Method to consult contagion by person_id
+export function getInfectionByPersonID(id: string): Infection | null {
+  assert(id.length > 0, "ID is required");
+  for (let i = 0; i < infections.length; i++) {
+    if (infections[i].person_id == id) {
+      let find = infections[i];
       return find;
     }
   }
   return null;
 }
 
-// Método para consultar contagio por nivel_infeccion
-export function getContagioNivel_infeccion(nivel_infeccion: string): Infeccion | null {
-  assert(nivel_infeccion.length>0,"nivel_infeccion es requerido");
-  for (let i = 0; i < contagios.length; i++) {
-    if (contagios[i].nivel_infeccion == nivel_infeccion) {
-      let find = contagios[i];
+// Method to query contagion by infection_level
+export function getInfectionByLevel(infection_level: string): Infection | null {
+  assert(infection_level.length > 0, "infection_level is required");
+  for (let i = 0; i < infections.length; i++) {
+    if (infections[i].infection_level == infection_level) {
+      let find = infections[i];
       return find;
     }
   }
