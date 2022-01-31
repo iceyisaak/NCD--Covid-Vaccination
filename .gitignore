@@ -2,11 +2,15 @@
 # Developer note: near.gitignore will be renamed to .gitignore upon project creation
 # dependencies
 /node_modules
+/contract/node_modules
 /.pnp
 .pnp.js
-/out
 
-#keys
+# build
+/out
+/dist
+
+# keys
 /neardev
 
 # testing
@@ -21,8 +25,8 @@
 .env.development.local
 .env.test.local
 .env.production.local
+/.cache
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pruebas_near.txt
