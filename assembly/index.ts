@@ -31,7 +31,7 @@ export function getVaccines(): Array<Vaccine> {
 }
 
 // Method to query a vaccine by vaccine id
-export function getVaccine(id: string): Vaccine | null {
+export function getVaccineByID(id: string): Vaccine | null {
   assert(id.length > 0, "Vaccine ID is required");
   for (let i = 0; i < vaccines.length; i++) {
     if (vaccines[i].id == id) {
@@ -45,7 +45,7 @@ export function getVaccine(id: string): Vaccine | null {
 // ------------------------- People smart contract methods ----------------- -------- //
 
 // Method to register a new Vaccine
-export function setPerson(id: string, nationality: string, name: string, photo: string, birthdate: string): void {
+export function addPerson(id: string, nationality: string, name: string, photo: string, birthdate: string): void {
   assert(id.length > 0, "ID es requerido");
   assert(nationality.length > 0, "La nacionalidad  es requerida");
   assert(name.length > 0, "El nombre es requerido");
@@ -82,7 +82,7 @@ export function getPersonByID(id: string): Person | null {
 // ------------------------- Methods of the smart contract of Vaccination Certificates --------------- ---------- //
 
 // Method to register a certificate
-export function setCertificado(id: string, vaccine_id: string, person_id: string, country: string, application_date: string, vaccine_lot: string, digital_stamp: u64): void {
+export function addCertificate(id: string, vaccine_id: string, person_id: string, country: string, application_date: string, vaccine_lot: string, digital_stamp: u64): void {
   assert(id.length > 0, "Vaccine ID is required");
   assert(vaccine_id.length > 0, "Vaccine name is required");
   assert(person_id.length > 0, "Manufacturer is required");
@@ -106,7 +106,7 @@ export function getCertificates(): Array<Certificate> {
 }
 
 // Method to query certificate by id
-export function getCertificate(id: string): Certificate | null {
+export function getCertificateByID(id: string): Certificate | null {
   assert(id.length > 0, "ID is required");
   for (let i = 0; i < certificates.length; i++) {
     if (certificates[i].id == id) {
@@ -156,7 +156,7 @@ export function getCertificateByCountry(country: string): Certificate | null {
 
 // ------------------------- Methods of the smart contract for Contagious Certificates --------------- ---------- //
 // Method to register a certificate
-export function setInfection(id: string, person_id: string, certificate_id: string, infection_date: string, recovery_date: string, infection_level: string): void {
+export function addInfection(id: string, person_id: string, certificate_id: string, infection_date: string, recovery_date: string, infection_level: string): void {
   assert(id.length > 0, "Vaccine ID is required");
   assert(person_id.length > 0, "persona_id is required");
   assert(certificate_id.length > 0, "certificado_id is required");
