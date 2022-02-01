@@ -12,6 +12,8 @@ import Navbar from './components/Navbar';
 import './styles/global.scss';
 
 import getConfig from './config';
+import ViewVaccine from './pages/Vaccines/ViewVaccine';
+import VaccineList from './components/VaccineList';
 const { networkId } = getConfig(process.env.NODE_ENV || 'development');
 
 export default function App() {
@@ -65,6 +67,14 @@ export default function App() {
               setVacceines={setVaccines}
               vaccines={vaccines}
               showNotification={showNotification}
+            />
+          }
+        />
+        <Route
+          path='/vaccine/:id'
+          element={
+            <ViewVaccine
+              vaccineList={vaccineList}
             />
           }
         />

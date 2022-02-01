@@ -245,3 +245,14 @@ aside footer *:last-child {
   display: flex;
   justify-content: center;
 }
+
+.table {
+  width: 50%;
+}
+
+.list {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin-bottom: 10rem;
+}
