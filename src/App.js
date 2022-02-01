@@ -4,7 +4,7 @@ import { login, logout } from './utils';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 
-import './global.css';
+import './global.scss';
 
 import getConfig from './config';
 const { networkId } = getConfig(process.env.NODE_ENV || 'development');

@@ -11,6 +11,23 @@ const Dashboard = (props) => {
     <>
       <Navbar logout={logout} />
       <main>
+        <h1>
+          Dashboard
+        </h1>
+        <button>
+          Vaccines
+        </button>
+        <button>
+          Patients
+        </button>
+        <button>
+          Certificates
+        </button>
+        <button>
+          Infection Report
+        </button>
+      </main>
+      {/* <main>
         <Form
           vaccines={vaccines}
           setVaccines={setVaccines}
@@ -18,7 +35,7 @@ const Dashboard = (props) => {
         />
       </main>
       {vaccineList ? <VaccineList vaccineList={vaccineList} /> : 'List is Empty'}
-      {showNotification && <Notification />}
+      {showNotification && <Notification />} */}
     </>
   );
 };

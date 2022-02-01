@@ -6,7 +6,7 @@ const Navbar = (props) => {
 
   return (
     <nav className='nav'>
-      <h3 className='text-gray-100 cursor-pointer text-lg font-bold'>
+      <h3 className={`greeny text-gray-100 cursor-pointer text-lg font-bold `}>
         Near Covid Vaccination Dapp
       </h3>
       <div>
