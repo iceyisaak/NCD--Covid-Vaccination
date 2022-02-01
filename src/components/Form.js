@@ -1,15 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Form = (props) => {
 
-  const { buttonDisabled, setButtonDisabled, vaccines, setVaccines, setShowNotification } = props;
+  const { vaccines, setVaccines, setShowNotification } = props;
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const { id, name, manufacturer, type, administration, dose } = e.target.elements;
-
-    // alert(vaccine);
 
     try {
 
@@ -38,24 +37,22 @@ const Form = (props) => {
 
     alert('New Vaccine Added');
 
-    // update local `greeting` variable to match persisted value
-    setVaccines(vaccines);
+    // setVaccines(vaccines);
 
-    // show Notification
-    setShowNotification(true);
+    // setShowNotification(true);
 
-    // remove Notification again after css animation completes
-    // this allows it to be shown again next time the form is submitted
-    setTimeout(() => {
-      setShowNotification(false);
-    }, 11000);
+    // // remove Notification again after css animation completes
+    // // this allows it to be shown again next time the form is submitted
+    // setTimeout(() => {
+    //   setShowNotification(false);
+    // }, 11000);
 
-    window.location.reload();
+    window.location.assign('/vaccines');
 
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className='form'>
       <fieldset id="fieldset">
         <label
           htmlFor="vaccine"
@@ -71,46 +68,51 @@ const Form = (props) => {
           <input
             autoComplete="off"
             id="id"
-            style={{ flex: 1, marginBottom: '5px' }}
             placeholder='e.g. #001'
+            className='form-input mb-1'
           />
           <input
             autoComplete="off"
             id="name"
-            style={{ flex: 1, marginBottom: '5px' }}
+            className='form-input mb-1'
             placeholder='e.g. Comirnaty'
           />
           <input
             autoComplete="off"
             id="manufacturer"
-            style={{ flex: 1, marginBottom: '5px' }}
+            className='form-input mb-1'
             placeholder='e.g. Pfizer-BionTech'
           />
           <input
             autoComplete="off"
             id="type"
-            style={{ flex: 1, marginBottom: '5px' }}
+            className='form-input mb-1'
             placeholder='e.g. RNA'
           />
           <input
             autoComplete="off"
             id="administration"
-            style={{ flex: 1, marginBottom: '5px' }}
+            className='form-input mb-1'
             placeholder='e.g. Intramuscular injection'
           />
           <input
             autoComplete="off"
             id="dose"
-            style={{ flex: 1, marginBottom: '5px' }}
+            className='form-input mb-1'
             placeholder='Dose'
           />
 
         </div>
         <button
-          style={{ width: '100%' }}
+          className='btn mb-1'
         >
           Add
         </button>
+        <Link to='/vaccines'>
+          <button className='btn'>
+            Back
+          </button>
+        </Link>
       </fieldset>
     </form>
   );

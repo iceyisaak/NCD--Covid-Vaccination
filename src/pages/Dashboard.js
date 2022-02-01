@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import Form from '../components/Form';
 import VaccineList from '../components/VaccineList';
@@ -9,21 +10,22 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <Navbar logout={logout} />
       <main>
         <h1>
           Dashboard
         </h1>
-        <button>
-          Vaccines
-        </button>
-        <button>
+        <Link to='/vaccines'>
+          <button className='btn mb-1'>
+            Vaccines
+          </button>
+        </Link>
+        <button className='btn mb-1'>
           Patients
         </button>
-        <button>
+        <button className='btn mb-1'>
           Certificates
         </button>
-        <button>
+        <button className='btn mb-1'>
           Infection Report
         </button>
       </main>

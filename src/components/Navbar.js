@@ -1,21 +1,32 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import '../styles/global.scss';
 
 const Navbar = (props) => {
 
-  const { logout } = props;
+  const { logout, login } = props;
 
   return (
     <nav className='nav'>
-      <h3 className={`greeny text-gray-100 cursor-pointer text-lg font-bold `}>
-        Near Covid Vaccination Dapp
-      </h3>
-      <div>
+      <Link to='/'>
+        <h3 className='logo'>
+          Near Covid Vaccination Dapp
+        </h3>
+      </Link>
+      <div className='account-control'>
         <span>
           {window.accountId}
         </span>
-        <button className="link" onClick={logout}>
-          Sign out
-        </button>
+
+        {window.walletConnection.isSignedIn() ?
+          <button className="link" onClick={logout}>
+            Sign out
+          </button> :
+          <button className="link" onClick={login}>
+            Sign in
+          </button>
+        }
       </div>
     </nav>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const VaccineList = (props) => {
 
@@ -12,33 +13,35 @@ const VaccineList = (props) => {
         <span className='text-sm'>Total: {vaccineList.length} Entries</span>
       </div>
       {vaccineList.length === 0 ?
-        <p>Tasklist is Empty</p> :
+        <p>List is Empty</p> :
         <table className='table table-auto'>
           <tbody className=''>
             {vaccineList.map((v, i) =>
               <tr key={i} className=''>
-                <td>
-                  <label htmlFor={`${i}`}>{v.id}</label>
-                </td>
-                <td>
-                  <label htmlFor={`${i}`}>{v.name}</label>
-                </td>
-                <td>
-                  <label htmlFor={`${i}`}>{v.manufacturer}</label>
-                </td>
-                <td>
-                  <label htmlFor={`${i}`}>{v.type}</label>
-                </td>
-                <td>
-                  <label htmlFor={`${i}`}>{v.administration}</label>
-                </td>
-                <td>
-                  <label htmlFor={`${i}`}>{v.dose}</label>
-                </td>
+                <Link to='/'>
+                  <td>
+                    <label htmlFor={`${i}`}>{v.id}</label>
+                  </td>
+                  <td>
+                    <label htmlFor={`${i}`}>{v.name}</label>
+                  </td>
+                  <td>
+                    <label htmlFor={`${i}`}>{v.manufacturer}</label>
+                  </td>
+                  <td>
+                    <label htmlFor={`${i}`}>{v.type}</label>
+                  </td>
+                  <td>
+                    <label htmlFor={`${i}`}>{v.administration}</label>
+                  </td>
+                  <td>
+                    <label htmlFor={`${i}`}>{v.dose}</label>
+                  </td>
+                </Link>
               </tr>
             )}
-          </tbody>
-        </table>
+          </tbody >
+        </table >
       }
     </>
   );

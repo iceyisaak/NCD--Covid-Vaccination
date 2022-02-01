@@ -1,10 +1,15 @@
 import 'regenerator-runtime/runtime';
 import React, { useState, useEffect } from 'react';
 import { login, logout } from './utils';
+import { Routes, Route, Link } from "react-router-dom";
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import VaccinePage from './pages/Vaccines/VaccinePage';
+import AddVaccine from './pages/Vaccines/AddVaccine';
+import Form from './components/Form';
+import Navbar from './components/Navbar';
 
-import './global.scss';
+import './styles/global.scss';
 
 import getConfig from './config';
 const { networkId } = getConfig(process.env.NODE_ENV || 'development');
@@ -20,38 +25,50 @@ export default function App() {
   // after submitting the form, we want to show Notification
   const [showNotification, setShowNotification] = useState(false);
 
-  useEffect(
-    () => {
-      if (window.walletConnection.isSignedIn()) {
-        window.contract.getVaccines().then(setVaccineList);
-      }
-    },
-    []
-  );
-
-  // if not signed in, return early with sign-in prompt
-  if (!window.walletConnection.isSignedIn()) {
-    return (
-      <Home login={login} />
-    );
-  }
-
-
+  window.walletConnection.isSignedIn() && useEffect(() => { window.contract.getVaccines().then(setVaccineList); }, []);
 
   return (
     <>
-      <Dashboard
-        logout={logout}
-        setVaccines={setVaccines}
-        vaccines={vaccines}
-        vaccineList={vaccineList}
-        buttonDisabled={buttonDisabled}
-        showNotification={showNotification}
-        setButtonDisabled={setButtonDisabled}
-        setShowNotification={setShowNotification}
-        Notification={Notification}
-      // done={done}
-      />
+      {window.walletConnection.isSignedIn() && <Navbar logout={logout} />}
+      <Routes>
+        <Route
+          path='/'
+          element={
+            window.walletConnection.isSignedIn() ?
+              <Dashboard
+                logout={logout}
+                setVaccines={setVaccines}
+                vaccines={vaccines}
+                vaccineList={vaccineList}
+                buttonDisabled={buttonDisabled}
+                showNotification={showNotification}
+                setButtonDisabled={setButtonDisabled}
+                setShowNotification={setShowNotification}
+                Notification={Notification}
+              /> :
+              <Home login={login} />
+          }
+        />
+        <Route
+          path='/vaccines'
+          element={
+            <VaccinePage
+              vaccineList={vaccineList}
+              vaccines={vaccines}
+            />
+          }
+        />
+        <Route
+          path='/addVaccine'
+          element={
+            <AddVaccine
+              setVacceines={setVaccines}
+              vaccines={vaccines}
+              showNotification={showNotification}
+            />
+          }
+        />
+      </Routes>
     </>
   );
 }
