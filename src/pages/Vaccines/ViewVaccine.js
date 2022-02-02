@@ -3,13 +3,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const ViewVaccine = (props) => {
 
-  const { vaccineList } = props;
+  // const { vaccineList } = props;
 
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const vac = vaccineList.find(v => (v.id).toString() === id);
-  // const vac = window.contract.getVaccinesByID(id);
+  // const vac = vaccineList.find(v => (v.id).toString() === id);
+  // const vac = window.contract.getVaccineByID(id);
+  const vac = window.contract.getVaccineByID({ id });
 
 
   return (

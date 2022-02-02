@@ -41,8 +41,7 @@ export default function App() {
           path='/'
           element={
             window.walletConnection.isSignedIn() ?
-              <Dashboard
-                logout={logout}
+              <Dashboard logout={logout}
                 setVaccines={setVaccines}
                 vaccines={vaccines}
                 vaccineList={vaccineList}
