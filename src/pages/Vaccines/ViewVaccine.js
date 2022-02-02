@@ -14,13 +14,9 @@ const ViewVaccine = (props) => {
   // const vacc = window.contract.getVaccineByID({ id });
   // setVac(vacc);
 
-  useEffect(() => {
-    const fetchVac = async () => {
-      const res = await fetch(window.contract.getVaccineByID({ id }));
-      const data = await res.json();
-      setVac(data);
-    };
-    fetchVac();
+  useEffect(async () => {
+    const res = await window.contract.getVaccineByID({ id });
+    setVac(res);
   }, []);
 
 
