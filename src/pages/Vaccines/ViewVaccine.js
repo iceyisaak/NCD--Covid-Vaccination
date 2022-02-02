@@ -11,7 +11,8 @@ const ViewVaccine = (props) => {
 
   // const vac = vaccineList.find(v => (v.id).toString() === id);
   // const vac = window.contract.getVaccineByID(id);
-  const vacc = await setVac(window.contract.getVaccineByID({ id }));
+  const vacc = window.contract.getVaccineByID({ id });
+  setVac(vacc);
 
 
 
