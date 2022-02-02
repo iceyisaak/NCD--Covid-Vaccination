@@ -56,34 +56,9 @@ export default function App() {
           }
         />
 
-        <Route
-          path='/vaccines/'
-          element={
-            <VaccinePage
-              vaccineList={vaccineList}
-              vaccines={vaccines}
-            />
-          }
-        />
-        <Route
-          path='/vaccines/:id'
-          element={
-            <ViewVaccine
-              vaccineList={vaccineList}
-            />
-          }
-        />
-
-        <Route
-          path='/addVaccine'
-          element={
-            <AddVaccine
-              setVacceines={setVaccines}
-              vaccines={vaccines}
-              showNotification={showNotification}
-            />
-          }
-        />
+        <Route path='/vaccines/' element={<VaccinePage vaccineList={vaccineList} vaccines={vaccines} />} />
+        <Route path='/vaccines/:id' element={<ViewVaccine vaccineList={vaccineList} />} />
+        <Route path='/addVaccine' element={<AddVaccine setVacceines={setVaccines} vaccines={vaccines} showNotification={showNotification} />} />
         {/* </Route> */}
 
       </Routes>
