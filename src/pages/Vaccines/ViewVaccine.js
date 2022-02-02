@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const ViewVaccine = (props) => {
@@ -7,12 +7,17 @@ const ViewVaccine = (props) => {
 
   const { id } = useParams();
   const navigate = useNavigate();
+  const [vac, setVac] = useState({});
 
   // const vac = vaccineList.find(v => (v.id).toString() === id);
   // const vac = window.contract.getVaccineByID(id);
-  const vac = window.contract.getVaccineByID({ id });
-  console.log('id:', id);
-  console.log('vac:', vac);
+  const vacc = await setVac(window.contract.getVaccineByID({ id }));
+
+
+
+
+  console.log('id:', vacc.id);
+  console.log('vac:', vacc.vac);
 
   return (
     <>

@@ -34,10 +34,8 @@ export default function App() {
     <>
       {window.walletConnection.isSignedIn() && <Navbar logout={logout} />}
       <Routes>
-        {/* <Route path='/' element={<Layout />}> */}
 
         <Route
-          // index
           path='/'
           element={
             window.walletConnection.isSignedIn() ?
@@ -58,7 +56,6 @@ export default function App() {
         <Route path='/vaccines/' element={<VaccinePage vaccineList={vaccineList} vaccines={vaccines} />} />
         <Route path='/vaccines/:id' element={<ViewVaccine vaccineList={vaccineList} />} />
         <Route path='/addVaccine' element={<AddVaccine setVacceines={setVaccines} vaccines={vaccines} showNotification={showNotification} />} />
-        {/* </Route> */}
 
       </Routes>
     </>
@@ -73,7 +70,7 @@ function Notification() {
       <a target="_blank" rel="noreferrer" href={`${urlPrefix}/${window.accountId}`}>
         {window.accountId}
       </a>
-      {' '/* React trims whitespace around tags; insert literal space character when needed */}
+      {' '}
       called method: 'setGreeting' in contract:
       {' '}
       <a target="_blank" rel="noreferrer" href={`${urlPrefix}/${window.contract.contractId}`}>
