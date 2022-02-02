@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const ViewVaccine = (props) => {
-
-  // const { vaccineList } = props;
+const ViewVaccine = () => {
 
   const { id } = useParams();
   const navigate = useNavigate();
   const [vac, setVac] = useState({});
 
-  // const vac = vaccineList.find(v => (v.id).toString() === id);
-  // const vac = window.contract.getVaccineByID(id);
-  // const vacc = window.contract.getVaccineByID({ id });
-  // setVac(vacc);
+  // useEffect(async () => {
+  //   const res = await window.contract.getVaccineByID({ id });
+  //   setVac(res);
+  // }, []);
 
-  useEffect(async () => {
+  const fetchVac = async () => {
     const res = await window.contract.getVaccineByID({ id });
     setVac(res);
+  };
+
+  useEffect(() => {
+    fetchVac();
   }, []);
 
-
-
-  console.log('id:', id);
-  console.log('vac:', vac);
 
   return (
     <>
