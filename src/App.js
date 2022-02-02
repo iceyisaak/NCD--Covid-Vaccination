@@ -34,57 +34,57 @@ export default function App() {
     <>
       {window.walletConnection.isSignedIn() && <Navbar logout={logout} />}
       <Routes>
-        <Route path='/' element={<Layout />}>
+        {/* <Route path='/' element={<Layout />}> */}
 
-          <Route
-            index
-            element={
-              window.walletConnection.isSignedIn() ?
-                <Dashboard
-                  logout={logout}
-                  setVaccines={setVaccines}
-                  vaccines={vaccines}
-                  vaccineList={vaccineList}
-                  buttonDisabled={buttonDisabled}
-                  showNotification={showNotification}
-                  setButtonDisabled={setButtonDisabled}
-                  setShowNotification={setShowNotification}
-                  Notification={Notification}
-                /> :
-                <Home login={login} />
-            }
-          />
-
-          <Route
-            path='/vaccines'
-            element={
-              <VaccinePage
+        <Route
+          // index
+          path='/'
+          element={
+            window.walletConnection.isSignedIn() ?
+              <Dashboard
+                logout={logout}
+                setVaccines={setVaccines}
+                vaccines={vaccines}
                 vaccineList={vaccineList}
-                vaccines={vaccines}
-              />
-            }
-          >
-            <Route
-              path='/vaccines/:id'
-              element={
-                <ViewVaccine
-                  vaccineList={vaccineList}
-                />
-              }
-            />
-          </Route>
-
-          <Route
-            path='/addVaccine'
-            element={
-              <AddVaccine
-                setVacceines={setVaccines}
-                vaccines={vaccines}
+                buttonDisabled={buttonDisabled}
                 showNotification={showNotification}
-              />
-            }
-          />
-        </Route>
+                setButtonDisabled={setButtonDisabled}
+                setShowNotification={setShowNotification}
+                Notification={Notification}
+              /> :
+              <Home login={login} />
+          }
+        />
+
+        <Route
+          path='/vaccines/'
+          element={
+            <VaccinePage
+              vaccineList={vaccineList}
+              vaccines={vaccines}
+            />
+          }
+        />
+        <Route
+          path='/vaccines/:id'
+          element={
+            <ViewVaccine
+              vaccineList={vaccineList}
+            />
+          }
+        />
+
+        <Route
+          path='/addVaccine'
+          element={
+            <AddVaccine
+              setVacceines={setVaccines}
+              vaccines={vaccines}
+              showNotification={showNotification}
+            />
+          }
+        />
+        {/* </Route> */}
 
       </Routes>
     </>

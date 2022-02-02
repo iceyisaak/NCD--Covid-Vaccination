@@ -9,6 +9,7 @@ const ViewVaccine = (props) => {
   const navigate = useNavigate();
 
   const vac = vaccineList.find(v => (v.id).toString() === id);
+  // const vac = window.contract.getVaccinesByID(id);
 
 
   return (
