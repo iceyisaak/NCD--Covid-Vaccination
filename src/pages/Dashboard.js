@@ -1,8 +1,5 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import Navbar from '../components/Navbar';
-import Form from '../components/Form';
-import VaccineList from '../components/VaccineList';
 
 const Dashboard = (props) => {
 

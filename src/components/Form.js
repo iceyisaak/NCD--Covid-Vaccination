@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 const Form = (props) => {
 
@@ -16,7 +17,7 @@ const Form = (props) => {
       // make an update call to the smart contract
       await window.contract.addVaccine({
         // pass the value that the user entered in the greeting field
-        id: id.value,
+        id: uuidv4(),
         name: name.value,
         manufacturer: manufacturer.value,
         type: type.value,
@@ -65,12 +66,6 @@ const Form = (props) => {
           Add Vaccine
         </label>
         <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
-          <input
-            autoComplete="off"
-            id="id"
-            placeholder='e.g. #001'
-            className='form-input mb-1'
-          />
           <input
             autoComplete="off"
             id="name"

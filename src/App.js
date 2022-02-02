@@ -1,13 +1,14 @@
 import 'regenerator-runtime/runtime';
 import React, { useState, useEffect } from 'react';
 import { login, logout } from './utils';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, Outlet } from "react-router-dom";
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import VaccinePage from './pages/Vaccines/VaccinePage';
 import AddVaccine from './pages/Vaccines/AddVaccine';
 import Form from './components/Form';
 import Navbar from './components/Navbar';
+import Layout from './Layout';
 
 import './styles/global.scss';
 
@@ -33,51 +34,58 @@ export default function App() {
     <>
       {window.walletConnection.isSignedIn() && <Navbar logout={logout} />}
       <Routes>
-        <Route
-          path='/'
-          element={
-            window.walletConnection.isSignedIn() ?
-              <Dashboard
-                logout={logout}
-                setVaccines={setVaccines}
-                vaccines={vaccines}
+        <Route path='/' element={<Layout />}>
+
+          <Route
+            index
+            element={
+              window.walletConnection.isSignedIn() ?
+                <Dashboard
+                  logout={logout}
+                  setVaccines={setVaccines}
+                  vaccines={vaccines}
+                  vaccineList={vaccineList}
+                  buttonDisabled={buttonDisabled}
+                  showNotification={showNotification}
+                  setButtonDisabled={setButtonDisabled}
+                  setShowNotification={setShowNotification}
+                  Notification={Notification}
+                /> :
+                <Home login={login} />
+            }
+          />
+
+          <Route
+            path='/vaccines'
+            element={
+              <VaccinePage
                 vaccineList={vaccineList}
-                buttonDisabled={buttonDisabled}
+                vaccines={vaccines}
+              />
+            }
+          >
+            <Route
+              path='/vaccines/:id'
+              element={
+                <ViewVaccine
+                  vaccineList={vaccineList}
+                />
+              }
+            />
+          </Route>
+
+          <Route
+            path='/addVaccine'
+            element={
+              <AddVaccine
+                setVacceines={setVaccines}
+                vaccines={vaccines}
                 showNotification={showNotification}
-                setButtonDisabled={setButtonDisabled}
-                setShowNotification={setShowNotification}
-                Notification={Notification}
-              /> :
-              <Home login={login} />
-          }
-        />
-        <Route
-          path='/vaccines'
-          element={
-            <VaccinePage
-              vaccineList={vaccineList}
-              vaccines={vaccines}
-            />
-          }
-        />
-        <Route
-          path='/addVaccine'
-          element={
-            <AddVaccine
-              setVacceines={setVaccines}
-              vaccines={vaccines}
-              showNotification={showNotification}
-            />
-          }
-        />
-        <Route
-          path='/vaccine/:id'
-          element={
-            <ViewVaccine
-              vaccineList={vaccineList}
-            />
-          }
-        />
+              />
+            }
+          />
+        </Route>
+
       </Routes>
     </>
   );

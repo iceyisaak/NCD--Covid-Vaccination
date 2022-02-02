@@ -19,7 +19,7 @@ const VaccineList = (props) => {
             {vaccineList.map((v, i) =>
               <tr key={i} className=''>
                 <td>
-                  <Link to={`/vaccine/${v.id}`}>
+                  <Link to={`/vaccines/${v.id}`}>
                     <label htmlFor={`${i}`}>{v.name}</label>
                   </Link>
                 </td>
