@@ -26,7 +26,7 @@ export default function App() {
   const [vaccineList, setVaccineList] = useState([]);
   const [persons, setPersons] = useState();
   const [personList, setPersonList] = useState([]);
-  const [certificates, setCertificate] = useState();
+  const [certificates, setCertificates] = useState();
   const [certificateList, setCertificateList] = useState([]);
 
   window.walletConnection.isSignedIn() &&
@@ -60,7 +60,7 @@ export default function App() {
 
         <Route path='/certificates/' element={<CertificatePage certificateList={certificateList} certificates={certificates} />} />
         <Route path='/certificates/:certificateId' element={<ViewCertificate />} />
-        <Route path='/addCertificate' element={<AddCertificate setCertificate={setCertificate} certificates={certificates} />} />
+        <Route path='/addCertificate' element={<AddCertificate setCertificates={setCertificates} certificates={certificates} />} />
 
       </Routes>
     </>

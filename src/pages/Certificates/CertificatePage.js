@@ -1,30 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import VaccineList from '../../components/Vaccines/VaccineList';
+import { useNavigate } from 'react-router-dom';
+import CertificateList from '../../components/Certificates/CertificateList';
 
-const VaccinePage = (props) => {
+const CertificatePage = (props) => {
 
-  const { vaccines, vaccineList, setVaccines } = props;
+  const { certificates, certificateList, setCertificates } = props;
+
+  const navigate = useNavigate();
 
   return (
     <>
       <h1>
-        VACCINE PAGE
+        CERTIFICATE PAGE
       </h1>
-      <Link to='/addVaccine'>
-        <button>
-          Add Vaccine
-        </button>
-      </Link>
+      <button onClick={() => navigate('/')}>
+        Back
+      </button>
+      <button onClick={() => navigate('/addCertificate')}>
+        Add Certificate
+      </button>
 
-      <VaccineList
-        vaccines={vaccines}
-        vaccineList={vaccineList}
-        setVaccines={setVaccines}
+      <CertificateList
+        certificates={certificates}
+        certificateList={certificateList}
+        setCertificates={setCertificates}
       />
 
     </>
   );
 };
 
-export default VaccinePage;
+export default CertificatePage;

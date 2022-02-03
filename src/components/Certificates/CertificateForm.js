@@ -2,26 +2,28 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-const PersonForm = () => {
+const CertificateForm = () => {
 
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const { nationality, name, photo, birthdate } = e.target.elements;
+    const { vaccine_id, person_id, country, application_date, vaccine_lot } = e.target.elements;
 
     try {
 
       fieldset.disable = true;
       // make an update call to the smart contract
-      await window.contract.addPerson({
+      await window.contract.addCertificate({
         // pass the value that the user entered in the greeting field
         id: uuidv4(),
-        nationality: nationality.value,
-        name: name.value,
-        photo: photo.value,
-        birthdate: birthdate.value,
+        vaccine_id: vaccine_id.value,
+        person_id: person_id.value,
+        country: country.value,
+        application_date: application_date.value,
+        vaccine_lot: vaccine_lot.value,
+        digital_stamp: uuidv4()
       });
     } catch (e) {
       alert(
@@ -35,8 +37,8 @@ const PersonForm = () => {
       fieldset.disabled = false;
     }
 
-    alert('New Person Added');
-    location.assign('/persons');
+    alert('New Certificate Added');
+    location.assign('/certificates');
 
   };
 
@@ -44,63 +46,76 @@ const PersonForm = () => {
     <form onSubmit={onSubmit} className='form'>
       <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
         <fieldset id="fieldset">
-          <label htmlFor="name" style={{
-            display: 'block',
-            color: 'var(--gray)',
-            marginBottom: '0.5em'
-          }}
+          <label
+            htmlFor="person_id"
+            style={{
+              display: 'block',
+              color: 'var(--gray)',
+              marginBottom: '0.5em'
+            }}
           >
-            Name
+            Person ID
           </label>
           <input
             autoComplete="off"
-            id="name"
+            id="person_id"
             className='form-input mb-1'
-            placeholder='e.g. John Doe'
+            placeholder='e.g. ###-###-###'
           />
           <label
-            htmlFor="nationality"
+            htmlFor="vaccine_id"
             style={{
               display: 'block',
               color: 'var(--gray)',
               marginBottom: '0.5em'
             }}
           >
-            Nationality
+            Vaccine ID
           </label>
           <input
             autoComplete="off"
-            id="nationality"
+            id="vaccine_id"
             className='form-input mb-1'
-            placeholder='e.g. Italian'
+            placeholder='e.g. ###-###-###'
           />
           <label
-            htmlFor="photo"
+            htmlFor="country"
             style={{
               display: 'block',
               color: 'var(--gray)',
               marginBottom: '0.5em'
             }}
           >
-            Photo
+            Country
           </label>
-          <input id="photo" className='form-input mb-1' type='file' />
+          <input id="country" className='form-input mb-1' placeholder='e.g. Germany' />
           <label
-            htmlFor="birthdate"
+            htmlFor="application_date"
             style={{
               display: 'block',
               color: 'var(--gray)',
               marginBottom: '0.5em'
             }}
           >
-            Birthdate
+            Application Date
+          </label>
+          <input id="application_date" className='form-input mb-1' placeholder='e.g. Germany' type='date' />
+          <label
+            htmlFor="vaccine_lot"
+            style={{
+              display: 'block',
+              color: 'var(--gray)',
+              marginBottom: '0.5em'
+            }}
+          >
+            Vaccine Lot
           </label>
           <input
             autoComplete="off"
-            id="birthdate"
+            id="vaccine_lot"
             className='form-input mb-1'
-            placeholder='e.g. Intramuscular injection'
-            type='date'
+            placeholder='e.g. ###-###-###'
+            type='number'
           />
 
           <button
@@ -117,4 +132,4 @@ const PersonForm = () => {
   );
 };
 
-export default PersonForm;
+export default CertificateForm;

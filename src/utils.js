@@ -30,7 +30,7 @@ export async function initContract() {
     changeMethods: [
       'addVaccine',
       'addPerson',
-      'addCertificates'
+      'addCertificate'
     ],
   });
 }

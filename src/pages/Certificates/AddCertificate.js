@@ -1,24 +1,23 @@
 import React from 'react';
-import Form from '../../components/Vaccines/VaccineForm';
+import CertificateForm from '../../components/Certificates/CertificateForm';
 
-const AddVaccine = (props) => {
+const AddCertificate = (props) => {
 
-  const { vaccines, setVaccines, showNotification } = props;
+  const { certificates, setCertificates } = props;
 
   return (
     <div className=''>
       <h1>
-        Add Vaccine
+        Add Certificate
       </h1>
       <div className='margin-center'>
-        <Form
-          setVaccines={setVaccines}
-          vaccines={vaccines}
-          showNotification={showNotification}
+        <CertificateForm
+          setCertificates={setCertificates}
+          certificates={certificates}
         />
       </div>
     </div>
   );
 };
 
-export default AddVaccine;
+export default AddCertificate;

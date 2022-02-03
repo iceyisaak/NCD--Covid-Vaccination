@@ -1,49 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const ViewVaccine = () => {
+const ViewCertificate = () => {
 
-  const { id } = useParams();
+  const { certificateId } = useParams();
   const navigate = useNavigate();
-  const [vac, setVac] = useState({});
+  const [cer, setCer] = useState({});
 
-  // useEffect(async () => {
-  //   const res = await window.contract.getVaccineByID({ id });
-  //   setVac(res);
-  // }, []);
 
-  const fetchVac = async () => {
-    const res = await window.contract.getVaccineByID({ id });
-    setVac(res);
+  const fetchCert = async () => {
+    const res = await window.contract.getCertificateByID({ id: certificateId });
+    setCer(res);
   };
 
   useEffect(() => {
-    fetchVac();
+    fetchCert();
   }, []);
 
 
   return (
     <>
       {
-        vac &&
+        cer &&
         <div>
-          <h1>View Vaccine: <span>{vac.id}</span></h1>
+          <h1>View Certificate: <span>{cer.id}</span></h1>
           <p>
-            {vac.name}
+            {cer.id}
           </p>
           <p>
-            {vac.manufacturer}
+            {cer.person_id}
           </p>
           <p>
-            {vac.type}
+            {cer.vaccine_id}
           </p>
           <p>
-            {vac.administration}
+            {cer.country}
           </p>
           <p>
-            {vac.dose}
+            {cer.application_date}
           </p>
-          <button onClick={() => navigate('/vaccines')}>
+          <p>
+            {cer.vaccine_lot}
+          </p>
+          <p>
+            {cer.digital_stamp}
+          </p>
+          <button onClick={() => navigate('/certificates')}>
             Back
           </button>
         </div>
@@ -53,4 +55,4 @@ const ViewVaccine = () => {
 
 };
 
-export default ViewVaccine;
+export default ViewCertificate;

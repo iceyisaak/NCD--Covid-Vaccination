@@ -37,7 +37,7 @@ const VaccineForm = (props) => {
     }
 
     alert('New Vaccine Added');
-    navigate('/vaccines');
+    location.assign('/vaccines');
 
   };
 
