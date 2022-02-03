@@ -51,15 +51,15 @@ export default function App() {
         />
 
         <Route path='/vaccines/' element={<VaccinePage vaccineList={vaccineList} vaccines={vaccines} />} />
-        <Route path='/vaccines/:id' element={<ViewVaccine />} />
+        <Route path='/vaccines/:vaccineId' element={<ViewVaccine />} />
         <Route path='/addVaccine' element={<AddVaccine setVacceines={setVaccines} vaccines={vaccines} />} />
 
         <Route path='/persons/' element={<PersonPage personList={personList} persons={persons} />} />
-        <Route path='/persons/:id' element={<ViewPerson />} />
+        <Route path='/persons/:personId' element={<ViewPerson />} />
         <Route path='/addPerson' element={<AddPerson setPersons={setPersons} persons={persons} />} />
 
         <Route path='/certificates/' element={<CertificatePage certificateList={certificateList} certificates={certificates} />} />
-        <Route path='/certificates/:id' element={<ViewCertificate />} />
+        <Route path='/certificates/:certificateId' element={<ViewCertificate />} />
         <Route path='/addCertificate' element={<AddCertificate setCertificate={setCertificate} certificates={certificates} />} />
 
       </Routes>

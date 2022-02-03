@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const ViewVaccine = () => {
 
-  const { id } = useParams();
+  const { vaccineId } = useParams();
   const navigate = useNavigate();
   const [vac, setVac] = useState({});
 
@@ -13,7 +13,7 @@ const ViewVaccine = () => {
   // }, []);
 
   const fetchVac = async () => {
-    const res = await window.contract.getVaccineByID({ id });
+    const res = await window.contract.getVaccineByID({ id: vaccineId });
     setVac(res);
   };
 

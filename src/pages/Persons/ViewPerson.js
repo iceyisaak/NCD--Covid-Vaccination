@@ -3,12 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const ViewPerson = () => {
 
-  const { personID } = useParams();
+  const { personId } = useParams();
   const navigate = useNavigate();
   const [pers, setPers] = useState({});
 
   const fetchPers = async () => {
-    const res = await window.contract.getPersonByID({ personID });
+    const res = await window.contract.getPersonByID({ id: personId });
     setPers(res);
   };
 
@@ -22,21 +22,21 @@ const ViewPerson = () => {
       {
         pers &&
         <div>
-          <h1>View Vaccine: <span>{pers.id}</span></h1>
+          <h1>View Person: </h1>
+          <p>
+            {pers.id}
+          </p>
           <p>
             {pers.name}
           </p>
           <p>
-            {pers.manufacturer}
+            {pers.nationality}
           </p>
           <p>
-            {pers.type}
+            {pers.photo}
           </p>
           <p>
-            {pers.administration}
-          </p>
-          <p>
-            {pers.dose}
+            {pers.birthdate}
           </p>
           <button onClick={() => navigate('/persons')}>
             Back
