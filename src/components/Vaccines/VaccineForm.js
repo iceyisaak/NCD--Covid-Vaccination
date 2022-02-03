@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-const Form = (props) => {
+const VaccineForm = (props) => {
 
-  const { vaccines, setVaccines, setShowNotification } = props;
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const { id, name, manufacturer, type, administration, dose } = e.target.elements;
+    const { name, manufacturer, type, administration, dose } = e.target.elements;
 
     try {
 
@@ -37,18 +37,7 @@ const Form = (props) => {
     }
 
     alert('New Vaccine Added');
-
-    // setVaccines(vaccines);
-
-    // setShowNotification(true);
-
-    // // remove Notification again after css animation completes
-    // // this allows it to be shown again next time the form is submitted
-    // setTimeout(() => {
-    //   setShowNotification(false);
-    // }, 11000);
-
-    window.location.assign('/vaccines');
+    navigate('/vaccines');
 
   };
 
@@ -103,14 +92,12 @@ const Form = (props) => {
         >
           Add
         </button>
-        <Link to='/vaccines'>
-          <button className='btn'>
-            Back
-          </button>
-        </Link>
+        <button onClick={() => navigate('/vaccines')} className='btn'>
+          Back
+        </button>
       </fieldset>
     </form>
   );
 };
 
-export default Form;
+export default VaccineForm;

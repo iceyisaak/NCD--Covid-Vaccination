@@ -1,9 +1,9 @@
 import React from 'react';
-import VaccineForm from '../../components/Vaccines/VaccineForm';
+import Form from '../../components/Vaccines/VaccineForm';
 
 const AddVaccine = (props) => {
 
-  const { vaccines, setVaccines } = props;
+  const { vaccines, setVaccines, showNotification } = props;
 
   return (
     <div className=''>
@@ -11,9 +11,10 @@ const AddVaccine = (props) => {
         Add Vaccine
       </h1>
       <div className='margin-center'>
-        <VaccineForm
+        <Form
           setVaccines={setVaccines}
           vaccines={vaccines}
+          showNotification={showNotification}
         />
       </div>
     </div>

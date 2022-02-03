@@ -1,34 +1,38 @@
 import 'regenerator-runtime/runtime';
-import React, { useState, useEffect } from 'react';
 import { login, logout } from './utils';
-import { Routes, Route, Link, Outlet } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import getConfig from './config';
+import { Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import VaccinePage from './pages/Vaccines/VaccinePage';
 import AddVaccine from './pages/Vaccines/AddVaccine';
-import Form from './components/Form';
 import Navbar from './components/Navbar';
-import Layout from './Layout';
+import ViewVaccine from './pages/Vaccines/ViewVaccine';
+import PersonPage from './pages/Persons/PersonPage';
+import AddPerson from './pages/Persons/AddPerson';
+import ViewPerson from './pages/Persons/ViewPerson';
+import CertificatePage from './pages/Certificates/CertificatePage';
+import ViewCertificate from './pages/Certificates/ViewCertificate';
+import AddCertificate from './pages/Certificates/AddCertificate';
 
 import './styles/global.scss';
 
-import getConfig from './config';
-import ViewVaccine from './pages/Vaccines/ViewVaccine';
-import VaccineList from './components/VaccineList';
 const { networkId } = getConfig(process.env.NODE_ENV || 'development');
 
 export default function App() {
   // use React Hooks to store greeting in component state
   const [vaccines, setVaccines] = useState();
   const [vaccineList, setVaccineList] = useState([]);
+  const [persons, setPersons] = useState();
+  const [personList, setPersonList] = useState([]);
+  const [certificates, setCertificate] = useState();
+  const [certificateList, setCertificateList] = useState([]);
 
-  // when the user has not yet interacted with the form, disable the button
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-
-  // after submitting the form, we want to show Notification
-  const [showNotification, setShowNotification] = useState(false);
-
-  window.walletConnection.isSignedIn() && useEffect(() => { window.contract.getVaccines().then(setVaccineList); }, []);
+  window.walletConnection.isSignedIn() &&
+    useEffect(() => { window.contract.getVaccines().then(setVaccineList); }, []) &&
+    useEffect(() => { window.contract.getPersons().then(setPersonList); }, []) &&
+    useEffect(() => { window.contract.getCertificates().then(setCertificateList); }, []);
 
   return (
     <>
@@ -39,47 +43,24 @@ export default function App() {
           path='/'
           element={
             window.walletConnection.isSignedIn() ?
-              <Dashboard logout={logout}
-                setVaccines={setVaccines}
-                vaccines={vaccines}
-                vaccineList={vaccineList}
-                buttonDisabled={buttonDisabled}
-                showNotification={showNotification}
-                setButtonDisabled={setButtonDisabled}
-                setShowNotification={setShowNotification}
-                Notification={Notification}
-              /> :
+              <Dashboard logout={logout} setVaccines={setVaccines} vaccines={vaccines} vaccineList={vaccineList} /> :
               <Home login={login} />
           }
         />
 
         <Route path='/vaccines/' element={<VaccinePage vaccineList={vaccineList} vaccines={vaccines} />} />
         <Route path='/vaccines/:id' element={<ViewVaccine />} />
-        <Route path='/addVaccine' element={<AddVaccine setVacceines={setVaccines} vaccines={vaccines} showNotification={showNotification} />} />
+        <Route path='/addVaccine' element={<AddVaccine setVacceines={setVaccines} vaccines={vaccines} />} />
+
+        <Route path='/persons/' element={<PersonPage personList={personList} persons={persons} />} />
+        <Route path='/persons/:id' element={<ViewPerson />} />
+        <Route path='/addPerson' element={<AddPerson setPersons={setPersons} persons={persons} />} />
+
+        <Route path='/certificates/' element={<CertificatePage certificateList={certificateList} certificates={certificates} />} />
+        <Route path='/certificates/:id' element={<ViewCertificate />} />
+        <Route path='/addCertificate' element={<AddCertificate setCertificate={setCertificate} certificates={certificates} />} />
 
       </Routes>
     </>
-  );
-}
-
-// this component gets rendered by App after the form is submitted
-function Notification() {
-  const urlPrefix = `https://explorer.${networkId}.near.org/accounts`;
-  return (
-    <aside>
-      <a target="_blank" rel="noreferrer" href={`${urlPrefix}/${window.accountId}`}>
-        {window.accountId}
-      </a>
-      {' '}
-      called method: 'setGreeting' in contract:
-      {' '}
-      <a target="_blank" rel="noreferrer" href={`${urlPrefix}/${window.contract.contractId}`}>
-        {window.contract.contractId}
-      </a>
-      <footer>
-        <div>✔ Succeeded</div>
-        <div>Just now</div>
-      </footer>
-    </aside>
   );
 }

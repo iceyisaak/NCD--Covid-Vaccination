@@ -1,9 +1,11 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = (props) => {
 
   const { logout, vaccines, setVaccines, vaccineList, showNotification, Notification, setShowNotification } = props;
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -11,20 +13,18 @@ const Dashboard = (props) => {
         <h1>
           Dashboard
         </h1>
-        <Link to='/vaccines'>
-          <button className='btn mb-1'>
-            Vaccines
-          </button>
-        </Link>
-        <button className='btn mb-1'>
-          Patients
+        <button onClick={() => navigate('/vaccines')} className='btn mb-1'>
+          Vaccines
         </button>
-        <button className='btn mb-1'>
+        <button onClick={() => navigate('/persons')} className='btn mb-1'>
+          Persons
+        </button>
+        <button onClick={() => navigate('/certificates')} className='btn mb-1'>
           Certificates
         </button>
-        <button className='btn mb-1'>
+        {/* <button className='btn mb-1'>
           Infection Report
-        </button>
+        </button> */}
       </main>
       {/* <main>
         <Form
