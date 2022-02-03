@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import VaccineList from '../../components/Vaccines/VaccineList';
 
 const VaccinePage = (props) => {
@@ -7,6 +7,8 @@ const VaccinePage = (props) => {
   const { vaccines, vaccineList, setVaccines } = props;
 
   const navigate = useNavigate();
+
+  console.log(vaccineList);
 
   return (
     <>
@@ -20,11 +22,7 @@ const VaccinePage = (props) => {
         Add Vaccine
       </button>
 
-      <VaccineList
-        vaccines={vaccines}
-        vaccineList={vaccineList}
-        setVaccines={setVaccines}
-      />
+      <VaccineList vaccines={vaccines} vaccineList={vaccineList} setVaccines={setVaccines} />
 
     </>
   );

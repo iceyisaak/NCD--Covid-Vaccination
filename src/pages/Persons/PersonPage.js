@@ -8,6 +8,8 @@ const PersonPage = (props) => {
 
   const navigate = useNavigate();
 
+  console.log(personList);
+
   return (
     <>
       <h1>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-const PersonForm = (props) => {
+const PersonForm = () => {
 
   const navigate = useNavigate();
 
@@ -35,8 +35,8 @@ const PersonForm = (props) => {
       fieldset.disabled = false;
     }
 
-    alert('New Vaccine Added');
-    window.location.assign('/vaccines');
+    alert('New Person Added');
+    navigate('/persons');
 
   };
 

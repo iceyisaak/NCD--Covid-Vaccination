@@ -30,9 +30,11 @@ export default function App() {
   const [certificateList, setCertificateList] = useState([]);
 
   window.walletConnection.isSignedIn() &&
-    useEffect(() => { window.contract.getVaccines().then(setVaccineList); }, []) &&
-    useEffect(() => { window.contract.getPersons().then(setPersonList); }, []) &&
-    useEffect(() => { window.contract.getCertificates().then(setCertificateList); }, []);
+    useEffect(() => {
+      window.contract.getVaccines().then(setVaccineList);
+      window.contract.getPersons().then(setPersonList);
+      window.contract.getCertificates().then(setCertificateList);
+    }, []);
 
   return (
     <>

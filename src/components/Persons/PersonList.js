@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, Route } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PersonList = (props) => {
 
@@ -9,7 +9,7 @@ const PersonList = (props) => {
 
     <div className='list'>
       <div className='flex flex-wrap justify-between w-full mb-4'>
-        <h2 className='text-lg'>Vaccine List</h2>
+        <h2 className='text-lg'>Person List</h2>
         <span className='text-sm entry'>Total: {personList.length} Entries</span>
       </div>
       {personList.length === 0 ?
