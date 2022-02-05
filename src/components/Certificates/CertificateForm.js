@@ -27,7 +27,7 @@ const CertificateForm = (props) => {
         country: country.value,
         application_date: application_date.value,
         vaccine_lot: vaccine_lot.value,
-        digital_stamp: uuidv4()
+        digital_stamp: Date.now()
       });
     } catch (e) {
       alert(

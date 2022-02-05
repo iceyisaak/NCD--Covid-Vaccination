@@ -45,8 +45,8 @@ export class Certificate {
   country: string;
   application_date: string;
   vaccine_lot: string;
-  digital_stamp: u64;
-  constructor(id: string, vaccine_id: string, person_id: string, country: string, application_date: string, vaccine_lot: string, digital_stamp: u64) {
+  digital_stamp: string;
+  constructor(id: string, vaccine_id: string, person_id: string, country: string, application_date: string, vaccine_lot: string, digital_stamp: string) {
     this.id = id;
     this.vaccine_id = vaccine_id;
     this.person_id = person_id;
