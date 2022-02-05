@@ -36,6 +36,9 @@ export default function App() {
       window.contract.getCertificates().then(setCertificateList);
     }, []);
 
+  console.log('vL:', vaccineList);
+  console.log('pL:', personList);
+
   return (
     <>
       {window.walletConnection.isSignedIn() && <Navbar logout={logout} />}
@@ -60,7 +63,9 @@ export default function App() {
 
         <Route path='/certificates/' element={<CertificatePage certificateList={certificateList} certificates={certificates} />} />
         <Route path='/certificates/:certificateId' element={<ViewCertificate />} />
-        <Route path='/addCertificate' element={<AddCertificate setCertificates={setCertificates} certificates={certificates} />} />
+        <Route path='/addCertificate' element={
+          <AddCertificate setCertificates={setCertificates} certificates={certificates} vaccineList={vaccineList} personList={personList} />
+        } />
 
       </Routes>
     </>

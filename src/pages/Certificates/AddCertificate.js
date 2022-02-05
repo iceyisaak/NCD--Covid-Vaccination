@@ -3,7 +3,7 @@ import CertificateForm from '../../components/Certificates/CertificateForm';
 
 const AddCertificate = (props) => {
 
-  const { certificates, setCertificates } = props;
+  const { certificates, setCertificates, vaccineList, personList } = props;
 
   return (
     <div className=''>
@@ -14,6 +14,8 @@ const AddCertificate = (props) => {
         <CertificateForm
           setCertificates={setCertificates}
           certificates={certificates}
+          vaccineList={vaccineList}
+          personList={personList}
         />
       </div>
     </div>

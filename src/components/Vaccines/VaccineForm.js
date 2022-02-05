@@ -1,16 +1,14 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-const VaccineForm = (props) => {
+const VaccineForm = () => {
 
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
     const { name, manufacturer, type, administration, dose } = e.target.elements;
-
     try {
 
       fieldset.disable = true;
@@ -85,11 +83,8 @@ const VaccineForm = (props) => {
             className='form-input mb-1'
             placeholder='Dose'
           />
-
         </div>
-        <button
-          className='btn mb-1'
-        >
+        <button className='btn mb-1'>
           Add
         </button>
         <button onClick={() => navigate('/vaccines')} className='btn'>

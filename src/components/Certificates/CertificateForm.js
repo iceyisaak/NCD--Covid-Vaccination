@@ -2,9 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-const CertificateForm = () => {
+const CertificateForm = (props) => {
 
   const navigate = useNavigate();
+  const { vaccineList, personList } = props;
+
+  console.log('vaccineList:', vaccineList);
+  console.log('personsList:', personList);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -36,10 +40,8 @@ const CertificateForm = () => {
       // re-enable the form, whether the call succeeded or failed
       fieldset.disabled = false;
     }
-
     alert('New Certificate Added');
     location.assign('/certificates');
-
   };
 
   return (
@@ -56,12 +58,17 @@ const CertificateForm = () => {
           >
             Person ID
           </label>
-          <input
+          {/* <input
             autoComplete="off"
             id="person_id"
             className='form-input mb-1'
             placeholder='e.g. ###-###-###'
-          />
+          /> */}
+          <select name="" id="person_id">
+            {personList.map((p, i) =>
+              <option value={p.id} key={i}>{p.name}</option>
+            )}
+          </select>
           <label
             htmlFor="vaccine_id"
             style={{
@@ -72,12 +79,19 @@ const CertificateForm = () => {
           >
             Vaccine ID
           </label>
-          <input
+          <select name="" id="">
+            {/* <input
             autoComplete="off"
             id="vaccine_id"
             className='form-input mb-1'
             placeholder='e.g. ###-###-###'
-          />
+          /> */}
+            {
+              vaccineList.map((v, i) =>
+                <option value={v.id} key={i}>{v.name}</option>
+              )
+            }
+          </select>
           <label
             htmlFor="country"
             style={{
@@ -118,12 +132,10 @@ const CertificateForm = () => {
             type='number'
           />
 
-          <button
-            className='btn mb-1'
-          >
+          <button className='btn mb-1'>
             Add
           </button>
-          <button onClick={() => navigate('/persons')} className='btn'>
+          <button onClick={() => navigate('/certificates')} className='btn'>
             Back
           </button>
         </fieldset>

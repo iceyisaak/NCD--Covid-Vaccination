@@ -6,7 +6,6 @@ const CertificateList = (props) => {
   const { certificateList } = props;
 
   return (
-
     <div className='list'>
       <div className='flex flex-wrap justify-between w-full mb-4'>
         <h2 className='text-lg'>Certificate List</h2>
