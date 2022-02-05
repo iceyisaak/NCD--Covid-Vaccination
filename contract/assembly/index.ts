@@ -82,14 +82,14 @@ export function getPersonByID(id: string): Person | null {
 // ------------------------- Methods of the smart contract of Vaccination Certificates --------------- ---------- //
 
 // Method to register a certificate
-export function addCertificate(id: string, vaccine_id: string, person_id: string, country: string, application_date: string, vaccine_lot: string, digital_stamp: u64): void {
+export function addCertificate(id: string, vaccine_id: string, person_id: string, country: string, application_date: string, vaccine_lot: string, digital_stamp: string): void {
   assert(id.length > 0, "Vaccine ID is required");
   assert(vaccine_id.length > 0, "Vaccine name is required");
   assert(person_id.length > 0, "Manufacturer is required");
   assert(country.length > 0, "Vaccine type is required");
   assert(application_date.length > 0, "The type of administration of the Vaccine is required");
   assert(vaccine_lot.length > 0, "The number of doses is required");
-  assert(digital_stamp > 0, "The stamp is required");
+  assert(digital_stamp.length > 0, "The stamp is required");
   let certificate = new Certificate(id, vaccine_id, person_id, country, application_date, vaccine_lot, digital_stamp);
   certificates.push(certificate);
 }
