@@ -64,10 +64,8 @@ const CertificateForm = (props) => {
             className='form-input mb-1'
             placeholder='e.g. ###-###-###'
           /> */}
-          <select name="" id="person_id">
-            {personList.map((p, i) =>
-              <option value={p.id} key={i}>{p.name}</option>
-            )}
+          <select name="person_id" id="person_id">
+            {personList.map((p, i) => <option value={p.id} key={i}>{p.name}</option>)}
           </select>
           <label
             htmlFor="vaccine_id"
@@ -79,18 +77,14 @@ const CertificateForm = (props) => {
           >
             Vaccine ID
           </label>
-          <select name="" id="">
-            {/* <input
+          {/* <input
             autoComplete="off"
             id="vaccine_id"
             className='form-input mb-1'
             placeholder='e.g. ###-###-###'
           /> */}
-            {
-              vaccineList.map((v, i) =>
-                <option value={v.id} key={i}>{v.name}</option>
-              )
-            }
+          <select name="vaccine_id" id="vaccin_id">
+            {vaccineList.map((v, i) => <option value={v.id} key={i}>{v.name}</option>)}
           </select>
           <label
             htmlFor="country"
@@ -131,7 +125,6 @@ const CertificateForm = (props) => {
             placeholder='e.g. ###-###-###'
             type='number'
           />
-
           <button className='btn mb-1'>
             Add
           </button>
