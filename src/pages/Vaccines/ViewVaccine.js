@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const ViewVaccine = () => {
+const ViewVaccine = (props) => {
+
+  const { certificateList, personList } = props;
 
   const { vaccineId } = useParams();
   const navigate = useNavigate();
   const [vac, setVac] = useState({});
+  const [cer, setCer] = useState({});
+  const [per, setPer] = useState({});
 
   // useEffect(async () => {
   //   const res = await window.contract.getVaccineByID({ id });
   //   setVac(res);
   // }, []);
+
+
+  setCer(certificateList);
+  setPer(personList);
 
   const fetchVac = async () => {
     const res = await window.contract.getVaccineByID({ id: vaccineId });
@@ -20,7 +28,6 @@ const ViewVaccine = () => {
   useEffect(() => {
     fetchVac();
   }, []);
-
 
   return (
     <>
@@ -46,6 +53,12 @@ const ViewVaccine = () => {
           <button onClick={() => navigate('/vaccines')}>
             Back
           </button>
+        </div>
+      }
+      {
+        cer &&
+        <div>
+          {certificateList.person_id}
         </div>
       }
     </>

@@ -256,3 +256,9 @@ aside footer *:last-child {
   align-items: center;
   margin-bottom: 10rem;
 }
+
+.searchBox {
+  display: flex;
+  flex-flow: column;
+  width: 30%;
+}

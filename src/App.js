@@ -15,6 +15,7 @@ import ViewPerson from './pages/Persons/ViewPerson';
 import CertificatePage from './pages/Certificates/CertificatePage';
 import ViewCertificate from './pages/Certificates/ViewCertificate';
 import AddCertificate from './pages/Certificates/AddCertificate';
+import SearchCertificate from './pages/Certificates/SearchCertificate';
 
 import './styles/global.scss';
 
@@ -36,9 +37,6 @@ export default function App() {
       window.contract.getCertificates().then(setCertificateList);
     }, []);
 
-  console.log('vL:', vaccineList);
-  console.log('pL:', personList);
-
   return (
     <>
       {window.walletConnection.isSignedIn() && <Navbar logout={logout} />}
@@ -54,17 +52,20 @@ export default function App() {
         />
 
         <Route path='/vaccines/' element={<VaccinePage vaccineList={vaccineList} vaccines={vaccines} />} />
-        <Route path='/vaccines/:vaccineId' element={<ViewVaccine />} />
+        <Route path='/vaccines/:vaccineId' element={<ViewVaccine certificateList={certificateList} personList={personList} />} />
         <Route path='/addVaccine' element={<AddVaccine setVacceines={setVaccines} vaccines={vaccines} />} />
 
         <Route path='/persons/' element={<PersonPage personList={personList} persons={persons} />} />
-        <Route path='/persons/:personId' element={<ViewPerson />} />
+        <Route path='/persons/:personId' element={<ViewPerson certificateList={certificateList} vaccineList={vaccineList} />} />
         <Route path='/addPerson' element={<AddPerson setPersons={setPersons} persons={persons} />} />
 
         <Route path='/certificates/' element={<CertificatePage certificateList={certificateList} certificates={certificates} />} />
         <Route path='/certificates/:certificateId' element={<ViewCertificate />} />
         <Route path='/addCertificate' element={
           <AddCertificate setCertificates={setCertificates} certificates={certificates} vaccineList={vaccineList} personList={personList} />
+        } />
+        <Route path='/searchCertificate' element={
+          <SearchCertificate certificates={certificates} vaccineList={vaccineList} personList={personList} />
         } />
 
       </Routes>
