@@ -43,6 +43,7 @@ const ViewPerson = () => {
           </button>
         </div>
       }
+
     </>
   );
 
