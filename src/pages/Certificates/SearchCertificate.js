@@ -30,7 +30,7 @@ const SearchCertificate = (props) => {
     // location.assign('/certificates');
 
     const { person_id } = e.target.elements;
-    setSearchTerm(person_id.value);
+    setSearchTerm(person_id);
     console.log('person_id:', person_id);
     console.log('person_id.value:', person_id.value);
     console.log('searchTerm:', searchTerm);
