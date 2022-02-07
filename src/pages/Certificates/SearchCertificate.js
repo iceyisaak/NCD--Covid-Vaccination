@@ -32,8 +32,6 @@ const SearchCertificate = (props) => {
     setSearchTerm(person_id.value);
     console.log('person_id:', person_id);
     console.log('person_id.value:', person_id.value);
-    console.log('searchTerm:', searchTerm);
-
     // console.log('e.target.elements:', e.target.elements);
     // console.log('e.target.value:', e.target.value);
     // console.log('personList', personList);
@@ -48,15 +46,18 @@ const SearchCertificate = (props) => {
     // console.log(person_id);
   };
 
+  console.log('searchTerm:', searchTerm);
 
-  // const fetchCertificateByPersonID = async () => {
-  //   const res = await contract.getCertificateByPersonID({ id: person_id.value });
-  //   setSearchResult(res);
-  // };
 
-  // useEffect(() => {
-  //   fetchCertificateByPersonID();
-  // }, [person_id.value]);
+
+  const fetchCertificateByPersonID = async (searchTerm) => {
+    const res = await contract.getCertificateByPersonID({ id: searchTerm });
+    setSearchResult(res);
+  };
+
+  useEffect(() => {
+    fetchCertificateByPersonID(searchTerm);
+  }, [searchTerm]);
 
 
 
