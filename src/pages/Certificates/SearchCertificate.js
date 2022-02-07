@@ -4,7 +4,7 @@ const SearchCertificate = (props) => {
 
   const { certificateList, personList, vaccineList } = props;
   const [searchResult, setSearchResult] = useState([]);
-  const [searchTerm, setSearchTerm] = useState({});
+  const [searchTerm, setSearchTerm] = useState('');
 
 
   const onSubmit = async (e) => {
@@ -29,7 +29,7 @@ const SearchCertificate = (props) => {
     // location.assign('/certificates');
 
     const { person_id } = e.target.elements;
-    setSearchTerm(person_id);
+    setSearchTerm(person_id.value);
     console.log('person_id:', person_id);
     console.log('person_id.value:', person_id.value);
     console.log('searchTerm:', searchTerm);
@@ -49,14 +49,14 @@ const SearchCertificate = (props) => {
   };
 
 
-  const fetchCertificateByPersonID = async () => {
-    const res = await contract.getCertificateByPersonID({ id: person_id.value });
-    setSearchResult(res);
-  };
+  // const fetchCertificateByPersonID = async () => {
+  //   const res = await contract.getCertificateByPersonID({ id: person_id.value });
+  //   setSearchResult(res);
+  // };
 
-  useEffect(() => {
-    fetchCertificateByPersonID();
-  }, [person_id.value]);
+  // useEffect(() => {
+  //   fetchCertificateByPersonID();
+  // }, [person_id.value]);
 
 
 
