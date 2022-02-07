@@ -7,14 +7,12 @@ const CertificateForm = (props) => {
   const navigate = useNavigate();
   const { vaccineList, personList } = props;
 
-  console.log('vaccineList:', vaccineList);
-  console.log('personsList:', personList);
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const { vaccine_id, person_id, country, application_date, vaccine_lot } = e.target.elements;
 
+    // console.log('e.target.elements: ', e.target.elements);
     try {
 
       fieldset.disable = true;
@@ -83,7 +81,7 @@ const CertificateForm = (props) => {
             className='form-input mb-1'
             placeholder='e.g. ###-###-###'
           /> */}
-          <select name="vaccine_id" id="vaccin_id">
+          <select name="vaccine_id" id="vaccine_id">
             {vaccineList.map((v, i) => <option value={v.id} key={i}>{v.name}</option>)}
           </select>
           <label

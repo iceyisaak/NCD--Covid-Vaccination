@@ -9,6 +9,10 @@ const VaccineForm = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const { name, manufacturer, type, administration, dose } = e.target.elements;
+
+    // console.log('e.target.element:', e.target.elements);
+
+
     try {
 
       fieldset.disable = true;

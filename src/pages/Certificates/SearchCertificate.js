@@ -5,7 +5,7 @@ const SearchCertificate = (props) => {
 
   const { certificateList, personList, vaccineList } = props;
   const [searchResult, setSearchResult] = useState({});
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState({});
 
 
   const onSubmit = async (e) => {
@@ -29,19 +29,35 @@ const SearchCertificate = (props) => {
     // alert('New Certificate Added');
     // location.assign('/certificates');
 
-    setSearchTerm(e.target.value);
-    console.log(searchResult);
+    const { person_id } = e.target.elements;
+    setSearchTerm(person_id.value);
+    console.log('person_id:', person_id);
+    console.log('person_id.value:', person_id.value);
+    console.log('searchTerm:', searchTerm);
+
+    // console.log('e.target.elements:', e.target.elements);
+    // console.log('e.target.value:', e.target.value);
+    // console.log('personList', personList);
+    // console.log('person_id', { person_id });
+
+
+    // setSearchTerm(e.target.value);
+
+    // console.log(searchTerm);
+    // console.log(searchResult);
+
+    // console.log(person_id);
   };
 
 
-  const fetchCertificateByPersonID = async (searchTerm) => {
-    const res = await contract.getCertificateByPersonID({ id: id.value });
-    setSearchResult(res);
-  };
+  // const fetchCertificateByPersonID = async () => {
+  //   const res = await contract.getCertificateByPersonID({ id: searchTerm });
+  //   setSearchResult(res);
+  // };
 
-  useEffect(() => {
-    fetchCertificateByPersonID();
-  }, [searchTerm]);
+  // useEffect(() => {
+  //   fetchCertificateByPersonID(searchTerm);
+  // }, [searchTerm]);
 
 
 
@@ -51,7 +67,7 @@ const SearchCertificate = (props) => {
       <h1>Search Certificate</h1>
       <form onSubmit={onSubmit} className='searchBox'>
         <label htmlFor="person_id">Search Certicate by Person</label>
-        <select name="person_id" id="id">
+        <select name="person_id" id="person_id">
           {personList.map((p, i) => <option value={p.id} key={i}>{p.name}</option>)}
         </select>
         <button>Submit</button>
