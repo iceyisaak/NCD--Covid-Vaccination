@@ -1,10 +1,9 @@
-import { Contract } from 'near-api-js';
 import React, { useEffect, useState } from 'react';
 
 const SearchCertificate = (props) => {
 
   const { certificateList, personList, vaccineList } = props;
-  const [searchResult, setSearchResult] = useState({});
+  const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState({});
 
 
@@ -50,14 +49,14 @@ const SearchCertificate = (props) => {
   };
 
 
-  // const fetchCertificateByPersonID = async () => {
-  //   const res = await contract.getCertificateByPersonID({ id: searchTerm });
-  //   setSearchResult(res);
-  // };
+  const fetchCertificateByPersonID = async () => {
+    const res = await contract.getCertificateByPersonID({ id: person_id.value });
+    setSearchResult(res);
+  };
 
-  // useEffect(() => {
-  //   fetchCertificateByPersonID(searchTerm);
-  // }, [searchTerm]);
+  useEffect(() => {
+    fetchCertificateByPersonID();
+  }, [person_id.value]);
 
 
 
