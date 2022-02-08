@@ -5,7 +5,7 @@ const SearchCertificate = (props) => {
   const { certificateList, personList, vaccineList } = props;
   const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-
+  const [showResult, setShowResult] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +32,7 @@ const SearchCertificate = (props) => {
     setSearchTerm(person_id.value);
     console.log('person_id:', person_id);
     console.log('person_id.value:', person_id.value);
+    setShowResult(true);
     // console.log('e.target.elements:', e.target.elements);
     // console.log('e.target.value:', e.target.value);
     // console.log('personList', personList);
@@ -51,15 +52,17 @@ const SearchCertificate = (props) => {
 
 
   const fetchCertificateByPersonID = async (searchTerm) => {
-    const res = await contract.getCertificateByPersonID({ id: searchTerm });
-    setSearchResult(res);
+    if (searchTerm !== '') {
+      const res = await contract.getCertificateByPersonID({ id: searchTerm });
+      console.log('res: ', res);
+      setSearchResult(res);
+    }
   };
+  console.log('searchResult: ', searchResult);
 
   useEffect(() => {
     fetchCertificateByPersonID(searchTerm);
   }, [searchTerm]);
-
-
 
 
   return (
@@ -72,10 +75,22 @@ const SearchCertificate = (props) => {
         </select>
         <button>Submit</button>
       </form>
-      <div>
 
-      </div>
+      {showResult ?
+        searchResult === null ?
+          <p>No Vaccine Certificate</p> :
 
+          <>
+            <div>
+              Vaccine: {vaccineList.map((v, i) => <span key={i}>{v.name}</span>)}
+            </div>
+            <div>
+              Date Issued: {searchResult.application_date}
+            </div>
+          </>
+
+        : null
+      }
 
     </>
 
