@@ -16,7 +16,7 @@ const CertificatePage = (props) => {
       <button onClick={() => navigate('/')}>
         Back
       </button>
-      <button onClick={() => navigate('/searchCertificate')}>
+      <button onClick={() => navigate('/searchCertificateByPerson')}>
         Search Certificate
       </button>
       <button onClick={() => navigate('/addCertificate')}>

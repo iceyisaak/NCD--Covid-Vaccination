@@ -15,7 +15,7 @@ import ViewPerson from './pages/Persons/ViewPerson';
 import CertificatePage from './pages/Certificates/CertificatePage';
 import ViewCertificate from './pages/Certificates/ViewCertificate';
 import AddCertificate from './pages/Certificates/AddCertificate';
-import SearchCertificate from './pages/Certificates/SearchCertificate';
+import SearchCertificateByPerson from './pages/Certificates/SearchCertificateByPerson';
 
 import './styles/global.scss';
 
@@ -64,8 +64,8 @@ export default function App() {
         <Route path='/addCertificate' element={
           <AddCertificate setCertificates={setCertificates} certificates={certificates} vaccineList={vaccineList} personList={personList} />
         } />
-        <Route path='/searchCertificate' element={
-          <SearchCertificate certificates={certificates} vaccineList={vaccineList} personList={personList} />
+        <Route path='/searchCertificateByPerson' element={
+          <SearchCertificateByPerson certificates={certificates} vaccineList={vaccineList} personList={personList} />
         } />
 
       </Routes>

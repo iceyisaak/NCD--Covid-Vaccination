@@ -14,9 +14,9 @@ const CertificateList = (props) => {
       {certificateList.length === 0 ?
         <p>List is Empty</p> :
         <table className='table'>
-          <tbody className=''>
+          <tbody>
             {certificateList.map((c, i) =>
-              <tr key={i} className=''>
+              <tr key={i}>
                 <td>
                   <Link to={`/certificates/${c.id}`}>
                     <label htmlFor={`${i}`}>{c.person_id}</label>
