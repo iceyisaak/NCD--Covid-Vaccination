@@ -120,16 +120,31 @@ export function getCertificateByID(id: string): Certificate | null {
 }
 
 // Method to query certificate by person id
-export function getCertificateByPersonID(id: string): Certificate | null {
+// export function getCertificateByPersonID(id: string): Certificate | null {
+//   assert(id.length > 0, "ID is required");
+//   for (let i = 0; i < certificates.length; i++) {
+//     if (certificates[i].person_id == id) {
+//       let find = certificates[i];
+//       return find;
+//     }
+//   }
+//   return null;
+// }
+
+export function getCertificateByPersonID(id: string): Array<Certificate> {
   assert(id.length > 0, "ID is required");
+  let result = new Array<Certificate>(certificates.length);
+  var j = 0
   for (let i = 0; i < certificates.length; i++) {
     if (certificates[i].person_id == id) {
       let find = certificates[i];
-      return find;
+      result[j] = find;
+      j += 1
     }
   }
-  return null;
+  return result;
 }
+
 
 // Method to query certificate by vaccine id
 export function getCertificateByVaccineID(id: string): Certificate | null {

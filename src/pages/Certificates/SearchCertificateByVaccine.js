@@ -12,31 +12,31 @@ const SearchCertificateByPerson = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const { person_id } = e.target.elements;
-    setSearchTerm(person_id.value);
+    const { vaccine_id } = e.target.elements;
+    setSearchTerm(vaccine_id.value);
     setShowResult(true);
   };
 
 
-  const fetchCertificateByPersonID = async (searchTerm) => {
+  const fetchCertificateByVaccineID = async (searchTerm) => {
     if (searchTerm !== '') {
-      const res = await contract.getCertificateByPersonID({ id: searchTerm });
-      res ? setSearchResult(res) : setSearchResult(null);
+      const res = await contract.getCertificateByVaccineID({ id: searchTerm });
+      res ? setSearchResult([res]) : setSearchResult(null);
     }
   };
 
   useEffect(() => {
-    fetchCertificateByPersonID(searchTerm);
+    fetchCertificateByVaccineID(searchTerm);
   }, [searchTerm]);
 
 
   return (
     <>
-      <h1>Search Certificate</h1>
+      <h1>Search Certificate by Vaccine</h1>
       <form onSubmit={onSubmit} className='searchBox'>
-        <label htmlFor="person_id">Search Certicate by Person</label>
-        <select name="person_id" id="person_id">
-          {personList.map((p, i) => <option value={p.id} key={i}>{p.name}</option>)}
+        <label htmlFor="vaccine_id">Search Certicate by Vaccine</label>
+        <select name="vaccine_id" id="person_id">
+          {vaccineList.map((v, i) => <option value={v.id} key={i}>{v.name}</option>)}
         </select>
         <button>Submit</button>
         <button onClick={() => navigate('/certificates')}>Back</button>
@@ -47,7 +47,7 @@ const SearchCertificateByPerson = (props) => {
       }
       {showResult ?
         searchResult === null ?
-          <p>No Vaccine Certificate</p>
+          <p>Not Distributed</p>
           :
           <table className='table'>
             <tbody>
@@ -55,7 +55,10 @@ const SearchCertificateByPerson = (props) => {
               {searchResult.map((sR, i) =>
                 <tr key={i}>
                   <td>
-                    <span htmlFor={`${i}`}>{sR.vaccine_id}</span>
+                    <span htmlFor={`${i}`}>{sR.id}</span>
+                  </td>
+                  <td>
+                    <span htmlFor={`${i}`}>{sR.person_id}</span>
                   </td>
                   <td>
                     <span htmlFor={`${i}`}>{sR.application_date}</span>
