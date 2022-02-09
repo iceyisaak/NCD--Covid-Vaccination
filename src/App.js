@@ -65,7 +65,7 @@ export default function App() {
           <AddCertificate setCertificates={setCertificates} certificates={certificates} vaccineList={vaccineList} personList={personList} />
         } />
         <Route path='/searchCertificateByPerson' element={
-          <SearchCertificateByPerson certificates={certificates} vaccineList={vaccineList} personList={personList} />
+          <SearchCertificateByPerson certificates={certificates} certificateList={certificateList} vaccineList={vaccineList} personList={personList} />
         } />
 
       </Routes>

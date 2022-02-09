@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const SearchCertificateByPerson = (props) => {
 
   const { certificateList, personList, vaccineList } = props;
-  const [searchResult, setSearchResult] = useState(null);
+  const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showResult, setShowResult] = useState(false);
 
@@ -21,7 +21,7 @@ const SearchCertificateByPerson = (props) => {
   const fetchCertificateByPersonID = async (searchTerm) => {
     if (searchTerm !== '') {
       const res = await contract.getCertificateByPersonID({ id: searchTerm });
-      setSearchResult(res);
+      setSearchResult([res]);
       console.log('searchResult: ', searchResult);
     }
   };
@@ -45,10 +45,17 @@ const SearchCertificateByPerson = (props) => {
 
       {showResult ?
         searchResult === null ?
-          <p>No Vaccine Certificate</p> :
+          <p>No Vaccine Certificate</p>
+          :
           <table className='table'>
             <tbody>
-              {searchResult.map((sR, i) =>
+              {
+                console.log('searchResult: ', searchResult),
+                console.log('certificateList: ', certificateList),
+                console.log('personList: ', personList),
+                console.log('vaccineList: ', vaccineList)
+              }
+              {/* {searchResult.map((sR, i) =>
                 <tr key={i}>
                   <td>
                     <span htmlFor={`${i}`}>{sR.vaccine_id}</span>
@@ -60,8 +67,7 @@ const SearchCertificateByPerson = (props) => {
                     <span htmlFor={`${i}`}>{sR.country}</span>
                   </td>
                 </tr>
-              )}
-
+              )} */}
 
             </tbody >
           </table >
