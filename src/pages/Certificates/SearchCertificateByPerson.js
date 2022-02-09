@@ -19,9 +19,11 @@ const SearchCertificateByPerson = (props) => {
 
 
   const fetchCertificateByPersonID = async (searchTerm) => {
+    console.log('1', searchTerm);
     if (searchTerm !== '') {
       const res = await contract.getCertificateByPersonID({ id: searchTerm });
       res ? setSearchResult(res) : setSearchResult(null);
+      console.log('2', searchTerm);
     }
   };
 
@@ -42,8 +44,8 @@ const SearchCertificateByPerson = (props) => {
         <button onClick={() => navigate('/certificates')}>Back</button>
       </form>
       {
-        console.log('searchResult: ', searchResult),
-        console.log('showResult: ', showResult)
+        // console.log('searchResult: ', searchResult),
+        // console.log('showResult: ', showResult)
       }
       {showResult ?
         searchResult === null ?
