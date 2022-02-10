@@ -135,8 +135,10 @@ export function getCertificateByID(id: string): Certificate | null {
 // }
 
 export function getCertificateByPersonID(id: string): Array<Certificate> | null {
+  logging.log('AS-1')
   assert(id.length > 0, "ID is required");
   let result = new Array<Certificate>(certificates.length);
+  logging.log('AS-2')
   // for (let i = 0; i < certificates.length; i++) {
   //   if (certificates[i].person_id == id) {
   //     let find = certificates[i];
@@ -144,8 +146,12 @@ export function getCertificateByPersonID(id: string): Array<Certificate> | null 
   //   }
   // }
   for (let i = 0; i < certificates.length; i++) {
-    let list = certificates[i];
-    result[i] = list;
+    logging.log('AS-3')
+    if (certificates[i].person_id == id) {
+      logging.log('AS-4')
+      let list = certificates[i];
+      result[i] = list;
+    }
   }
   return result;
 }

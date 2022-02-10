@@ -19,11 +19,11 @@ const SearchCertificateByPerson = (props) => {
 
 
   const fetchCertificateByPersonID = async (searchTerm) => {
-    console.log('1', searchTerm);
+    console.log('JS-1', searchTerm);
     if (searchTerm !== '') {
       const res = await contract.getCertificateByPersonID({ id: searchTerm });
-      res ? setSearchResult([res]) : setSearchResult(null);
-      console.log('2', searchTerm);
+      res ? setSearchResult(res) : setSearchResult(null);
+      console.log('JS-2', searchTerm);
     }
   };
 
