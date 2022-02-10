@@ -146,12 +146,12 @@ export function getCertificateByPersonID(id: string): Array<Certificate> | null 
   //   }
   // }
   for (let i = 0; i < certificates.length; i++) {
-    logging.log('AS-3 ' + id)
+    logging.log('AS-3 ' + certificates[i].person_id)
     // if (certificates[i].person_id == id) {
-    //   logging.log('AS-4')
-    //   let list = certificates[i];
-    //   logging.log(list)
-    //   result[i] = list;
+    logging.log('AS-4')
+    let list = certificates[i];
+    logging.log(list)
+    result[i] = list;
     // }
   }
   return result;
