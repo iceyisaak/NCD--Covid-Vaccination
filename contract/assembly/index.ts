@@ -150,8 +150,9 @@ export function getCertificateByPersonID(id: string): Array<Certificate> | null 
     // if (certificates[i].person_id == id) {
     logging.log('AS-4')
     let list = certificates[i];
-    logging.log(list)
-    result[i] = list;
+    logging.log('list: ' + list)
+    // result[i] = list;
+    result.push(list)
     // }
   }
   return result;
