@@ -120,41 +120,44 @@ export function getCertificateByID(id: string): Certificate | null {
 }
 
 // Method to query certificate by person id
-// export function getCertificateByPersonID(id: string): Certificate | null {
-//   logging.log('AS-1')
-//   assert(id.length > 0, "ID is required");
-//   for (let i = 0; i < certificates.length; i++) {
-//     logging.log('AS-2')
-//     if (certificates[i].person_id == id) {
-//       let find = certificates[i];
-//       return find;
-//     }
-//     logging.log('AS-3')
-//   }
-//   return null;
-// }
-
-export function getCertificateByPersonID(id: string): Array<Certificate> | null {
+export function getCertificateByPersonID(id: string): Certificate | null {
   logging.log('AS-1')
   assert(id.length > 0, "ID is required");
-  let result = new Array<Certificate>(certificates.length);
-  logging.log('AS-2')
-  // for (let i = 0; i < certificates.length; i++) {
-  //   if (certificates[i].person_id == id) {
-  //     let find = certificates[i];
-  //     result[i] = find;
-  //   }
-  // }
   for (let i = 0; i < certificates.length; i++) {
-    logging.log('AS-3')
+    logging.log('AS-2 ' + id)
     if (certificates[i].person_id == id) {
-      logging.log('AS-4')
-      let list = certificates[i];
-      result[i] = list;
+      let find = certificates[i];
+      return find;
     }
+    logging.log('AS-3')
   }
-  return result;
+  return null;
 }
+
+// export function getCertificateByPersonID(id: string): Array<Certificate> | null {
+//   logging.log('AS-1')
+//   assert(id.length > 0, "ID is required");
+//   let result = new Array<Certificate>(certificates.length);
+//   logging.log('AS-2')
+//   // for (let i = 0; i < certificates.length; i++) {
+//   //   if (certificates[i].person_id == id) {
+//   //     let find = certificates[i];
+//   //     result[i] = find;
+//   //   }
+//   // }
+//   for (let i = 0; i < certificates.length; i++) {
+//     logging.log('AS-3')
+//     if (certificates[i].person_id == id) {
+//       logging.log('AS-4')
+//       let list = certificates[i];
+//       logging.log(list)
+//       result[i] = list;
+//     } else {
+//       result[i] = [];
+//     }
+//   }
+//   return result;
+// }
 
 
 // Method to query certificate by vaccine id
