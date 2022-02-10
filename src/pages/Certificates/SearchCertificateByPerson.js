@@ -22,7 +22,7 @@ const SearchCertificateByPerson = (props) => {
     console.log('1', searchTerm);
     if (searchTerm !== '') {
       const res = await contract.getCertificateByPersonID({ id: searchTerm });
-      res ? setSearchResult(res) : setSearchResult(null);
+      res ? setSearchResult([res]) : setSearchResult(null);
       console.log('2', searchTerm);
     }
   };
