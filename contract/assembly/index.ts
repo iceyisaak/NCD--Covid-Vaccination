@@ -133,21 +133,33 @@ export function getCertificateByID(id: string): Certificate | null {
 
 export function getCertificateByPersonID(id: string): Array<Certificate> {
   assert(id.length > 0, "ID is required");
-  logging.log("id 1")
   let result = new Array<Certificate>(certificates.length);
-  var j = 0
-  logging.log("id 2")
   for (let i = 0; i < certificates.length; i++) {
     if (certificates[i].person_id == id) {
       let find = certificates[i];
-      result[j] = find;
-      j += 1
-      logging.log("id 3")
+      result.push(find);
     }
   }
-  logging.log("id 4")
   return result;
 }
+
+// export function getCertificateByPersonID(id: string): Array<Certificate> | null {
+//   assert(id.length > 0, "ID is required");
+//   logging.log("id 1")
+//   let result = new Array<Certificate>(certificates.length);
+//   var j = 0
+//   logging.log("id 2")
+//   for (let i = 0; i < certificates.length; i++) {
+//     if (certificates[i].person_id == id) {
+//       let find = certificates[i];
+//       result[j] = find;
+//       j += 1
+//       logging.log("id 3")
+//     }
+//   }
+//   logging.log("id 4")
+//   return result;
+// }
 
 
 // Method to query certificate by vaccine id
