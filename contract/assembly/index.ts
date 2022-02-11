@@ -134,28 +134,40 @@ export function getCertificateByID(id: string): Certificate | null {
 //   return null;
 // }
 
+// export function getCertificateByPersonID(id: string): Array<Certificate> | null {
+//   logging.log('AS-1')
+//   assert(id.length > 0, "ID is required");
+//   let result = new Array<Certificate>(certificates.length);
+//   logging.log('AS-2')
+//   // for (let i = 0; i < certificates.length; i++) {
+//   //   if (certificates[i].person_id == id) {
+//   //     let find = certificates[i];
+//   //     result[i] = find;
+//   //   }
+//   // }
+//   for (let i = 0; i < certificates.length; i++) {
+//     logging.log('AS-3 ' + certificates[i].person_id)
+//     // if (certificates[i].person_id == id) {
+//     logging.log('AS-4')
+//     let list = certificates[i];
+//     logging.log(list)
+//     // result[i] = list;
+//     if (list !== null) {
+//       result.push(list)
+//     }
+//     // }
+//   }
+//   return result;
+// }
+
 export function getCertificateByPersonID(id: string): Array<Certificate> | null {
-  logging.log('AS-1')
   assert(id.length > 0, "ID is required");
-  let result = new Array<Certificate>(certificates.length);
-  logging.log('AS-2')
-  // for (let i = 0; i < certificates.length; i++) {
-  //   if (certificates[i].person_id == id) {
-  //     let find = certificates[i];
-  //     result[i] = find;
-  //   }
-  // }
+  let result = new Array<Certificate>();
   for (let i = 0; i < certificates.length; i++) {
-    logging.log('AS-3 ' + certificates[i].person_id)
-    // if (certificates[i].person_id == id) {
-    logging.log('AS-4')
-    let list = certificates[i];
-    logging.log(list)
-    // result[i] = list;
-    if (list !== null) {
-      result.push(list)
+    const list = certificates[i];
+    if (list.person_id == id) {
+      result.push(list);
     }
-    // }
   }
   return result;
 }
