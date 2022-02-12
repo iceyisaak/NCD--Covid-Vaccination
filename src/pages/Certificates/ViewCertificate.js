@@ -5,15 +5,18 @@ const ViewCertificate = () => {
 
   const { certificateId } = useParams();
   const navigate = useNavigate();
-  const [cer, setCer] = useState({});
+  const [cer, setCer] = useState([]);
 
 
   const fetchCert = async () => {
     const res = await window.contract.getCertificateByID({ id: certificateId });
+    console.log('res: ', res);
+    console.log('certificateId: ', certificateId);
     setCer(res);
   };
 
   useEffect(() => {
+    console.log('cer: ', cer);
     fetchCert();
   }, []);
 
