@@ -23,7 +23,8 @@ const SearchCertificateByPerson = (props) => {
     if (searchTerm !== '') {
       const res = await contract.getCertificateByPersonID({ id: searchTerm });
       res ? setSearchResult(res) : setSearchResult(null);
-      console.log('JS-2', searchTerm);
+      console.log('JS-2', res);
+      console.log('JS-3', searchResult);
     }
   };
 
