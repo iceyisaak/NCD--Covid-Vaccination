@@ -21,7 +21,7 @@ const SearchCertificateByPerson = (props) => {
   const fetchCertificateByVaccineID = async (searchTerm) => {
     if (searchTerm !== '') {
       const res = await contract.getCertificateByVaccineID({ id: searchTerm });
-      res ? setSearchResult([res]) : setSearchResult(null);
+      res ? setSearchResult(res) : setSearchResult(null);
     }
   };
 
@@ -41,12 +41,9 @@ const SearchCertificateByPerson = (props) => {
         <button>Submit</button>
         <button onClick={() => navigate('/certificates')}>Back</button>
       </form>
-      {
-        console.log('searchResult: ', searchResult),
-        console.log('showResult: ', showResult)
-      }
+
       {showResult ?
-        searchResult === null ?
+        searchResult.length === 0 ?
           <p>Not Distributed</p>
           :
           <table className='table'>

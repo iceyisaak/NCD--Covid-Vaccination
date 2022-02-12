@@ -97,26 +97,48 @@ export function addCertificate(id: string, vaccine_id: string, person_id: string
 }
 
 
-// Method to list all certificates
-export function getCertificates(): Array<Certificate> {
-  let result = new Array<Certificate>(certificates.length);
+// // Method to list all certificates
+// export function getCertificates(): Array<Certificate> {
+//   let result = new Array<Certificate>(certificates.length);
+//   for (let i = 0; i < certificates.length; i++) {
+//     let list = certificates[i];
+//     result[i] = list;
+//   }
+//   return result;
+// }
+
+export function getCertificates(): Array<Certificate> | null {
+  let result = new Array<Certificate>();
   for (let i = 0; i < certificates.length; i++) {
     let list = certificates[i];
-    result[i] = list;
+    result.push(list);
   }
   return result;
 }
 
-// Method to query certificate by id
-export function getCertificateByID(id: string): Certificate | null {
+
+// // Method to query certificate by id
+// export function getCertificateByID(id: string): Certificate | null {
+//   assert(id.length > 0, "ID is required");
+//   for (let i = 0; i < certificates.length; i++) {
+//     if (certificates[i].id == id) {
+//       let find = certificates[i];
+//       return find;
+//     }
+//   }
+//   return null;
+// }
+
+export function getCertificateByID(id: string): Array<Certificate> | null {
   assert(id.length > 0, "ID is required");
+  let result = new Array<Certificate>();
   for (let i = 0; i < certificates.length; i++) {
-    if (certificates[i].id == id) {
-      let find = certificates[i];
-      return find;
+    const list = certificates[i];
+    if (list.id == id) {
+      result.push(list);
     }
   }
-  return null;
+  return result;
 }
 
 // Method to query certificate by person id
@@ -174,15 +196,26 @@ export function getCertificateByPersonID(id: string): Array<Certificate> | null 
 
 
 // Method to query certificate by vaccine id
-export function getCertificateByVaccineID(id: string): Certificate | null {
+// export function getCertificateByVaccineID(id: string): Certificate | null {
+//   assert(id.length > 0, "ID is required");
+//   for (let i = 0; i < certificates.length; i++) {
+//     if (certificates[i].vaccine_id == id) {
+//       let find = certificates[i];
+//       return find;
+//     }
+//   }
+//   return null;
+// }
+export function getCertificateByVaccineID(id: string): Array<Certificate> | null {
   assert(id.length > 0, "ID is required");
+  let result = new Array<Certificate>();
   for (let i = 0; i < certificates.length; i++) {
-    if (certificates[i].vaccine_id == id) {
-      let find = certificates[i];
-      return find;
+    const list = certificates[i];
+    if (list.vaccine_id == id) {
+      result.push(list);
     }
   }
-  return null;
+  return result;
 }
 
 // Method to consult certificate by Country

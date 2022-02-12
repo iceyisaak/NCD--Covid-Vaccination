@@ -44,11 +44,11 @@ const SearchCertificateByPerson = (props) => {
         <button onClick={() => navigate('/certificates')}>Back</button>
       </form>
       {
-        // console.log('searchResult: ', searchResult),
-        // console.log('showResult: ', showResult)
+        console.log('searchResult: ', searchResult)
       }
+
       {showResult ?
-        searchResult === null ?
+        searchResult.length === 0 ?
           <p>No Vaccine Certificate</p>
           :
           <table className='table'>
