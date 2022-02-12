@@ -13,8 +13,8 @@ const ViewCertificate = () => {
     console.log('res: ', res);
     console.log('certificateId: ', certificateId);
     setCer(res);
-    console.log('cer-1: ', cer);
   };
+  console.log('cer-1: ', cer);
 
   useEffect(() => {
     fetchCert();
@@ -25,7 +25,7 @@ const ViewCertificate = () => {
     <>
       {
         console.log('cer-2: ', cer),
-        cer &&
+        cer.length &&
         <div>
           <h1>View Certificate: <span>{cer.id}</span></h1>
           <p>
