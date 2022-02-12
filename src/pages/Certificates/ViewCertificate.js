@@ -24,8 +24,8 @@ const ViewCertificate = () => {
   return (
     <>
       {
-        console.log('cer-2: ', cer),
-        cer.length &&
+        console.log('cer-2: ', cer.length),
+        cer.length > 0 &&
         <div>
           <h1>View Certificate: <span>{cer.id}</span></h1>
           <p>
