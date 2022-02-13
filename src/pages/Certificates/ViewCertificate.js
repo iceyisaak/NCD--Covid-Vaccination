@@ -10,11 +10,8 @@ const ViewCertificate = () => {
 
   const fetchCert = async () => {
     const res = await window.contract.getCertificateByID({ id: certificateId });
-    console.log('res: ', res);
-    console.log('certificateId: ', certificateId);
     setCer(res[0]);
   };
-  console.log('cer-1: ', cer);
 
   useEffect(() => {
     fetchCert();
@@ -24,8 +21,7 @@ const ViewCertificate = () => {
   return (
     <>
       {
-        console.log('cer-2: ', cer),
-        cer > 0 &&
+        cer &&
         <div>
           <h1>View Certificate: <span>{cer.id}</span></h1>
           <p>

@@ -44,11 +44,9 @@ const SearchCertificateByPerson = (props) => {
 
       {showResult ?
         searchResult.length === 0 ?
-          <p>Not Distributed</p>
-          :
+          <p>Not Distributed</p> :
           <table className='table'>
             <tbody>
-
               {searchResult.map((sR, i) =>
                 <tr key={i}>
                   <td>
@@ -65,16 +63,11 @@ const SearchCertificateByPerson = (props) => {
                   </td>
                 </tr>
               )}
-
             </tbody >
           </table >
-
         : null
       }
-
     </>
-
-
   );
 };
 

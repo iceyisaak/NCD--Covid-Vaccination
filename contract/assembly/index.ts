@@ -38,8 +38,6 @@ export function getVaccineByID(id: string): Vaccine | null {
       let find = vaccines[i];
       return find;
     }
-    // const find = vaccines.find((id: string) => id === id)
-    // return find;
   }
   return null;
 }
@@ -97,16 +95,7 @@ export function addCertificate(id: string, vaccine_id: string, person_id: string
 }
 
 
-// // Method to list all certificates
-// export function getCertificates(): Array<Certificate> {
-//   let result = new Array<Certificate>(certificates.length);
-//   for (let i = 0; i < certificates.length; i++) {
-//     let list = certificates[i];
-//     result[i] = list;
-//   }
-//   return result;
-// }
-
+// Method to list all certificates
 export function getCertificates(): Array<Certificate> | null {
   let result = new Array<Certificate>();
   for (let i = 0; i < certificates.length; i++) {
@@ -117,18 +106,7 @@ export function getCertificates(): Array<Certificate> | null {
 }
 
 
-// // Method to query certificate by id
-// export function getCertificateByID(id: string): Certificate | null {
-//   assert(id.length > 0, "ID is required");
-//   for (let i = 0; i < certificates.length; i++) {
-//     if (certificates[i].id == id) {
-//       let find = certificates[i];
-//       return find;
-//     }
-//   }
-//   return null;
-// }
-
+// Method to query certificate by id
 export function getCertificateByID(id: string): Array<Certificate> | null {
   assert(id.length > 0, "ID is required");
   let result = new Array<Certificate>();
@@ -142,46 +120,6 @@ export function getCertificateByID(id: string): Array<Certificate> | null {
 }
 
 // Method to query certificate by person id
-// export function getCertificateByPersonID(id: string): Certificate | null {
-//   logging.log('AS-1')
-//   assert(id.length > 0, "ID is required");
-//   for (let i = 0; i < certificates.length; i++) {
-//     logging.log('AS-2')
-//     if (certificates[i].person_id == id) {
-//       let find = certificates[i];
-//       return find;
-//     }
-//     logging.log('AS-3')
-//   }
-//   return null;
-// }
-
-// export function getCertificateByPersonID(id: string): Array<Certificate> | null {
-//   logging.log('AS-1')
-//   assert(id.length > 0, "ID is required");
-//   let result = new Array<Certificate>(certificates.length);
-//   logging.log('AS-2')
-//   // for (let i = 0; i < certificates.length; i++) {
-//   //   if (certificates[i].person_id == id) {
-//   //     let find = certificates[i];
-//   //     result[i] = find;
-//   //   }
-//   // }
-//   for (let i = 0; i < certificates.length; i++) {
-//     logging.log('AS-3 ' + certificates[i].person_id)
-//     // if (certificates[i].person_id == id) {
-//     logging.log('AS-4')
-//     let list = certificates[i];
-//     logging.log(list)
-//     // result[i] = list;
-//     if (list !== null) {
-//       result.push(list)
-//     }
-//     // }
-//   }
-//   return result;
-// }
-
 export function getCertificateByPersonID(id: string): Array<Certificate> | null {
   assert(id.length > 0, "ID is required");
   let result = new Array<Certificate>();
@@ -196,16 +134,6 @@ export function getCertificateByPersonID(id: string): Array<Certificate> | null 
 
 
 // Method to query certificate by vaccine id
-// export function getCertificateByVaccineID(id: string): Certificate | null {
-//   assert(id.length > 0, "ID is required");
-//   for (let i = 0; i < certificates.length; i++) {
-//     if (certificates[i].vaccine_id == id) {
-//       let find = certificates[i];
-//       return find;
-//     }
-//   }
-//   return null;
-// }
 export function getCertificateByVaccineID(id: string): Array<Certificate> | null {
   assert(id.length > 0, "ID is required");
   let result = new Array<Certificate>();
