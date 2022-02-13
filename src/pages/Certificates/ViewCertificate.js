@@ -5,14 +5,14 @@ const ViewCertificate = () => {
 
   const { certificateId } = useParams();
   const navigate = useNavigate();
-  const [cer, setCer] = useState([]);
+  const [cer, setCer] = useState({});
 
 
   const fetchCert = async () => {
     const res = await window.contract.getCertificateByID({ id: certificateId });
     console.log('res: ', res);
     console.log('certificateId: ', certificateId);
-    setCer(res);
+    setCer(res[0]);
   };
   console.log('cer-1: ', cer);
 
@@ -24,8 +24,8 @@ const ViewCertificate = () => {
   return (
     <>
       {
-        console.log('cer-2: ', cer.length),
-        cer.length > 0 &&
+        console.log('cer-2: ', cer),
+        cer > 0 &&
         <div>
           <h1>View Certificate: <span>{cer.id}</span></h1>
           <p>
