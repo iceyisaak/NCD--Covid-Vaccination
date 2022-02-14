@@ -13,6 +13,7 @@ const SearchCertificateByCountry = (props) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const { country } = e.target.elements;
+    console.log('country.value: ', country.value);
     setSearchTerm(country.value);
     setShowResult(true);
   };
@@ -22,8 +23,8 @@ const SearchCertificateByCountry = (props) => {
     if (searchTerm !== '') {
       const res = await contract.getCertificateByCountry({ country: searchTerm });
       res ? setSearchResult(res) : setSearchResult(null);
+      console.log('res: ', res);
     }
-    console.log('res: ', res);
   };
 
 
@@ -39,7 +40,7 @@ const SearchCertificateByCountry = (props) => {
       <form onSubmit={onSubmit} className='searchBox'>
         <label htmlFor="country">Search Country</label>
         <select name="country" id="country">
-          {certificateList.map((c, i) => <option value={c.id} key={i}>{c.country}</option>)}
+          {certificateList.map((c, i) => <option value={c.country} key={i}>{c.country}</option>)}
         </select>
         <button>Submit</button>
         <button onClick={() => navigate('/certificates')}>Back</button>
