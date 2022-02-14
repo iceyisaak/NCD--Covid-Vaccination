@@ -22,6 +22,9 @@ const CertificatePage = (props) => {
       <button onClick={() => navigate('/searchCertificateByVaccine')}>
         Search Certificate By Vaccine
       </button>
+      <button onClick={() => navigate('/searchCertificateByCountry')}>
+        Search Certificate By Country
+      </button>
       <button onClick={() => navigate('/addCertificate')}>
         Add Certificate
       </button>

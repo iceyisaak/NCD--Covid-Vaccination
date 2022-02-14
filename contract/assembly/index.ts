@@ -1,4 +1,3 @@
-import { logging } from 'near-sdk-as'
 import { vaccines, Vaccine, persons, Person, certificates, Certificate, infections, Infection } from "./models";
 
 // Método de Vacunate
@@ -147,15 +146,16 @@ export function getCertificateByVaccineID(id: string): Array<Certificate> | null
 }
 
 // Method to consult certificate by Country
-export function getCertificateByCountry(country: string): Certificate | null {
+export function getCertificateByCountry(country: string): Array<Certificate> | null {
   assert(country.length > 0, "Country is required");
+  let result = new Array<Certificate>()
   for (let i = 0; i < certificates.length; i++) {
-    if (certificates[i].country == country) {
-      let find = certificates[i];
-      return find;
+    const list = certificates[i];
+    if (list.country == country) {
+      result.push(list);
     }
   }
-  return null;
+  return result;
 }
 
 
