@@ -10,7 +10,7 @@ const CertificatePage = (props) => {
   const [certificateList, setCertificateList] = useState([]);
 
   useEffect(() => {
-    window.contract.getCertificates().then(setCertificateList);
+    contract.getCertificates().then(setCertificateList);
   }, []);
 
   const navigate = useNavigate();

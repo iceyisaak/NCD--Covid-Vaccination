@@ -58,25 +58,24 @@ export class Certificate {
 }
 
 // Exporting the covid infection class
-@nearBindgen
-export class Infection {
-  id: string;
-  person_id: string;
-  certificate_id: string;
-  infection_date: string;
-  recovery_date: string;
-  infection_level: string;
-  constructor(id: string, person_id: string, certificate_id: string, infection_date: string, recovery_date: string, infection_level: string) {
-    this.id = id;
-    this.person_id = person_id;
-    this.certificate_id = certificate_id;
-    this.infection_date = infection_date;
-    this.recovery_date = recovery_date;
-    this.infection_level = infection_level;
-  }
-}
+// @nearBindgen
+// export class Infection {
+//   id: string;
+//   person_id: string;
+//   certificate_id: string;
+//   infection_date: string;
+//   recovery_date: string;
+//   infection_level: string;
+//   constructor(id: string, person_id: string, certificate_id: string, infection_date: string, recovery_date: string, infection_level: string) {
+//     this.id = id;
+//     this.person_id = person_id;
+//     this.certificate_id = certificate_id;
+//     this.infection_date = infection_date;
+//     this.recovery_date = recovery_date;
+//     this.infection_level = infection_level;
+//   }
+// }
 
 export const vaccines = new PersistentVector<Vaccine>("v");
 export const persons = new PersistentVector<Person>("p");
 export const certificates = new PersistentVector<Certificate>("c");
-export const infections = new PersistentVector<Infection>("i");

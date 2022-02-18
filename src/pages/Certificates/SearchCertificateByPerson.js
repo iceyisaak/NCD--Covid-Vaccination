@@ -67,7 +67,10 @@ const SearchCertificateByPerson = (props) => {
               {searchResult.map((sR, i) =>
                 <tr key={i}>
                   <td>
-                    <span htmlFor={`${i}`}>{sR.vaccine_id}</span>
+                    <span htmlFor={`${i}`}>{sR.person_name}</span>
+                  </td>
+                  <td>
+                    <span htmlFor={`${i}`}>{sR.vaccine_name}</span>
                   </td>
                   <td>
                     <span htmlFor={`${i}`}>{sR.application_date}</span>

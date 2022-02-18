@@ -10,7 +10,7 @@ const PersonPage = (props) => {
   const [personList, setPersonList] = useState([]);
 
   useEffect(() => {
-    window.contract.getPersons().then(setPersonList);
+    contract.getPersons().then(setPersonList);
   }, []);
 
 

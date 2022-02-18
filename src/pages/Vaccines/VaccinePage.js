@@ -10,7 +10,7 @@ const VaccinePage = (props) => {
   const [vaccineList, setVaccineList] = useState([]);
 
   useEffect(() => {
-    window.contract.getVaccines().then(setVaccineList);
+    contract.getVaccines().then(setVaccineList);
   }, []);
 
   const navigate = useNavigate();

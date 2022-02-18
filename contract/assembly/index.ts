@@ -1,10 +1,6 @@
 import { logging } from "near-sdk-as";
-import { vaccines, Vaccine, persons, Person, certificates, Certificate, infections, Infection } from "./models";
+import { vaccines, Vaccine, persons, Person, certificates, Certificate } from "./models";
 
-// Método de Vacunate
-export function vaccinate(): string {
-  return 'Get Vaccinated!';
-}
 
 // ------------------------- Vaccines smart contract methods ----------------- -------- //
 
@@ -120,31 +116,12 @@ export function getCertificateByID(id: string): Array<Certificate> | null {
 }
 
 // Method to query certificate by person id
-// export function getCertificateByPersonID(id: string): Array<Certificate> | null {
-//   assert(id.length > 0, "ID is required");
-//   let result = new Array<Certificate>();
-//   for (let i = 0; i < certificates.length; i++) {
-//     const list = certificates[i];
-//     if (list.person_id == id) {
-//       result.push(list);
-//     }
-//   }
-//   return result;
-// }
-
-// 
 export function getCertificateByPersonID(id: string): Array<Certificate> | null {
   assert(id.length > 0, "ID is required");
   let result = new Array<Certificate>();
   for (let i = 0; i < certificates.length; i++) {
     let list = certificates[i];
     if (list.person_id == id) {
-      // const vaccine = getVaccineByID({ id: list.vaccine_id })
-      // list.vaccine_name = vaccine.name
-
-      // logging.log(list);
-      // logging.log(list.vaccine_id);
-
       result.push(list);
     }
   }
@@ -176,64 +153,4 @@ export function getCertificateByCountry(country: string): Array<Certificate> | n
     }
   }
   return result;
-}
-
-
-// ------------------------- Methods of the smart contract for Contagious Certificates --------------- ---------- //
-// Method to register a certificate
-export function addInfection(id: string, person_id: string, certificate_id: string, infection_date: string, recovery_date: string, infection_level: string): void {
-  assert(id.length > 0, "Vaccine ID is required");
-  assert(person_id.length > 0, "persona_id is required");
-  assert(certificate_id.length > 0, "certificado_id is required");
-  assert(infection_date.length > 0, "Closing contagion is required");
-  assert(recovery_date.length > 0, "Closing recovery is required");
-  assert(infection_level.length > 0, "Level of infection is required");
-  let infection = new Infection(id, person_id, certificate_id, infection_date, recovery_date, infection_level);
-  infections.push(infection);
-}
-
-// Method to list all contagions
-export function getInfections(): Array<Infection> {
-  let result = new Array<Infection>(infections.length);
-  for (let i = 0; i < infections.length; i++) {
-    let list = infections[i];
-    result[i] = list;
-  }
-  return result;
-}
-
-// Method to query contagion by id
-export function getInfectionByID(id: string): Infection | null {
-  assert(id.length > 0, "ID is required");
-  for (let i = 0; i < infections.length; i++) {
-    if (infections[i].id == id) {
-      let find = infections[i];
-      return find;
-    }
-  }
-  return null;
-}
-
-// Method to consult contagion by person_id
-export function getInfectionByPersonID(id: string): Infection | null {
-  assert(id.length > 0, "ID is required");
-  for (let i = 0; i < infections.length; i++) {
-    if (infections[i].person_id == id) {
-      let find = infections[i];
-      return find;
-    }
-  }
-  return null;
-}
-
-// Method to query contagion by infection_level
-export function getInfectionByLevel(infection_level: string): Infection | null {
-  assert(infection_level.length > 0, "infection_level is required");
-  for (let i = 0; i < infections.length; i++) {
-    if (infections[i].infection_level == infection_level) {
-      let find = infections[i];
-      return find;
-    }
-  }
-  return null;
 }
