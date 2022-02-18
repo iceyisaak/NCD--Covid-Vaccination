@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import CertificateList from '../../components/Certificates/CertificateList';
+import CertificateList from './CertificateList';
 
 const CertificatePage = (props) => {
 

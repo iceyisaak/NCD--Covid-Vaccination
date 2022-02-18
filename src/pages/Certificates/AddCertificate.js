@@ -1,5 +1,5 @@
 import React from 'react';
-import CertificateForm from '../../components/Certificates/CertificateForm';
+import CertificateForm from './CertificateForm';
 
 const AddCertificate = (props) => {
 

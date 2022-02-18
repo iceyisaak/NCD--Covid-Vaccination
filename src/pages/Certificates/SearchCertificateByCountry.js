@@ -25,9 +25,17 @@ const SearchCertificateByCountry = (props) => {
     if (searchTerm !== '') {
       const res = await contract.getCertificateByCountry({ country: searchTerm });
       res ? setSearchResult(res) : setSearchResult(null);
-      console.log('res: ', res);
+      console.log('res-fCbC: ', res);
     }
   };
+
+
+  const fetchListData = async () => {
+    const res = await contract.getCertificates();
+    console.log('res-fLD: ', res);
+    setCertificateList(res);
+  };
+  console.log('certificateList-1: ', certificateList);
 
 
 
@@ -48,12 +56,14 @@ const SearchCertificateByCountry = (props) => {
   useEffect(() => {
     contract.getCertificates().then(setCertificateList);
     // const uniqueSet = new Set(ce);
+    fetchListData();
     console.log('certificateList: ', certificateList);
   }, []);
 
 
   useEffect(() => {
     fetchCertificateByCountry(searchTerm);
+    console.log('JS-1');
   }, [searchTerm]);
 
   // const countries = certificateList.map((c) => c.country);
@@ -66,7 +76,6 @@ const SearchCertificateByCountry = (props) => {
 
   return (
     <>
-
       <h1>Search Certificate by Country</h1>
       <form onSubmit={onSubmit} className='searchBox'>
         <label htmlFor="country">Search Country</label>

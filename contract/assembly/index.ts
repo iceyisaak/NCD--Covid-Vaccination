@@ -1,3 +1,4 @@
+import { logging } from "near-sdk-as";
 import { vaccines, Vaccine, persons, Person, certificates, Certificate, infections, Infection } from "./models";
 
 // Método de Vacunate
@@ -119,12 +120,31 @@ export function getCertificateByID(id: string): Array<Certificate> | null {
 }
 
 // Method to query certificate by person id
+// export function getCertificateByPersonID(id: string): Array<Certificate> | null {
+//   assert(id.length > 0, "ID is required");
+//   let result = new Array<Certificate>();
+//   for (let i = 0; i < certificates.length; i++) {
+//     const list = certificates[i];
+//     if (list.person_id == id) {
+//       result.push(list);
+//     }
+//   }
+//   return result;
+// }
+
+// 
 export function getCertificateByPersonID(id: string): Array<Certificate> | null {
   assert(id.length > 0, "ID is required");
   let result = new Array<Certificate>();
   for (let i = 0; i < certificates.length; i++) {
-    const list = certificates[i];
+    let list = certificates[i];
     if (list.person_id == id) {
+      // const vaccine = getVaccineByID({ id: list.vaccine_id })
+      // list.vaccine_name = vaccine.name
+
+      // logging.log(list);
+      // logging.log(list.vaccine_id);
+
       result.push(list);
     }
   }

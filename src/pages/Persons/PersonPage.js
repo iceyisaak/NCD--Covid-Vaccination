@@ -1,10 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import PersonList from '../../components/Persons/PersonList';
+import PersonList from './PersonList';
 
 const PersonPage = (props) => {
 
-  const { persons, personList, setPersons } = props;
+  // const { persons, personList, setPersons } = props;
+
+
 
   const navigate = useNavigate();
 

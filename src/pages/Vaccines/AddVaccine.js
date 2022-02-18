@@ -1,5 +1,5 @@
 import React from 'react';
-import VaccineForm from '../../components/Vaccines/VaccineForm';
+import VaccineForm from './VaccineForm';
 
 const AddVaccine = (props) => {
 

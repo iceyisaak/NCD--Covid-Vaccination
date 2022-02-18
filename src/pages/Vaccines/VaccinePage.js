@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import VaccineList from '../../components/Vaccines/VaccineList';
+import VaccineList from './VaccineList';
 
 const VaccinePage = (props) => {
 
-  const { vaccines, vaccineList, setVaccines } = props;
+  // const { vaccines, vaccineList, setVaccines } = props;
+
+  const [vaccines, setVaccines] = useState('');
+  const [vaccineList, setVaccineList] = useState([]);
+
+  useEffect(() => {
+    window.contract.getVaccines().then(setVaccineList);
+  }, []);
 
   const navigate = useNavigate();
 

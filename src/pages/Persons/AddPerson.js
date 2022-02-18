@@ -1,5 +1,5 @@
 import React from 'react';
-import PersonForm from '../../components/Persons/PersonForm';
+import PersonForm from './PersonForm';
 
 const AddPerson = (props) => {
 
