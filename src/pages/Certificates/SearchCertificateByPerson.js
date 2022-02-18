@@ -18,19 +18,18 @@ const SearchCertificateByPerson = (props) => {
   };
 
 
-  // const fetchCertificateByPersonID = async (searchTerm) => {
-  //   if (searchTerm !== '') {
-  //     const res = await contract.getCertificateByPersonID({ id: searchTerm });
-  //     res ? setSearchResult(res) : setSearchResult(null);
-  //   }
-  // };
-
   const fetchCertificateByPersonID = async (searchTerm) => {
     if (searchTerm !== '') {
       const res = await contract.getCertificateByPersonID({ id: searchTerm });
       if (res) {
-        const vaccine = await contract.getVaccineByID({ id: res[0].vaccane_id });
-        res.vaccine_name = vaccine[0].name;
+        for (let i = 0; i < res.length; i++) {
+          let vaccine = await contract.getVaccineByID({ id: res[i].vaccine_id });
+          console.log('vaccine: ', vaccine);
+          res[i].vaccine_name = vaccine.name;
+          let person = await contract.getPersonByID({ id: res[i].person_id });
+          console.log('person: ', person);
+          res[i].person_name = person.name;
+        }
         setSearchResult(res);
       } else {
         setSearchResult(null);
@@ -39,6 +38,8 @@ const SearchCertificateByPerson = (props) => {
   };
 
   console.log('searchResult: ', searchResult);
+
+
 
   useEffect(() => {
     fetchCertificateByPersonID(searchTerm);
