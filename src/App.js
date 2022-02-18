@@ -35,7 +35,7 @@ export default function App() {
   window.walletConnection.isSignedIn() &&
     useEffect(() => {
       // window.contract.getVaccines().then(setVaccineList);
-      window.contract.getPersons().then(setPersonList);
+      // window.contract.getPersons().then(setPersonList);
       window.contract.getCertificates().then(setCertificateList);
     }, []);
 

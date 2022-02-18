@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CertificateList from './CertificateList';
 
 const CertificatePage = (props) => {
 
-  const { certificates, certificateList, setCertificates } = props;
+  // const { certificates, certificateList, setCertificates } = props;
+
+  const [certificates, setCertificates] = useState('');
+  const [certificateList, setCertificateList] = useState([]);
+
+  useEffect(() => {
+    window.contract.getCertificates().then(setCertificateList);
+  }, []);
 
   const navigate = useNavigate();
 

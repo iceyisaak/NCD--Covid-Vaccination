@@ -18,25 +18,25 @@ const SearchCertificateByPerson = (props) => {
   };
 
 
-  const fetchCertificateByPersonID = async (searchTerm) => {
-    if (searchTerm !== '') {
-      const res = await contract.getCertificateByPersonID({ id: searchTerm });
-      res ? setSearchResult(res) : setSearchResult(null);
-    }
-  };
-
   // const fetchCertificateByPersonID = async (searchTerm) => {
   //   if (searchTerm !== '') {
   //     const res = await contract.getCertificateByPersonID({ id: searchTerm });
-  //     if (res) {
-  //       const vaccine = await contract.getVaccineByID({ id: searchTerm });
-  //       res.vaccine_name = vaccine[0].name;
-  //       setSearchResult(res);
-  //     } else {
-  //       setSearchResult(null);
-  //     }
+  //     res ? setSearchResult(res) : setSearchResult(null);
   //   }
   // };
+
+  const fetchCertificateByPersonID = async (searchTerm) => {
+    if (searchTerm !== '') {
+      const res = await contract.getCertificateByPersonID({ id: searchTerm });
+      if (res) {
+        const vaccine = await contract.getVaccineByID({ id: res[0].vaccane_id });
+        res.vaccine_name = vaccine[0].name;
+        setSearchResult(res);
+      } else {
+        setSearchResult(null);
+      }
+    }
+  };
 
   console.log('searchResult: ', searchResult);
 
