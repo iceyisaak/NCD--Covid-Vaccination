@@ -68,7 +68,7 @@ export function getPersons(): Array<Person> {
 }
 
 // Method to query a Person by id
-export function getPersonByID(id: string): Person | null {
+export function getPersonByID(id: string): Array<Person> | null {
   // assert(id.length > 0, "ID is required");
   // for (let i = 0; i < persons.length; i++) {
   //   if (persons[i].id == id) {
@@ -82,11 +82,10 @@ export function getPersonByID(id: string): Person | null {
     const list = persons[i];
     if (list.id == id) {
       logging.log(list)
-      logging.log(result)
       result.push(list);
     }
   }
-  return null;
+  return result;
 }
 
 
