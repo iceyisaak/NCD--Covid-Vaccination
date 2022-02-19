@@ -10,7 +10,9 @@ const ViewPerson = () => {
   const fetchPers = async () => {
     const res = await window.contract.getPersonByID({ id: personId });
     setPers(res);
+    console.log('res:', res);
   };
+
 
   useEffect(() => {
     fetchPers();

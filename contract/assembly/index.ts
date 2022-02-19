@@ -53,12 +53,7 @@ export function addPerson(id: string, nationality: string, name: string, photo: 
 
 
 // Method to query all people
-export function getPersons(): Array<Person> {
-  // let result = new Array<Person>(persons.length);
-  // for (let i = 0; i < persons.length; i++) {
-  //   let person = persons[i];
-  //   result[i] = person;
-  // }
+export function getPersons(): Array<Person> | null {
   let result = new Array<Person>();
   for (let i = 0; i < persons.length; i++) {
     let list = persons[i];
@@ -69,19 +64,11 @@ export function getPersons(): Array<Person> {
 
 // Method to query a Person by id
 export function getPersonByID(id: string): Array<Person> | null {
-  // assert(id.length > 0, "ID is required");
-  // for (let i = 0; i < persons.length; i++) {
-  //   if (persons[i].id == id) {
-  //     let find = persons[i];
-  //     return find;
-  //   }
-  // }
   assert(id.length > 0, "ID is required");
   let result = new Array<Person>();
   for (let i = 0; i < persons.length; i++) {
     const list = persons[i];
     if (list.id == id) {
-      logging.log(list)
       result.push(list);
     }
   }
