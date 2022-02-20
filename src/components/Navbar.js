@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../styles/global.scss';
+// import '../styles/global.scss';
+import './Navbar.module.scss';
+import '../styles/assets/buttons.scss';
 
 const Navbar = (props) => {
 
@@ -9,9 +11,9 @@ const Navbar = (props) => {
 
   return (
     <nav className='nav'>
-      <Link to='/'>
-        <h3 className='logo'>
-          Near Covid Vaccination Dapp
+      <Link to='/' className='logo'>
+        <h3 >
+          NEAR Vax Dapp
         </h3>
       </Link>
       <div className='account-control'>

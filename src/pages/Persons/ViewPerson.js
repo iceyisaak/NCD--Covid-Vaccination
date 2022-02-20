@@ -9,15 +9,12 @@ const ViewPerson = () => {
 
   const fetchPers = async () => {
     const res = await window.contract.getPersonByID({ id: personId });
-    setPers(res);
-    console.log('res:', res);
+    setPers(res[0]);
   };
-
 
   useEffect(() => {
     fetchPers();
   }, []);
-
 
   return (
     <>
@@ -25,9 +22,6 @@ const ViewPerson = () => {
         pers &&
         <div>
           <h1>View Person: </h1>
-          <p>
-            {pers.id}
-          </p>
           <p>
             {pers.name}
           </p>

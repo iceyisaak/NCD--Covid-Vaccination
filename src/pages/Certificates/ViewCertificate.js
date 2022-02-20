@@ -7,7 +7,6 @@ const ViewCertificate = () => {
   const navigate = useNavigate();
   const [cer, setCer] = useState({});
 
-
   const fetchCert = async () => {
     const res = await window.contract.getCertificateByID({ id: certificateId });
     setCer(res[0]);

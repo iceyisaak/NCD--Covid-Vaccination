@@ -21,12 +21,14 @@ const PersonPage = (props) => {
       <h1>
         PERSON PAGE
       </h1>
-      <button onClick={() => navigate('/')}>
-        Back
-      </button>
-      <button onClick={() => navigate('/addPerson')}>
-        Add Person
-      </button>
+      <div className="btn-row">
+        <button onClick={() => navigate('/')} className='mx-1'>
+          Back
+        </button>
+        <button onClick={() => navigate('/addPerson')}>
+          Add Person
+        </button>
+      </div>
 
       <PersonList persons={persons} personList={personList} setPersons={setPersons} />
 

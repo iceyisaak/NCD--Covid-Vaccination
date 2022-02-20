@@ -1,21 +1,13 @@
-$green: #33ff00;
+@import './abstracts//mixins';
+@import './abstracts/variables';
 
 * {
   box-sizing: border-box;
 }
 
 html {
-  --bg: #efefef;
-  --fg: #1e1e1e;
-  --gray: #555;
-  --light-gray: #ccc;
-  --shadow: #e6e6e6;
-  --success: rgb(90, 206, 132);
-  --primary: #ff585d;
-  --secondary: #0072ce;
-
-  background-color: var(--bg);
-  color: var(--fg);
+  background-color: $bg;
+  color: $fg;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
     Arial, sans-serif;
   // font-size: calc(0.9em + 0.5vw);
@@ -41,79 +33,30 @@ h1 {
   margin-top: 0;
   padding: 3.5em 0 0.5em;
   text-align: center;
-  font-size: 4rem;
+  font-size: 2rem;
+
+  @include respond(md) {
+    font-size: 4rem;
+  }
 }
 
-a,
-.link {
-  color: var(--primary);
+a {
+  color: $gray-light-1;
   text-decoration: none;
-}
-a:hover,
-a:focus,
-.link:hover,
-.link:focus {
-  text-decoration: underline;
-}
-a:active,
-.link:active {
-  color: var(--secondary);
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-button,
-input {
-  font: inherit;
-  outline: none;
+.link {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-button {
-  background-color: var(--secondary);
-  border-radius: 5px;
-  border: none;
-  color: #efefef;
-  cursor: pointer;
-  padding: 0.3em 0.75em;
-  transition: transform 30ms;
-}
-button:hover,
-button:focus {
-  box-shadow: 0 0 10em rgba(255, 255, 255, 0.2) inset;
-}
-button:active {
-  box-shadow: 0 0 10em rgba(0, 0, 0, 0.1) inset;
-}
-button.link {
-  background: none;
-  border: none;
-  box-shadow: none;
-  display: inline;
-}
-[disabled] button,
-button[disabled] {
-  box-shadow: none;
-  background-color: var(--light-gray);
-  color: gray;
-  cursor: not-allowed;
-  transform: none;
-}
-[disabled] button {
-  text-indent: -900em;
-  width: 2em;
-  position: relative;
-}
-[disabled] button:after {
-  content: ' ';
-  display: block;
-  width: 0.8em;
-  height: 0.8em;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  border-color: var(--fg) transparent var(--fg) transparent;
-  animation: loader 1.2s linear infinite;
-  position: absolute;
-  top: 0.45em;
-  right: 0.5em;
-}
 @keyframes loader {
   0% {
     transform: rotate(0deg);
@@ -129,15 +72,15 @@ fieldset {
 }
 
 input {
-  background-color: var(--shadow);
+  background-color: $shadow;
   border: none;
   border-radius: 5px 0 0 5px;
-  caret-color: var(--primary);
+  caret-color: $primary;
   color: inherit;
   padding: 0.25em 1em;
 }
 input::selection {
-  background-color: var(--secondary);
+  background-color: $secondary;
   color: #efefef;
 }
 input:focus {
@@ -145,7 +88,7 @@ input:focus {
 }
 
 code {
-  color: var(--gray);
+  color: $gray;
 }
 
 li {
@@ -154,7 +97,7 @@ li {
 
 aside {
   animation: notify ease-in-out 10s;
-  background-color: var(--shadow);
+  background-color: $shadow;
   border-radius: 5px;
   bottom: 0;
   font-size: 0.8em;
@@ -171,10 +114,10 @@ aside footer {
   margin-top: 0.5em;
 }
 aside footer *:first-child {
-  color: var(--success);
+  color: $success;
 }
 aside footer *:last-child {
-  color: var(--gray);
+  color: $gray;
 }
 @keyframes notify {
   0% {
@@ -193,11 +136,11 @@ aside footer *:last-child {
 
 @media (prefers-color-scheme: dark) {
   html {
-    --bg: #1e1e1e;
-    --fg: #efefef;
-    --gray: #aaa;
-    --shadow: #2a2a2a;
-    --light-gray: #444;
+    // $bg: #1e1e1e;
+    // $fg: #efefef;
+    // $gray: #aaa;
+    // $shadow: #2a2a2a;
+    // $light-gray: #444;
   }
 
   input:focus {
@@ -205,33 +148,41 @@ aside footer *:last-child {
   }
 }
 
-.greeny {
-  color: $green;
+.header-box {
+  text-align: center;
 }
 
-.nav {
+.btn-row {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-
-  .account-control {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-.btn {
-  width: 100%;
-  font-size: 2rem;
+  justify-content: center;
 }
 
 .mb-1 {
   margin-bottom: 1rem;
 }
 
+.mb-4 {
+  margin-bottom: 4rem;
+}
+
+.mx-1 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.px-1 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .logo {
   font-size: 2rem;
+  text-decoration: none;
+  color: $white;
+
+  @include respond(sm) {
+    font-size: 2rem;
+  }
 }
 
 .form {
@@ -250,6 +201,12 @@ aside footer *:last-child {
   width: 50%;
 }
 
+.row-name {
+  width: 10rem;
+  text-align: right;
+  font-weight: bold;
+}
+
 .list {
   display: flex;
   flex-flow: column wrap;
@@ -261,4 +218,17 @@ aside footer *:last-child {
   display: flex;
   flex-flow: column;
   width: 30%;
+}
+
+tr {
+  height: 3rem;
+  &:hover {
+    box-shadow: 0 0 10em rgba(255, 255, 255, 0.2) inset;
+  }
+  &:nth-child(odd) {
+    background-color: $stripe-odd;
+  }
+  &:nth-child(even) {
+    background-color: $stripe-even;
+  }
 }

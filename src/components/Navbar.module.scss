@@ -1,4 +1,18 @@
+@import '../styles/abstracts/mixins';
+
 .nav {
   display: flex;
-  background-color: red;
+  flex-flow: column wrap;
+  align-items: center;
+
+  @include respond(md) {
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  .account-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

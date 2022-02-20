@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import VaccineList from './VaccineList';
 
-const VaccinePage = (props) => {
 
-  // const { vaccines, vaccineList, setVaccines } = props;
+const VaccinePage = () => {
 
   const [vaccines, setVaccines] = useState('');
   const [vaccineList, setVaccineList] = useState([]);
@@ -15,19 +14,19 @@ const VaccinePage = (props) => {
 
   const navigate = useNavigate();
 
-  console.log(vaccineList);
-
   return (
     <>
       <h1>
         VACCINE PAGE
       </h1>
-      <button onClick={() => navigate('/')}>
-        Back
-      </button>
-      <button onClick={() => navigate('/addVaccine')}>
-        Add Vaccine
-      </button>
+      <div className='btn-row'>
+        <button onClick={() => navigate('/')} className='mx-1'>
+          Back
+        </button>
+        <button onClick={() => navigate('/addVaccine')}>
+          Add Vaccine
+        </button>
+      </div>
 
       <VaccineList vaccines={vaccines} vaccineList={vaccineList} setVaccines={setVaccines} />
 
