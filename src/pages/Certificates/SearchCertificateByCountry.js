@@ -82,7 +82,7 @@ const SearchCertificateByCountry = (props) => {
           <form onSubmit={onSubmit} className='form'>
             <fieldset id='fieldset'>
               <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
-                <label htmlFor="country" className='mb-1'>
+                <label htmlFor="country" className='mb-1 form-input'>
                   Search Country
                 </label>
                 <select name="country" id="country" className='form-input mb-1'>
