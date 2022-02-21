@@ -1,10 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 const VaccineForm = () => {
 
-  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -46,41 +44,46 @@ const VaccineForm = () => {
   return (
     <form onSubmit={onSubmit} className='form'>
       <fieldset id="fieldset">
-        <label
-          htmlFor="vaccine"
-          style={{
-            display: 'block',
-            color: 'var(--gray)',
-            marginBottom: '0.5em'
-          }}
-        >
-          Add Vaccine
-        </label>
         <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
+          <label htmlFor="vaccine" className='mb-1' >
+            Vaccine Name
+          </label>
           <input
             autoComplete="off"
             id="name"
             className='form-input mb-1'
             placeholder='e.g. Comirnaty'
           />
+          <label htmlFor="manufacturer" className='mb-1' >
+            Vaccine Manufacturer
+          </label>
           <input
             autoComplete="off"
             id="manufacturer"
             className='form-input mb-1'
             placeholder='e.g. Pfizer-BionTech'
           />
+          <label htmlFor="type" className='mb-1' >
+            Vaccine Type
+          </label>
           <input
             autoComplete="off"
             id="type"
             className='form-input mb-1'
             placeholder='e.g. RNA'
           />
+          <label htmlFor="administration" className='mb-1' >
+            Administration
+          </label>
           <input
             autoComplete="off"
             id="administration"
             className='form-input mb-1'
             placeholder='e.g. Intramuscular injection'
           />
+          <label htmlFor="dose" className='mb-1' >
+            Dose
+          </label>
           <input
             autoComplete="off"
             id="dose"
@@ -88,11 +91,8 @@ const VaccineForm = () => {
             placeholder='Dose'
           />
         </div>
-        <button className='btn mb-1'>
+        <button className='btn '>
           Add
-        </button>
-        <button onClick={() => navigate('/vaccines')} className='btn'>
-          Back
         </button>
       </fieldset>
     </form>

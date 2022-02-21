@@ -34,6 +34,7 @@ h1 {
   padding: 3.5em 0 0.5em;
   text-align: center;
   font-size: 2rem;
+  color: #efefef;
 
   @include respond(md) {
     font-size: 4rem;
@@ -46,6 +47,11 @@ a {
   &:hover {
     cursor: pointer;
   }
+}
+
+label {
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .link {
@@ -72,19 +78,23 @@ fieldset {
 }
 
 input {
-  background-color: $shadow;
+  background-color: $gray-dark-1;
   border: none;
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px;
   caret-color: $primary;
   color: inherit;
   padding: 0.25em 1em;
-}
-input::selection {
-  background-color: $secondary;
-  color: #efefef;
-}
-input:focus {
-  box-shadow: 0 0 10em rgba(0, 0, 0, 0.02) inset;
+  height: 4rem;
+  &::selection {
+    background-color: $secondary;
+    color: #efefef;
+  }
+  &:focus {
+    box-shadow: 0 0 10em rgba(0, 0, 0, 0.02) inset;
+  }
+  &:last-child {
+    margin-bottom: 2rem;
+  }
 }
 
 code {
@@ -106,18 +116,18 @@ aside {
   position: fixed;
   transform: translateY(10em);
   right: 0;
-}
-aside footer {
-  display: flex;
-  font-size: 0.9em;
-  justify-content: space-between;
-  margin-top: 0.5em;
-}
-aside footer *:first-child {
-  color: $success;
-}
-aside footer *:last-child {
-  color: $gray;
+  aside footer {
+    display: flex;
+    font-size: 0.9em;
+    justify-content: space-between;
+    margin-top: 0.5em;
+  }
+  aside footer *:first-child {
+    color: $success;
+  }
+  aside footer *:last-child {
+    color: $gray;
+  }
 }
 @keyframes notify {
   0% {
@@ -205,6 +215,7 @@ aside footer *:last-child {
   width: 10rem;
   text-align: right;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 .list {
