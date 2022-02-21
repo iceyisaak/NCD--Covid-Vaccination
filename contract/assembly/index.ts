@@ -27,16 +27,6 @@ export function getVaccines(): Array<Vaccine> {
 }
 
 // Method to query a vaccine by vaccine id
-// export function getVaccineByID(id: string): Vaccine | null {
-//   assert(id.length > 0, "Vaccine ID is required");
-//   for (let i = 0; i < vaccines.length; i++) {
-//     if (vaccines[i].id == id) {
-//       let find = vaccines[i];
-//       return find;
-//     }
-//   }
-//   return null;
-// }
 export function getVaccineByID(id: string): Array<Vaccine> | null {
   assert(id.length > 0, "ID is required");
   let result = new Array<Vaccine>();
