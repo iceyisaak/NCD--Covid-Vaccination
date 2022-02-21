@@ -1,10 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 const CertificateForm = (props) => {
 
-  const navigate = useNavigate();
   const { vaccineList, personList } = props;
 
   const onSubmit = async (e) => {
@@ -12,7 +10,6 @@ const CertificateForm = (props) => {
 
     const { vaccine_id, person_id, country, application_date, vaccine_lot } = e.target.elements;
 
-    // console.log('e.target.elements: ', e.target.elements);
     try {
 
       fieldset.disable = true;
@@ -44,93 +41,43 @@ const CertificateForm = (props) => {
 
   return (
     <form onSubmit={onSubmit} className='form'>
-      <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
-        <fieldset id="fieldset">
-          <label
-            htmlFor="person_id"
-            style={{
-              display: 'block',
-              color: 'var(--gray)',
-              marginBottom: '0.5em'
-            }}
-          >
+      <fieldset id="fieldset">
+        <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
+          <label htmlFor="person_id" className='mb-1'>
             Person ID
           </label>
-          {/* <input
-            autoComplete="off"
-            id="person_id"
-            className='form-input mb-1'
-            placeholder='e.g. ###-###-###'
-          /> */}
-          <select name="person_id" id="person_id">
+          <select name="person_id" id="person_id" className='form-input mb-1'>
             {personList.map((p, i) => <option value={p.id} key={i}>{p.name}</option>)}
           </select>
-          <label
-            htmlFor="vaccine_id"
-            style={{
-              display: 'block',
-              color: 'var(--gray)',
-              marginBottom: '0.5em'
-            }}
-          >
+          <label htmlFor="vaccine_id" className='mb-1'>
             Vaccine ID
           </label>
-          {/* <input
-            autoComplete="off"
-            id="vaccine_id"
-            className='form-input mb-1'
-            placeholder='e.g. ###-###-###'
-          /> */}
-          <select name="vaccine_id" id="vaccine_id">
+          <select name="vaccine_id" id="vaccine_id" className='form-input mb-1'>
             {vaccineList.map((v, i) => <option value={v.id} key={i}>{v.name}</option>)}
           </select>
-          <label
-            htmlFor="country"
-            style={{
-              display: 'block',
-              color: 'var(--gray)',
-              marginBottom: '0.5em'
-            }}
-          >
+          <label htmlFor="country" className='mb-1'>
             Country
           </label>
           <input id="country" className='form-input mb-1' placeholder='e.g. Germany' />
-          <label
-            htmlFor="application_date"
-            style={{
-              display: 'block',
-              color: 'var(--gray)',
-              marginBottom: '0.5em'
-            }}
-          >
+          <label htmlFor="application_date" className='mb-1'>
             Application Date
           </label>
           <input id="application_date" className='form-input mb-1' placeholder='e.g. Germany' type='date' />
-          <label
-            htmlFor="vaccine_lot"
-            style={{
-              display: 'block',
-              color: 'var(--gray)',
-              marginBottom: '0.5em'
-            }}
-          >
+          <label htmlFor="vaccine_lot" className='mb-1'>
             Vaccine Lot
           </label>
           <input
             autoComplete="off"
             id="vaccine_lot"
             className='form-input mb-1'
-            placeholder='e.g. ###-###-###'
-            type='number'
+            placeholder='e.g. 123-ABC'
+            type='text'
           />
           <button className='btn mb-1'>
             Add
           </button>
-          <button onClick={() => navigate('/certificates')} className='btn'>
-            Back
-          </button>
-        </fieldset>
-      </div>
+        </div>
+      </fieldset>
     </form >
   );
 };

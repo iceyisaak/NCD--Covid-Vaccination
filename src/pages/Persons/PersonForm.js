@@ -1,10 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 const PersonForm = () => {
-
-  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -42,14 +39,9 @@ const PersonForm = () => {
 
   return (
     <form onSubmit={onSubmit} className='form'>
-      <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
-        <fieldset id="fieldset">
-          <label htmlFor="name" style={{
-            display: 'block',
-            color: 'var(--gray)',
-            marginBottom: '0.5em'
-          }}
-          >
+      <fieldset id="fieldset">
+        <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
+          <label htmlFor="name" className='mb-1' >
             Name
           </label>
           <input
@@ -58,14 +50,7 @@ const PersonForm = () => {
             className='form-input mb-1'
             placeholder='e.g. John Doe'
           />
-          <label
-            htmlFor="nationality"
-            style={{
-              display: 'block',
-              color: 'var(--gray)',
-              marginBottom: '0.5em'
-            }}
-          >
+          <label htmlFor="nationality" className='mb-1'>
             Nationality
           </label>
           <input
@@ -74,25 +59,11 @@ const PersonForm = () => {
             className='form-input mb-1'
             placeholder='e.g. Italian'
           />
-          <label
-            htmlFor="photo"
-            style={{
-              display: 'block',
-              color: 'var(--gray)',
-              marginBottom: '0.5em'
-            }}
-          >
+          <label htmlFor="photo" className='mb-1' >
             Photo
           </label>
-          <input id="photo" className='form-input mb-1' type='file' />
-          <label
-            htmlFor="birthdate"
-            style={{
-              display: 'block',
-              color: 'var(--gray)',
-              marginBottom: '0.5em'
-            }}
-          >
+          <input id="photo" className='form-input mb-1 pt-1' type='file' />
+          <label htmlFor="birthdate" className='mb-1' >
             Birthdate
           </label>
           <input
@@ -102,17 +73,11 @@ const PersonForm = () => {
             placeholder='e.g. Intramuscular injection'
             type='date'
           />
-
-          <button
-            className='btn mb-1'
-          >
+          <button className='btn mb-1' >
             Add
           </button>
-          <button onClick={() => navigate('/persons')} className='btn'>
-            Back
-          </button>
-        </fieldset>
-      </div>
+        </div>
+      </fieldset>
     </form >
   );
 };

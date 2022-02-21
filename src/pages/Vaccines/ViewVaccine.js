@@ -11,7 +11,6 @@ const ViewVaccine = () => {
 
   const fetchVac = async () => {
     const res = await contract.getVaccineByID({ id: vaccineId });
-    console.log('res: ', res);
     setVac(res[0]);
   };
 
@@ -23,12 +22,10 @@ const ViewVaccine = () => {
   return (
     <>
       {
-        console.log('vac: ', vac),
         vac &&
         <>
-          <div className='list '>
+          <div className='list'>
             <h1>View Vaccine: </h1>
-
             <table className="table">
               <tbody>
                 <tr>

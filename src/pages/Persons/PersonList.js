@@ -8,19 +8,19 @@ const PersonList = (props) => {
   return (
 
     <div className='list'>
-      <div className='flex flex-wrap justify-between w-full mb-4'>
+      <div className='header-box mb-4'>
         <h2 className='text-lg'>Person List</h2>
         <span className='text-sm entry'>Total: {personList.length} Entries</span>
       </div>
       {personList.length === 0 ?
         <p>List is Empty</p> :
         <table className='table'>
-          <tbody className=''>
+          <tbody >
             {personList.map((p, i) =>
-              <tr key={i} className=''>
-                <td>
+              <tr key={i} >
+                <td className='px-1'>
                   <Link to={`/persons/${p.id}`}>
-                    <label htmlFor={`${i}`}>{p.name}</label>
+                    {p.name}
                   </Link>
                 </td>
               </tr>

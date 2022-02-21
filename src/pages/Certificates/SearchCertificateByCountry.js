@@ -77,14 +77,25 @@ const SearchCertificateByCountry = (props) => {
   return (
     <>
       <h1>Search Certificate by Country</h1>
-      <form onSubmit={onSubmit} className='searchBox'>
-        <label htmlFor="country">Search Country</label>
-        <select name="country" id="country">
-          {/* {uniqueSet.map((c, i) => <option value={c.country} key={i}>{c.country}</option>)} */}
-        </select>
-        <button>Submit</button>
+      <>
+        <div className="margin-center">
+          <form onSubmit={onSubmit} className='form'>
+            <fieldset id='fieldset'>
+              <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
+                <label htmlFor="country" className='mb-1'>
+                  Search Country
+                </label>
+                <select name="country" id="country" className='form-input mb-1'>
+                  {/* {uniqueSet.map((c, i) => <option value={c.country} key={i}>{c.country}</option>)} */}
+                </select>
+                <button className='btn mb-1'>Search</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
         <button onClick={() => navigate('/certificates')}>Back</button>
-      </form>
+      </>
+
       {showResult ?
         searchResult.length === 0 ?
           <p>No Vaccine Certificate</p> :

@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import CertificateForm from './CertificateForm';
 
 const AddCertificate = (props) => {
 
   const { certificates, setCertificates, vaccineList, personList } = props;
+  const navigate = useNavigate();
 
   return (
     <div className=''>
@@ -18,6 +20,9 @@ const AddCertificate = (props) => {
           personList={personList}
         />
       </div>
+      <button onClick={() => navigate('/certificates')}>
+        Back
+      </button>
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
+import '../../styles/global.scss';
+
 const ViewPerson = () => {
 
   const { personId } = useParams();
@@ -20,26 +22,51 @@ const ViewPerson = () => {
     <>
       {
         pers &&
-        <div>
-          <h1>View Person: </h1>
-          <p>
-            {pers.name}
-          </p>
-          <p>
-            {pers.nationality}
-          </p>
-          <p>
-            {pers.photo}
-          </p>
-          <p>
-            {pers.birthdate}
-          </p>
+        <>
+          <div className='list'>
+            <h1>View Person: </h1>
+            <table className="table">
+              <tbody>
+                <tr>
+                  <td className='row-name px-1'>
+                    Name
+                  </td>
+                  <td className='px-1'>
+                    {pers.name}
+                  </td>
+                </tr>
+                <tr>
+                  <td className='row-name px-1'>
+                    Nationality
+                  </td>
+                  <td className='px-1'>
+                    {pers.nationality}
+                  </td>
+                </tr>
+                <tr>
+                  <td className='row-name px-1'>
+                    Photo
+                  </td>
+                  <td className='px-1'>
+                    {pers.photo}
+                  </td>
+                </tr>
+                <tr>
+                  <td className='row-name px-1'>
+                    Birthdate
+                  </td>
+                  <td className='px-1'>
+                    {pers.birthdate}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <button onClick={() => navigate('/persons')}>
             Back
           </button>
-        </div>
+        </>
       }
-
     </>
   );
 

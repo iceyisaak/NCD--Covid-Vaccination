@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PersonList from './PersonList';
 
-const PersonPage = (props) => {
-
-  // const { persons, personList, setPersons } = props;
+const PersonPage = () => {
 
   const [persons, setPersons] = useState('');
   const [personList, setPersonList] = useState([]);
@@ -12,7 +10,6 @@ const PersonPage = (props) => {
   useEffect(() => {
     contract.getPersons().then(setPersonList);
   }, []);
-
 
   const navigate = useNavigate();
 

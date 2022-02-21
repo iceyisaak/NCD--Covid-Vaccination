@@ -48,15 +48,25 @@ const SearchCertificateByPerson = (props) => {
 
   return (
     <>
-      <h1>Search Certificate</h1>
-      <form onSubmit={onSubmit} className='searchBox'>
-        <label htmlFor="person_id">Search Certicate by Person</label>
-        <select name="person_id" id="person_id">
-          {personList.map((p, i) => <option value={p.id} key={i}>{p.name}</option>)}
-        </select>
-        <button>Submit</button>
+      <h1>Search Certificate by Person</h1>
+      < >
+        <div className='margin-center'>
+          <form onSubmit={onSubmit} className='form'>
+            <div
+              style={{ display: 'flex', flexFlow: 'row wrap' }}
+              className='mb-1 fieldset'>
+              <label htmlFor="person_id" className='mb-1'>
+                Search Certicate by Person
+              </label>
+              <select name="person_id" id="person_id" className='form-input mb-1'>
+                {personList.map((p, i) => <option value={p.id} key={i}>{p.name}</option>)}
+              </select>
+              <button className='btn'>Submit</button>
+            </div>
+          </form>
+        </div>
         <button onClick={() => navigate('/certificates')}>Back</button>
-      </form>
+      </>
 
       {showResult ?
         searchResult.length === 0 ?

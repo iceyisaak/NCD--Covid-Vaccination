@@ -7,7 +7,7 @@ const CertificateList = (props) => {
 
   return (
     <div className='list'>
-      <div className='flex flex-wrap justify-between w-full mb-4'>
+      <div className='header-box mb-4'>
         <h2 className='text-lg'>Certificate List</h2>
         <span className='text-sm entry'>Total: {certificateList.length} Entries</span>
       </div>
@@ -19,12 +19,12 @@ const CertificateList = (props) => {
               <tr key={i}>
                 <td>
                   <Link to={`/certificates/${c.id}`}>
-                    <label htmlFor={`${i}`}>{c.person_id}</label>
+                    {c.person_id}
                   </Link>
                 </td>
                 <td>
                   <Link to={`/certificates/${c.id}`}>
-                    <label htmlFor={`${i}`}>{c.country}</label>
+                    {c.country}
                   </Link>
                 </td>
               </tr>
