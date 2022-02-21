@@ -6,9 +6,7 @@ export class Vaccine {
   id: string; //pfzier
   name: string; //Pfzer
   manufacturer: string; //BioNTech, Fosun Pharma, Pfizer
-  type: string; //RNA
-  administration: string; //Intramuscular injection
-  dose: string;
+  type: string; //mRNA
   constructor(id: string, name: string, manufacturer: string, type: string, administration: string, dose: string) {
     this.id = id;
     this.name = name;
