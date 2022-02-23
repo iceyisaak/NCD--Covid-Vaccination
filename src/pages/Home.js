@@ -3,7 +3,7 @@ import React from 'react';
 const Home = ({ login }) => {
   return (
     <main>
-      <h1>NEAR Covid Vaccination Dapp</h1>
+      <h1>NEAR Vac Dapp</h1>
       <p>
         This is a very simple Todo dapp created with create-near-app ReactJS template on the NEAR blockchain. The smart contract is written in AssembleyScript. It allows users to:
       </p>

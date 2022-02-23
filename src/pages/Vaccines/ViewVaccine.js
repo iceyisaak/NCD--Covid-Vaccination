@@ -21,7 +21,7 @@ const ViewVaccine = () => {
 
   return (
     <>
-      {
+      {console.log('vac: ', vac),
         vac &&
         <>
           <div className='list'>
@@ -44,9 +44,10 @@ const ViewVaccine = () => {
                     {vac.manufacturer}
                   </td>
                 </tr>
+
                 <tr>
                   <td className='row-name px-1'>
-                    Type
+                    Administration
                   </td>
                   <td className='px-1'>
                     {vac.type}
@@ -54,18 +55,10 @@ const ViewVaccine = () => {
                 </tr>
                 <tr>
                   <td className='row-name px-1'>
-                    Administration
+                    Vaccind ID
                   </td>
                   <td className='px-1'>
-                    {vac.administration}
-                  </td>
-                </tr>
-                <tr>
-                  <td className='row-name px-1'>
-                    Dose
-                  </td>
-                  <td className='px-1'>
-                    {vac.dose}
+                    {vac.id}
                   </td>
                 </tr>
               </tbody>

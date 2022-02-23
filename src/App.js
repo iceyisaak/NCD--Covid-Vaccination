@@ -29,14 +29,14 @@ export default function App() {
   const [vaccineList, setVaccineList] = useState([]);
   const [persons, setPersons] = useState();
   const [personList, setPersonList] = useState([]);
-  const [certificates, setCertificates] = useState();
-  const [certificateList, setCertificateList] = useState([]);
+  const [transactions, setTransactions] = useState();
+  const [transactionList, setTransactionList] = useState([]);
 
   window.walletConnection.isSignedIn() &&
     useEffect(() => {
       window.contract.getVaccines().then(setVaccineList);
       window.contract.getPersons().then(setPersonList);
-      window.contract.getCertificates().then(setCertificateList);
+      window.contract.getTransactions().then(setTransactionList);
     }, []);
 
   return (
@@ -54,26 +54,26 @@ export default function App() {
         />
 
         <Route path='/vaccines/' element={<VaccinePage vaccineList={vaccineList} vaccines={vaccines} />} />
-        <Route path='/vaccines/:vaccineId' element={<ViewVaccine certificateList={certificateList} personList={personList} />} />
+        <Route path='/vaccines/:vaccineId' element={<ViewVaccine transactionList={transactionList} personList={personList} />} />
         <Route path='/addVaccine' element={<AddVaccine setVacceines={setVaccines} vaccines={vaccines} />} />
 
         <Route path='/persons/' element={<PersonPage personList={personList} persons={persons} />} />
-        <Route path='/persons/:personId' element={<ViewPerson certificateList={certificateList} vaccineList={vaccineList} />} />
+        <Route path='/persons/:personId' element={<ViewPerson transactionList={transactionList} vaccineList={vaccineList} />} />
         <Route path='/addPerson' element={<AddPerson setPersons={setPersons} persons={persons} />} />
 
-        <Route path='/certificates/' element={<CertificatePage certificateList={certificateList} certificates={certificates} />} />
+        <Route path='/certificates/' element={<CertificatePage transactionList={transactionList} transactions={transactions} />} />
         <Route path='/certificates/:certificateId' element={<ViewCertificate />} />
         <Route path='/addCertificate' element={
-          <AddCertificate setCertificates={setCertificates} certificates={certificates} vaccineList={vaccineList} personList={personList} />
+          <AddCertificate setTransactions={setTransactions} transactions={transactions} vaccineList={vaccineList} personList={personList} />
         } />
         <Route path='/searchCertificateByPerson' element={
-          <SearchCertificateByPerson certificates={certificates} certificateList={certificateList} vaccineList={vaccineList} personList={personList} />
+          <SearchCertificateByPerson transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} personList={personList} />
         } />
         <Route path='/searchCertificateByVaccine' element={
-          <SearchCertificateByVaccine certificates={certificates} certificateList={certificateList} vaccineList={vaccineList} personList={personList} />
+          <SearchCertificateByVaccine transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} personList={personList} />
         } />
         <Route path='/searchCertificateByCountry' element={
-          <SearchCertificateByCountry certificates={certificates} certificateList={certificateList} vaccineList={vaccineList} personList={personList} />
+          <SearchCertificateByCountry transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} personList={personList} />
         } />
 
       </Routes>

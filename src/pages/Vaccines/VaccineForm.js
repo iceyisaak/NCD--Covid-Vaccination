@@ -72,24 +72,6 @@ const VaccineForm = () => {
             className='form-input mb-1'
             placeholder='e.g. RNA'
           />
-          <label htmlFor="administration" className='mb-1' >
-            Administration
-          </label>
-          <input
-            autoComplete="off"
-            id="administration"
-            className='form-input mb-1'
-            placeholder='e.g. Intramuscular injection'
-          />
-          <label htmlFor="dose" className='mb-1' >
-            Dose
-          </label>
-          <input
-            autoComplete="off"
-            id="dose"
-            className='form-input mb-1'
-            placeholder='Dose'
-          />
         </div>
         <button className='btn '>
           Add

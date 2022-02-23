@@ -1,18 +1,16 @@
 import { logging } from "near-sdk-as";
-import { vaccines, Vaccine, persons, Person, certificates, Certificate } from "./models";
+import { vaccines, Vaccine, vaccination_sites, VaccinationSite, persons, Person, transactions, Transaction } from "./models";
 
 
 // ------------------------- Vaccines smart contract methods ----------------- -------- //
 
 // Method to register a new Vaccine
-export function addVaccine(id: string, name: string, manufacturer: string, type: string, administration: string, dose: string): void {
+export function addVaccine(id: string, name: string, manufacturer: string, type: string): void {
   assert(id.length > 0, "Vaccine ID is required");
   assert(name.length > 0, "Vaccine name is required");
   assert(manufacturer.length > 0, "Manufacturer is required");
   assert(type.length > 0, "Vaccine type is required");
-  assert(administration.length > 0, "Vaccine administration type is required");
-  assert(dose.length > 0, "The number of doses is required");
-  let vaccine = new Vaccine(id, name, manufacturer, type, administration, dose);
+  let vaccine = new Vaccine(id, name, manufacturer, type);
   vaccines.push(vaccine);
 }
 
@@ -42,13 +40,16 @@ export function getVaccineByID(id: string): Array<Vaccine> | null {
 // ------------------------- People smart contract methods ----------------- -------- //
 
 // Method to register a new Vaccine
-export function addPerson(id: string, nationality: string, name: string, photo: string, birthdate: string): void {
+export function addPerson(id: string, nationality: string, name: string, email: string, phone: string, address: string, birthdate: string, citizen_id: string): void {
   assert(id.length > 0, "ID is required");
   assert(nationality.length > 0, "Nationality is required");
   assert(name.length > 0, "The name is required");
-  assert(photo.length > 0, "Photo URL is required");
+  assert(email.length > 0, "Email is required");
+  assert(phone.length > 0, "Phone is required");
+  assert(address.length > 0, "Address is required");
   assert(birthdate.length > 0, "Birthdate is required");
-  let person = new Person(id, nationality, name, photo, birthdate);
+  assert(citizen_id.length > 0, "Citizen ID is required");
+  let person = new Person(id, nationality, name, email, phone, address, birthdate, citizen_id);
   persons.push(person);
 }
 
@@ -80,24 +81,24 @@ export function getPersonByID(id: string): Array<Person> | null {
 // ------------------------- Methods of the smart contract of Vaccination Certificates --------------- ---------- //
 
 // Method to register a certificate
-export function addCertificate(id: string, vaccine_id: string, person_id: string, country: string, application_date: string, vaccine_lot: string, digital_stamp: string): void {
+export function addTransaction(id: string, vaccine_id: string, person_id: string, vaccination_site_id: string, application_date: string, vaccine_lot: string, digital_stamp: string): void {
   assert(id.length > 0, "Certificate ID is required");
   assert(vaccine_id.length > 0, "Vaccine ID is required");
   assert(person_id.length > 0, "Manufacturer is required");
-  assert(country.length > 0, "Country is required");
+  assert(vaccination_site_id.length > 0, "Vaccination Site is required");
   assert(application_date.length > 0, "Application Date is required");
   assert(vaccine_lot.length > 0, "Vaccine Lot is required");
   assert(digital_stamp.length > 0, "The stamp is required");
-  let certificate = new Certificate(id, vaccine_id, person_id, country, application_date, vaccine_lot, digital_stamp);
-  certificates.push(certificate);
+  let transaction = new Transaction(id, vaccine_id, person_id, vaccination_site_id, application_date, vaccine_lot, digital_stamp);
+  transactions.push(transaction);
 }
 
 
 // Method to list all certificates
-export function getCertificates(): Array<Certificate> | null {
-  let result = new Array<Certificate>();
-  for (let i = 0; i < certificates.length; i++) {
-    let list = certificates[i];
+export function getTransactions(): Array<Transaction> | null {
+  let result = new Array<Transaction>();
+  for (let i = 0; i < transactions.length; i++) {
+    let list = transactions[i];
     result.push(list);
   }
   return result;
@@ -105,11 +106,11 @@ export function getCertificates(): Array<Certificate> | null {
 
 
 // Method to query certificate by id
-export function getCertificateByID(id: string): Array<Certificate> | null {
+export function getCertificateByID(id: string): Array<Transaction> | null {
   assert(id.length > 0, "ID is required");
-  let result = new Array<Certificate>();
-  for (let i = 0; i < certificates.length; i++) {
-    const list = certificates[i];
+  let result = new Array<Transaction>();
+  for (let i = 0; i < transactions.length; i++) {
+    const list = transactions[i];
     if (list.id == id) {
       result.push(list);
     }
@@ -118,11 +119,11 @@ export function getCertificateByID(id: string): Array<Certificate> | null {
 }
 
 // Method to query certificate by person id
-export function getCertificateByPersonID(id: string): Array<Certificate> | null {
+export function getCertificateByPersonID(id: string): Array<Transaction> | null {
   assert(id.length > 0, "ID is required");
-  let result = new Array<Certificate>();
-  for (let i = 0; i < certificates.length; i++) {
-    let list = certificates[i];
+  let result = new Array<Transaction>();
+  for (let i = 0; i < transactions.length; i++) {
+    let list = transactions[i];
     if (list.person_id == id) {
       result.push(list);
     }
@@ -132,11 +133,11 @@ export function getCertificateByPersonID(id: string): Array<Certificate> | null 
 
 
 // Method to query certificate by vaccine id
-export function getCertificateByVaccineID(id: string): Array<Certificate> | null {
+export function getTransactionsByVaccineID(id: string): Array<Transaction> | null {
   assert(id.length > 0, "ID is required");
-  let result = new Array<Certificate>();
-  for (let i = 0; i < certificates.length; i++) {
-    const list = certificates[i];
+  let result = new Array<Transaction>();
+  for (let i = 0; i < transactions.length; i++) {
+    const list = transactions[i];
     if (list.vaccine_id == id) {
       result.push(list);
     }
@@ -145,14 +146,14 @@ export function getCertificateByVaccineID(id: string): Array<Certificate> | null
 }
 
 // Method to consult certificate by Country
-export function getCertificateByCountry(country: string): Array<Certificate> | null {
-  assert(country.length > 0, "Country is required");
-  let result = new Array<Certificate>()
-  for (let i = 0; i < certificates.length; i++) {
-    const list = certificates[i];
-    if (list.country == country) {
-      result.push(list);
-    }
-  }
-  return result;
-}
+// export function getTransactionsByVaccinationSite(vaccination_sites: string): Array<Transaction> | null {
+//   assert(country.length > 0, "Country is required");
+//   let result = new Array<Transaction>()
+//   for (let i = 0; i < transactions.length; i++) {
+//     const list = transactions[i];
+//     if (list.country == country) {
+//       result.push(list);
+//     }
+//   }
+//   return result;
+// }
