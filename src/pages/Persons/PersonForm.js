@@ -60,9 +60,24 @@ const PersonForm = () => {
             placeholder='e.g. Italian'
           />
           <label htmlFor="photo" className='mb-1' >
-            Photo
+            Email
           </label>
-          <input id="photo" className='form-input mb-1 pt-1' type='file' />
+          <input
+            autoComplete="off"
+            id="email"
+            className='form-input mb-1'
+            placeholder='e.g. abc@efg.com'
+            type='email'
+          />
+          <label htmlFor="photo" className='mb-1' >
+            Phone
+          </label>
+          <input
+            autoComplete="off"
+            id="email"
+            className='form-input mb-1'
+            placeholder='e.g. ###-###-###'
+          />
           <label htmlFor="birthdate" className='mb-1' >
             Birthdate
           </label>

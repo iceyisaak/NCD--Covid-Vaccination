@@ -20,7 +20,7 @@ const ViewPerson = () => {
 
   return (
     <>
-      {
+      {console.log('pers: ', pers),
         pers &&
         <>
           <div className='list'>
@@ -45,10 +45,26 @@ const ViewPerson = () => {
                 </tr>
                 <tr>
                   <td className='row-name px-1'>
-                    Photo
+                    Email
                   </td>
                   <td className='px-1'>
-                    {pers.photo}
+                    {pers.email}
+                  </td>
+                </tr>
+                <tr>
+                  <td className='row-name px-1'>
+                    Phone
+                  </td>
+                  <td className='px-1'>
+                    {pers.phone}
+                  </td>
+                </tr>
+                <tr>
+                  <td className='row-name px-1'>
+                    Address
+                  </td>
+                  <td className='px-1'>
+                    {pers.address}
                   </td>
                 </tr>
                 <tr>
@@ -57,6 +73,14 @@ const ViewPerson = () => {
                   </td>
                   <td className='px-1'>
                     {pers.birthdate}
+                  </td>
+                </tr>
+                <tr>
+                  <td className='row-name px-1'>
+                    Citizen ID
+                  </td>
+                  <td className='px-1'>
+                    {pers.citizen_id}
                   </td>
                 </tr>
               </tbody>
