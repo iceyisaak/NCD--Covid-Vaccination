@@ -18,7 +18,8 @@ const SearchCertificateByPerson = (props) => {
   };
 
 
-  const fetchTransactionByPersonID = async (searchTerm) => {
+  const fetchTransactionByPersonID = async () => {
+    console.log('searchTerm: ', searchTerm);
     if (searchTerm !== '') {
       const res = await contract.getTransactionByPersonID({ id: searchTerm });
       if (res) {
@@ -46,7 +47,7 @@ const SearchCertificateByPerson = (props) => {
   console.log('searchResult: ', searchResult);
 
   useEffect(() => {
-    fetchTransactionByPersonID(searchTerm);
+    fetchTransactionByPersonID();
   }, [searchTerm]);
 
 
