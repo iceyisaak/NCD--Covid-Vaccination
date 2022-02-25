@@ -30,7 +30,7 @@ const SearchCertificateByPerson = (props) => {
           res[i].vaccine_name = vaccine.name;
 
           let vaccination_site = await contract.getVaccinationSiteByID({ id: res[i].vaccination_site_id });
-          console.log('vaccination_site: ', vaccination_site.name);
+          console.log('vaccination_site: ', vaccination_site);
           res[i].vaccination_site_name = vaccination_site.name;
 
           let person = await contract.getPersonByID({ id: res[i].person_id });
