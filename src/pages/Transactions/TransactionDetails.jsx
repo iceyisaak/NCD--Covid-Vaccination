@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const ViewCertificate = () => {
+const TransactionDetails = () => {
 
-  const { certificateId } = useParams();
+  const { transactionId } = useParams();
   const navigate = useNavigate();
   const [cer, setCer] = useState({});
 
-  const fetchCert = async () => {
-    const res = await window.contract.getCertificateByID({ id: certificateId });
+  const fetchTransaction = async () => {
+    const res = await contract.getTransactionByID({ id: transactionId });
     setCer(res[0]);
   };
 
   useEffect(() => {
-    fetchCert();
+    fetchTransaction();
   }, []);
 
 
@@ -33,7 +33,7 @@ const ViewCertificate = () => {
             {cer.vaccine_id}
           </p>
           <p>
-            {cer.country}
+            {cer.vaccination_site_id}
           </p>
           <p>
             {cer.application_date}
@@ -54,4 +54,4 @@ const ViewCertificate = () => {
 
 };
 
-export default ViewCertificate;
+export default TransactionDetails;

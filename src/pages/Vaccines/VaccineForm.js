@@ -6,7 +6,7 @@ const VaccineForm = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const { name, manufacturer, type, administration, dose } = e.target.elements;
+    const { name, manufacturer, type } = e.target.elements;
 
     // console.log('e.target.element:', e.target.elements);
 
@@ -21,8 +21,6 @@ const VaccineForm = () => {
         name: name.value,
         manufacturer: manufacturer.value,
         type: type.value,
-        administration: administration.value,
-        dose: dose.value
       });
     } catch (e) {
       alert(

@@ -235,6 +235,17 @@ aside {
   margin-bottom: 10rem;
 }
 
+.radio-group {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  .radio-button {
+    flex-flow: row;
+    align-content: center;
+    height: 0;
+  }
+}
+
 .searchBox {
   display: flex;
   flex-flow: column;

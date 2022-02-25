@@ -37,6 +37,44 @@ export function getVaccineByID(id: string): Array<Vaccine> | null {
   return result;
 }
 
+// ------------------------- Vaccination Sites smart contract methods ----------------- -------- //
+
+// Method to register a new Vaccination Site
+export function addVaccinationSite(id: string, name: string, address: string, type: string): void {
+  assert(id.length > 0, "Vaccine ID is required");
+  assert(name.length > 0, "Vaccine name is required");
+  assert(address.length > 0, "Addresss is required");
+  assert(type.length > 0, "Vaccination Site type is required");
+  let vaccination_site = new VaccinationSite(id, name, address, type);
+  vaccination_sites.push(vaccination_site);
+}
+
+// Method to consult all types of Vaccination Sites
+export function getVaccinationSites(): Array<VaccinationSite> {
+  let result = new Array<VaccinationSite>(vaccination_sites.length);
+  for (let i = 0; i < vaccination_sites.length; i++) {
+    let vaccination_site = vaccination_sites[i];
+    result[i] = vaccination_site;
+  }
+  return result;
+}
+
+// Method to query a vaccine by vaccine id
+export function getVaccinationSiteByID(id: string): Array<VaccinationSite> | null {
+  assert(id.length > 0, "ID is required");
+  let result = new Array<VaccinationSite>();
+  for (let i = 0; i < vaccination_sites.length; i++) {
+    const list = vaccination_sites[i];
+    if (list.id == id) {
+      result.push(list);
+    }
+  }
+  return result;
+}
+
+
+
+
 // ------------------------- People smart contract methods ----------------- -------- //
 
 // Method to register a new Vaccine
@@ -106,7 +144,7 @@ export function getTransactions(): Array<Transaction> | null {
 
 
 // Method to query certificate by id
-export function getCertificateByID(id: string): Array<Transaction> | null {
+export function getTransactionByID(id: string): Array<Transaction> | null {
   assert(id.length > 0, "ID is required");
   let result = new Array<Transaction>();
   for (let i = 0; i < transactions.length; i++) {
@@ -119,7 +157,7 @@ export function getCertificateByID(id: string): Array<Transaction> | null {
 }
 
 // Method to query certificate by person id
-export function getCertificateByPersonID(id: string): Array<Transaction> | null {
+export function getTransactionByPersonID(id: string): Array<Transaction> | null {
   assert(id.length > 0, "ID is required");
   let result = new Array<Transaction>();
   for (let i = 0; i < transactions.length; i++) {

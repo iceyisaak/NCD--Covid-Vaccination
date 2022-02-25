@@ -3,54 +3,47 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import '../../styles/global.scss';
 
-const ViewVaccine = () => {
+const VaccinationSitesDetails = () => {
 
-  const { vaccineId } = useParams();
+  const { vaccinationSiteId } = useParams();
   const navigate = useNavigate();
-  const [vac, setVac] = useState({});
+  const [vacSite, setVacSite] = useState({});
 
-  const fetchVac = async () => {
-    const res = await contract.getVaccineByID({ id: vaccineId });
-    setVac(res[0]);
+  const fetchVaccinationSite = async () => {
+    const res = await contract.getVaccinationSiteByID({ id: vaccinationSiteId });
+    setVacSite(res[0]);
   };
 
   useEffect(() => {
-    fetchVac();
+    fetchVaccinationSite();
   }, []);
 
 
   return (
     <>
-      {console.log('vac: ', vac),
-        vac &&
+      {
+        vacSite &&
         <>
           <div className='list'>
-            <h1>View Vaccine: </h1>
+            <h1>View Vaccination Site: </h1>
             <table className="table">
               <tbody>
+
                 <tr>
                   <td className='row-name px-1'>
-                    Vaccine Name
+                    Name
                   </td>
                   <td className='px-1'>
-                    {vac.name}
-                  </td>
-                </tr>
-                <tr>
-                  <td className='row-name px-1'>
-                    Manufacturer
-                  </td>
-                  <td className='px-1'>
-                    {vac.manufacturer}
+                    {vacSite.name}
                   </td>
                 </tr>
 
                 <tr>
                   <td className='row-name px-1'>
-                    Type
+                    Address
                   </td>
                   <td className='px-1'>
-                    {vac.type}
+                    {vacSite.address}
                   </td>
                 </tr>
                 <tr>
@@ -58,21 +51,22 @@ const ViewVaccine = () => {
                     Vaccind ID
                   </td>
                   <td className='px-1'>
-                    {vac.id}
+                    {vacSite.type}
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <button onClick={() => navigate('/vaccines')}>
+          <button onClick={() => navigate('/vaccinationSites')}>
             Back
           </button>
         </>
       }
-
     </>
   );
 
 };
 
-export default ViewVaccine;
+export default VaccinationSitesDetails;
+
+

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CertificateList from './CertificateList';
+import TransactionList from './TransactionList';
 
-const CertificatePage = () => {
+const Transactions = () => {
 
-  const [certificates, setCertificates] = useState('');
-  const [certificateList, setCertificateList] = useState([]);
+  const [transactions, setTransactions] = useState('');
+  const [transactionList, setTransactionList] = useState([]);
 
   useEffect(() => {
-    contract.getCertificates().then(setCertificateList);
+    contract.getTransactions().then(setTransactionList);
   }, []);
 
   const navigate = useNavigate();
@@ -31,19 +31,19 @@ const CertificatePage = () => {
         <button onClick={() => navigate('/searchCertificateByCountry')} className='mx-1'>
           Search Certificate By Country
         </button>
-        <button onClick={() => navigate('/addCertificate')} className='mx-1'>
+        <button onClick={() => navigate('/addTransaction')} className='mx-1'>
           Add Certificate
         </button>
       </div>
 
-      <CertificateList
-        certificates={certificates}
-        certificateList={certificateList}
-        setCertificates={setCertificates}
+      <TransactionList
+        transactions={transactions}
+        transactionList={transactionList}
+        setTransactions={setTransactions}
       />
 
     </>
   );
 };
 
-export default CertificatePage;
+export default Transactions;

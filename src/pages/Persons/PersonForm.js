@@ -17,8 +17,11 @@ const PersonForm = () => {
         id: uuidv4(),
         nationality: nationality.value,
         name: name.value,
-        photo: photo.value,
+        email: email.value,
+        phone: phone.value,
+        address: address.value,
         birthdate: birthdate.value,
+        citizen_id: citizen_id.value,
       });
     } catch (e) {
       alert(
@@ -84,6 +87,16 @@ const PersonForm = () => {
           <input
             autoComplete="off"
             id="birthdate"
+            className='form-input mb-1'
+            placeholder='e.g. Intramuscular injection'
+            type='date'
+          />
+          <label htmlFor="birthdate" className='mb-1' >
+            Citizen ID
+          </label>
+          <input
+            autoComplete="off"
+            id="citizen_id"
             className='form-input mb-1'
             placeholder='e.g. Intramuscular injection'
             type='date'

@@ -18,14 +18,20 @@ const SearchCertificateByPerson = (props) => {
   };
 
 
-  const fetchCertificateByPersonID = async (searchTerm) => {
+  const fetchTransactionByPersonID = async (searchTerm) => {
     if (searchTerm !== '') {
-      const res = await contract.getCertificateByPersonID({ id: searchTerm });
+      const res = await contract.getTransactionByPersonID({ id: searchTerm });
       if (res) {
         for (let i = 0; i < res.length; i++) {
+
           let vaccine = await contract.getVaccineByID({ id: res[i].vaccine_id });
           console.log('vaccine: ', vaccine);
           res[i].vaccine_name = vaccine.name;
+
+          let vaccination_site = await contract.getVaccinationSiteByID({ id: res[i].vaccination_site_id });
+          console.log('vaccination_site: ', vaccination_site.name);
+          res[i].vaccination_site_name = vaccination_site.name;
+
           let person = await contract.getPersonByID({ id: res[i].person_id });
           console.log('person: ', person);
           res[i].person_name = person.name;
@@ -39,10 +45,8 @@ const SearchCertificateByPerson = (props) => {
 
   console.log('searchResult: ', searchResult);
 
-
-
   useEffect(() => {
-    fetchCertificateByPersonID(searchTerm);
+    fetchTransactionByPersonID(searchTerm);
   }, [searchTerm]);
 
 
@@ -65,7 +69,7 @@ const SearchCertificateByPerson = (props) => {
             </div>
           </form>
         </div>
-        <button onClick={() => navigate('/certificates')}>Back</button>
+        <button onClick={() => navigate('/transactions')}>Back</button>
       </>
 
       {showResult ?
@@ -74,22 +78,24 @@ const SearchCertificateByPerson = (props) => {
           <table className='table'>
             <tbody>
 
-              {searchResult.map((sR, i) =>
-                <tr key={i}>
-                  <td>
-                    <span htmlFor={`${i}`}>{sR.person_name}</span>
-                  </td>
-                  <td>
-                    <span htmlFor={`${i}`}>{sR.vaccine_name}</span>
-                  </td>
-                  <td>
-                    <span htmlFor={`${i}`}>{sR.application_date}</span>
-                  </td>
-                  <td>
-                    <span htmlFor={`${i}`}>{sR.country}</span>
-                  </td>
-                </tr>
-              )}
+              {
+                console.log('searchResult: ', searchResult),
+                searchResult.map((sR, i) =>
+                  <tr key={i}>
+                    <td>
+                      <span htmlFor={`${i}`}>{sR.person_name}</span>
+                    </td>
+                    <td>
+                      <span htmlFor={`${i}`}>{sR.vaccine_name}</span>
+                    </td>
+                    <td>
+                      <span htmlFor={`${i}`}>{sR.application_date}</span>
+                    </td>
+                    <td>
+                      <span htmlFor={`${i}`}>{sR.vaccination_site_name}</span>
+                    </td>
+                  </tr>
+                )}
             </tbody >
           </table >
         : null
