@@ -27,15 +27,15 @@ const SearchCertificateByPerson = (props) => {
 
           let vaccine = await contract.getVaccineByID({ id: res[i].vaccine_id });
           console.log('vaccine: ', vaccine);
-          res[i].vaccine_name = vaccine.name;
+          res[i].vaccine_name = vaccine[0].name;
 
           let vaccination_site = await contract.getVaccinationSiteByID({ id: res[i].vaccination_site_id });
           console.log('vaccination_site: ', vaccination_site);
-          res[i].vaccination_site_name = vaccination_site.name;
+          res[i].vaccination_site_name = vaccination_site[0].name;
 
           let person = await contract.getPersonByID({ id: res[i].person_id });
           console.log('person: ', person);
-          res[i].person_name = person.name;
+          res[i].person_name = person[0].name;
         }
         setSearchResult(res);
       } else {
