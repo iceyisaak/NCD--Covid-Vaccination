@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const TransactionList = (props) => {
+const TransactionList = () => {
 
-  const { transactionList } = props;
   const [showData, setShowData] = useState([]);
 
-  console.log('transactionList-1: ', transactionList);
-
   const fetchTransactions = async () => {
-    const res = await contract.getTransactions({ id: transactionList });
+    const res = await contract.getTransactions();
     if (res) {
       for (let i = 0; i < res.length; i++) {
 
@@ -31,8 +28,6 @@ const TransactionList = (props) => {
     }
   };
 
-  console.log('showData: ', showData);
-
 
   useEffect(() => {
     fetchTransactions();
@@ -42,9 +37,9 @@ const TransactionList = (props) => {
     <div className='list'>
       <div className='header-box mb-4'>
         <h2 className='text-lg'>Certificate List</h2>
-        <span className='text-sm entry'>Total: {transactionList.length} Entries</span>
+        <span className='text-sm entry'>Total: {showData.length} Entries</span>
       </div>
-      {transactionList.length === 0 ?
+      {showData.length === 0 ?
         <p>List is Empty</p> :
         <table className='table'>
           <tbody>
@@ -58,22 +53,30 @@ const TransactionList = (props) => {
               <td>
                 Vaccination Site
               </td>
+              <td>
+                Date
+              </td>
             </tr>
-            {transactionList.map((t, i) =>
+            {showData.map((t, i) =>
               <tr key={i}>
                 <td>
                   <Link to={`/transactions/${t.id}`}>
-                    {t.person_id}
+                    {t.person_name}
                   </Link>
                 </td>
                 <td>
                   <Link to={`/transactions/${t.id}`}>
-                    {t.vaccine_id}
+                    {t.vaccine_name}
                   </Link>
                 </td>
                 <td>
                   <Link to={`/transactions/${t.id}`}>
-                    {t.vaccination_site_id}
+                    {t.vaccination_site_name}
+                  </Link>
+                </td>
+                <td>
+                  <Link to={`/transactions/${t.id}`}>
+                    {t.application_date}
                   </Link>
                 </td>
               </tr>
