@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import VaccineForm from './VaccineForm';
 
-const AddVaccine = (props) => {
+const VaccineAdd = (props) => {
 
   const { vaccines, setVaccines } = props;
 
@@ -27,4 +27,4 @@ const AddVaccine = (props) => {
   );
 };
 
-export default AddVaccine;
+export default VaccineAdd;

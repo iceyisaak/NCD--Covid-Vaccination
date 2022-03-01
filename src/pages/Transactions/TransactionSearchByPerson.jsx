@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SearchTransactionByVaccinationSite = (props) => {
+const TransactionSearchByPerson = (props) => {
 
-  const { vaccinationSiteList } = props;
+  const { personList } = props;
   const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showResult, setShowResult] = useState(false);
@@ -12,14 +12,15 @@ const SearchTransactionByVaccinationSite = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const { vaccination_site_id } = e.target.elements;
-    setSearchTerm(vaccination_site_id.value);
+    const { person_id } = e.target.elements;
+    setSearchTerm(person_id.value);
     setShowResult(true);
   };
 
-  const fetchTransactionsByVaccinationSite = async () => {
+
+  const fetchTransactionsByPersonID = async () => {
     if (searchTerm !== '') {
-      const res = await contract.getTransactionsByVaccinationSiteID({ id: searchTerm });
+      const res = await contract.getTransactionsByPersonID({ id: searchTerm });
       if (res) {
         for (let i = 0; i < res.length; i++) {
 
@@ -43,31 +44,30 @@ const SearchTransactionByVaccinationSite = (props) => {
   };
 
   useEffect(() => {
-    fetchTransactionsByVaccinationSite();
+    fetchTransactionsByPersonID();
   }, [searchTerm]);
+
 
   return (
     <>
-      <h1>Search Certificate by Vaccination Site</h1>
-      <>
-        <div className="margin-center mb-1">
+      <h1>Search Certificate by Person</h1>
+      < >
+        <div className='margin-center mb-1'>
           <form onSubmit={onSubmit} className='form'>
-            <fieldset id='fieldset'>
-              <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
-                <label htmlFor="country" className='mb-1 form-input'>
-                  Search Vaccination Site
-                </label>
-                <select name="vaccination-site_id" id="vaccination_site_id" className='form-input mb-1'>
-                  {vaccinationSiteList.map((vS, i) => <option value={vS.id} key={i}>{vS.name}</option>)}
-                </select>
-                <button className='btn mb-1'>Search</button>
-              </div>
-            </fieldset>
+
+            <label htmlFor="person_id" className='mb-1'>
+              Search Certicate by Person
+            </label>
+            <select name="person_id" id="person_id" className='form-input mb-1'>
+              {personList.map((p, i) => <option value={p.id} key={i}>{p.name}</option>)}
+            </select>
+            <button className='btn'>Submit</button>
           </form>
         </div>
-      </>
-      <div className="list">
 
+      </>
+
+      <div className='list'>
         {showResult ?
           searchResult.length === 0 ?
             <p>No Vaccine Certificate</p> :
@@ -76,16 +76,16 @@ const SearchTransactionByVaccinationSite = (props) => {
                 {searchResult.map((sR, i) =>
                   <tr key={i}>
                     <td className='px-1'>
-                      {sR.vaccination_site_name}
-                    </td>
-                    <td className='px-1'>
                       {sR.person_name}
                     </td>
                     <td className='px-1'>
-                      {sR.vaccine_id_name}
+                      {sR.vaccine_name}
                     </td>
                     <td className='px-1'>
                       {sR.application_date}
+                    </td>
+                    <td className='px-1'>
+                      {sR.vaccination_site_name}
                     </td>
                   </tr>
                 )}
@@ -99,4 +99,4 @@ const SearchTransactionByVaccinationSite = (props) => {
   );
 };
 
-export default SearchTransactionByVaccinationSite;
+export default TransactionSearchByPerson;

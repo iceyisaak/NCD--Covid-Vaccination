@@ -3,24 +3,30 @@ import { login, logout } from './utils';
 import React, { useState, useEffect } from 'react';
 import getConfig from './config';
 import { Routes, Route } from "react-router-dom";
+
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-import VaccinePage from './pages/Vaccines/VaccinePage';
-import AddVaccine from './pages/Vaccines/AddVaccine';
+import Navbar from './components/Navbar';
+
+import Vaccines from './pages/Vaccines/Vaccines';
+import VaccineAdd from './pages/Vaccines/VaccineAdd';
+import VaccineDetails from './pages/Vaccines/VaccineDetails';
+
 import VaccinationSites from './pages/VaccinationSites/VaccinationSites';
 import VaccinationSitesAdd from './pages/VaccinationSites/VaccinationSitesAdd';
 import VaccinationSitesDetails from './pages/VaccinationSites/VaccinationSitesDetails';
-import Navbar from './components/Navbar';
-import ViewVaccine from './pages/Vaccines/ViewVaccine';
-import PersonPage from './pages/Persons/PersonPage';
-import AddPerson from './pages/Persons/AddPerson';
-import ViewPerson from './pages/Persons/ViewPerson';
+
+import Persons from './pages/Persons/Persons';
+import PersonsAdd from './pages/Persons/PersonsAdd';
+import PersonsDetails from './pages/Persons/PersonsDetails';
+
 import Transactions from './pages/Transactions/Transactions';
 import TransactionDetails from './pages/Transactions/TransactionDetails';
 import TransactionAdd from './pages/Transactions/TransactionAdd';
-import SearchTransactionByPerson from './pages/Transactions/SearchTransactionByPerson';
-import SearchTransactionByVaccine from './pages/Transactions/SearchTransactionByVaccine';
-import SearchTransactionByVaccinationSite from './pages/Transactions/SearchTransactionByVaccinationSite';
+
+import TransactionSearchByPerson from './pages/Transactions/TransactionSearchByPerson';
+import TransactionSearchByVaccine from './pages/Transactions/TransactionSearchByVaccine';
+import TransactionSearchByVaccinationSite from './pages/Transactions/TransactionSearchByVaccinationSite';
 
 import './styles/global.scss';
 
@@ -58,17 +64,17 @@ export default function App() {
           }
         />
 
-        <Route path='/vaccines/' element={<VaccinePage vaccineList={vaccineList} vaccines={vaccines} />} />
-        <Route path='/vaccines/:vaccineId' element={<ViewVaccine transactionList={transactionList} personList={personList} />} />
-        <Route path='/addVaccine' element={<AddVaccine setVacceines={setVaccines} vaccines={vaccines} />} />
+        <Route path='/vaccines/' element={<Vaccines vaccineList={vaccineList} vaccines={vaccines} />} />
+        <Route path='/vaccines/:vaccineId' element={<VaccineDetails transactionList={transactionList} personList={personList} />} />
+        <Route path='/addVaccine' element={<VaccineAdd setVacceines={setVaccines} vaccines={vaccines} />} />
 
         <Route path='/vaccinationSites/' element={<VaccinationSites vaccineList={vaccineList} vaccines={vaccines} />} />
         <Route path='/vaccinationSites/:vaccinationSiteId' element={<VaccinationSitesDetails transactionList={transactionList} personList={personList} />} />
         <Route path='/addVaccinationSite' element={<VaccinationSitesAdd setVacceines={setVaccines} vaccines={vaccines} />} />
 
-        <Route path='/persons/' element={<PersonPage personList={personList} persons={persons} />} />
-        <Route path='/persons/:personId' element={<ViewPerson transactionList={transactionList} vaccineList={vaccineList} />} />
-        <Route path='/addPerson' element={<AddPerson setPersons={setPersons} persons={persons} />} />
+        <Route path='/persons/' element={<Persons personList={personList} persons={persons} />} />
+        <Route path='/persons/:personId' element={<PersonsDetails transactionList={transactionList} vaccineList={vaccineList} />} />
+        <Route path='/addPerson' element={<PersonsAdd setPersons={setPersons} persons={persons} />} />
 
         <Route path='/transactions/' element={<Transactions transactionList={transactionList} transactions={transactions} />} />
         <Route path='/transactions/:transactionId' element={<TransactionDetails />} />
@@ -76,13 +82,13 @@ export default function App() {
           <TransactionAdd setTransactions={setTransactions} transactions={transactions} vaccineList={vaccineList} vaccinationSiteList={vaccinationSiteList} personList={personList} />
         } />
         <Route path='/searchTransactionByPerson' element={
-          <SearchTransactionByPerson transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} personList={personList} />
+          <TransactionSearchByPerson transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} personList={personList} />
         } />
         <Route path='/searchTransactionByVaccine' element={
-          <SearchTransactionByVaccine transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} personList={personList} />
+          <TransactionSearchByVaccine transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} personList={personList} />
         } />
         <Route path='/searchTransactionByVaccinationSite' element={
-          <SearchTransactionByVaccinationSite transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} vaccinationSiteList={vaccinationSiteList} personList={personList} />
+          <TransactionSearchByVaccinationSite transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} vaccinationSiteList={vaccinationSiteList} personList={personList} />
         } />
 
       </Routes>

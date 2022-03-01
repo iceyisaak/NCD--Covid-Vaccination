@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SearchTransactionByPerson = (props) => {
+const TransactionSearchByVaccine = (props) => {
 
-  const { personList } = props;
+  const { vaccineList } = props;
   const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showResult, setShowResult] = useState(false);
@@ -12,15 +12,14 @@ const SearchTransactionByPerson = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const { person_id } = e.target.elements;
-    setSearchTerm(person_id.value);
+    const { vaccine_id } = e.target.elements;
+    setSearchTerm(vaccine_id.value);
     setShowResult(true);
   };
 
-
-  const fetchTransactionsByPersonID = async () => {
+  const fetchTransactionsByVaccineID = async () => {
     if (searchTerm !== '') {
-      const res = await contract.getTransactionsByPersonID({ id: searchTerm });
+      const res = await contract.getTransactionsByVaccineID({ id: searchTerm });
       if (res) {
         for (let i = 0; i < res.length; i++) {
 
@@ -44,43 +43,37 @@ const SearchTransactionByPerson = (props) => {
   };
 
   useEffect(() => {
-    fetchTransactionsByPersonID();
+    fetchTransactionsByVaccineID();
   }, [searchTerm]);
+
 
 
   return (
     <>
-      <h1>Search Certificate by Person</h1>
-      < >
+      <h1>Search Certificate by Vaccine</h1>
+      <>
         <div className='margin-center mb-1'>
-          <form onSubmit={onSubmit} className='form'>
-
-            <label htmlFor="person_id" className='mb-1'>
-              Search Certicate by Person
-            </label>
-            <select name="person_id" id="person_id" className='form-input mb-1'>
-              {personList.map((p, i) => <option value={p.id} key={i}>{p.name}</option>)}
+          <form onSubmit={onSubmit} className='searchBox'>
+            <label htmlFor="vaccine_id">Search Certicate by Vaccine</label>
+            <select name="vaccine_id" id="person_id" className='form-input mb-1'>
+              {vaccineList.map((v, i) => <option value={v.id} key={i}>{v.name}</option>)}
             </select>
-            <button className='btn'>Submit</button>
+            <button>Submit</button>
           </form>
         </div>
-
       </>
+      <div className="list">
 
-      <div className='list'>
         {showResult ?
           searchResult.length === 0 ?
-            <p>No Vaccine Certificate</p> :
+            <p>No Data</p> :
             <table className='table'>
               <tbody>
                 {searchResult.map((sR, i) =>
                   <tr key={i}>
                     <td className='px-1'>
                       {sR.person_name}
-                    </td>
-                    <td className='px-1'>
-                      {sR.vaccine_name}
-                    </td>
+                    </td >
                     <td className='px-1'>
                       {sR.application_date}
                     </td>
@@ -99,4 +92,4 @@ const SearchTransactionByPerson = (props) => {
   );
 };
 
-export default SearchTransactionByPerson;
+export default TransactionSearchByVaccine;

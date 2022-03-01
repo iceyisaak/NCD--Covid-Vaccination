@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import VaccineList from './VaccineList';
 
 
-const VaccinePage = () => {
+const Vaccines = () => {
 
   const [vaccines, setVaccines] = useState('');
   const [vaccineList, setVaccineList] = useState([]);
@@ -34,4 +34,4 @@ const VaccinePage = () => {
   );
 };
 
-export default VaccinePage;
+export default Vaccines;

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import '../../styles/global.scss';
 
-const ViewVaccine = () => {
+const VaccineDetails = () => {
 
   const { vaccineId } = useParams();
   const navigate = useNavigate();
@@ -75,4 +75,4 @@ const ViewVaccine = () => {
 
 };
 
-export default ViewVaccine;
+export default VaccineDetails;

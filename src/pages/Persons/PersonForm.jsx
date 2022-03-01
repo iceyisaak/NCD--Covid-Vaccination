@@ -99,7 +99,7 @@ const PersonForm = () => {
             id="citizen_id"
             className='form-input mb-1'
             placeholder='e.g. Intramuscular injection'
-            type='date'
+            type='text'
           />
           <button className='btn mb-1' >
             Add

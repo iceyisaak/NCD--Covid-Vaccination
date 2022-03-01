@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PersonForm from './PersonForm';
 
-const AddPerson = (props) => {
+const PersonsAdd = (props) => {
 
   const { persons, setPersons } = props;
   const navigate = useNavigate();
@@ -25,4 +25,4 @@ const AddPerson = (props) => {
   );
 };
 
-export default AddPerson;
+export default PersonsAdd;

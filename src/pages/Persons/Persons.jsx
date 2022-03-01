@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PersonList from './PersonList';
 
-const PersonPage = () => {
+const Persons = () => {
 
   const [persons, setPersons] = useState('');
   const [personList, setPersonList] = useState([]);
@@ -33,4 +33,4 @@ const PersonPage = () => {
   );
 };
 
-export default PersonPage;
+export default Persons;

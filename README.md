@@ -1,7 +1,51 @@
-covidvaccination-near-main
+# NEAR Vax Dapp
 ==================
 
-This [React] app was initialized with [create-near-app]
+Forked from [NCD--Covid-Vaccination](https://github.com/Learn-NEAR/NCD--Covid-Vaccination)
+
+
+This app allows user to log the Vaccination Information along with people and vaccination sites involved.
+
+
+### Front End: ReactJS
+
+```
+src
+- pages
+
+  - Persons
+    - PersonForm
+    - PersonList
+    - Persons
+    - PersonsAdd
+    - PersonsDetails
+
+  - Transactions
+    - TransactionAdd
+    - TransactionDetails
+    - TransactionForm
+    - Transactions
+    - TransactionSearchByPerson
+    - TransactionSearchByVaccinationSite
+    - TransactionSearchByVaccine
+
+  - VaccinationSites
+    - VaccinationSites
+    - VaccinationSitesAdd
+    - VaccinationSitesDetails
+    - VaccinationSitesForm
+    - VaccinationSitesList
+
+  - Vaccines
+    - VaccineAdd
+    - VaccineDetails
+    - VaccineForm
+    - VaccineList
+    - Vaccines
+   
+   Dashboard
+   Home
+```
 
 
 Quick Start
@@ -31,6 +75,9 @@ Exploring The Code
    contract. See `contract/README` for info about how it's tested. The frontend
    code gets tested with [jest]. You can run both of these at once with `yarn
    run test`.
+
+
+   
 
 
 Deploy

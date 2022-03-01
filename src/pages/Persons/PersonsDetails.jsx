@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import '../../styles/global.scss';
 
-const ViewPerson = () => {
+const PersonsDetails = () => {
 
   const { personId } = useParams();
   const navigate = useNavigate();
@@ -96,4 +96,4 @@ const ViewPerson = () => {
 
 };
 
-export default ViewPerson;
+export default PersonsDetails;
