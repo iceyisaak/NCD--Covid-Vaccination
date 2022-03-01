@@ -157,7 +157,7 @@ export function getTransactionByID(id: string): Array<Transaction> | null {
 }
 
 // Method to query certificate by person id
-export function getTransactionByPersonID(id: string): Array<Transaction> | null {
+export function getTransactionsByPersonID(id: string): Array<Transaction> | null {
   assert(id.length > 0, "ID is required");
   let result = new Array<Transaction>();
   for (let i = 0; i < transactions.length; i++) {
@@ -184,14 +184,14 @@ export function getTransactionsByVaccineID(id: string): Array<Transaction> | nul
 }
 
 // Method to consult certificate by Country
-// export function getTransactionsByVaccinationSite(vaccination_sites: string): Array<Transaction> | null {
-//   assert(country.length > 0, "Country is required");
-//   let result = new Array<Transaction>()
-//   for (let i = 0; i < transactions.length; i++) {
-//     const list = transactions[i];
-//     if (list.country == country) {
-//       result.push(list);
-//     }
-//   }
-//   return result;
-// }
+export function getTransactionsByVaccinationSiteID(id: string): Array<Transaction> | null {
+  assert(id.length > 0, "Vaccination Site is required");
+  let result = new Array<Transaction>()
+  for (let i = 0; i < transactions.length; i++) {
+    const list = transactions[i];
+    if (list.vaccination_site_id == id) {
+      result.push(list);
+    }
+  }
+  return result;
+}

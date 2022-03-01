@@ -27,9 +27,9 @@ export async function initContract() {
       'getPersonByID',
       'getTransactions',
       'getTransactionByID',
-      'getTransactionByPersonID',
-      'getTransactionByVaccineID',
-      'getTrasactionByCountry'
+      'getTransactionsByPersonID',
+      'getTransactionsByVaccineID',
+      'getTransactionsByVaccinationSiteID'
     ],
     // Change methods can modify the state. But you don't receive the returned value when called.
     changeMethods: [

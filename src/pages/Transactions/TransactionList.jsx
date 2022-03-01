@@ -23,8 +23,6 @@ const TransactionList = () => {
         res[i].person_name = person[0].name;
       }
       setShowData(res);
-    } else {
-      setShowData(null);
     }
   };
 
@@ -36,7 +34,7 @@ const TransactionList = () => {
   return (
     <div className='list'>
       <div className='header-box mb-4'>
-        <h2 className='text-lg'>Certificate List</h2>
+        <h2 className='text-lg'>Transaction List</h2>
         <span className='text-sm entry'>Total: {showData.length} Entries</span>
       </div>
       {showData.length === 0 ?
@@ -55,6 +53,9 @@ const TransactionList = () => {
               </td>
               <td>
                 Date
+              </td>
+              <td>
+                Vaccine Lot
               </td>
             </tr>
             {showData.map((t, i) =>
@@ -77,6 +78,11 @@ const TransactionList = () => {
                 <td>
                   <Link to={`/transactions/${t.id}`}>
                     {t.application_date}
+                  </Link>
+                </td>
+                <td>
+                  <Link to={`/transactions/${t.id}`}>
+                    {t.vaccine_lot}
                   </Link>
                 </td>
               </tr>

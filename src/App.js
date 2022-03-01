@@ -18,9 +18,9 @@ import ViewPerson from './pages/Persons/ViewPerson';
 import Transactions from './pages/Transactions/Transactions';
 import TransactionDetails from './pages/Transactions/TransactionDetails';
 import TransactionAdd from './pages/Transactions/TransactionAdd';
-import SearchCertificateByPerson from './pages/Transactions/SearchCertificateByPerson';
-import SearchCertificateByVaccine from './pages/Transactions/SearchCertificateByVaccine';
-import SearchCertificateByCountry from './pages/Transactions/SearchCertificateByCountry';
+import SearchTransactionByPerson from './pages/Transactions/SearchTransactionByPerson';
+import SearchTransactionByVaccine from './pages/Transactions/SearchTransactionByVaccine';
+import SearchTransactionByVaccinationSite from './pages/Transactions/SearchTransactionByVaccinationSite';
 
 import './styles/global.scss';
 
@@ -75,14 +75,14 @@ export default function App() {
         <Route path='/addTransaction' element={
           <TransactionAdd setTransactions={setTransactions} transactions={transactions} vaccineList={vaccineList} vaccinationSiteList={vaccinationSiteList} personList={personList} />
         } />
-        <Route path='/searchCertificateByPerson' element={
-          <SearchCertificateByPerson transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} personList={personList} />
+        <Route path='/searchTransactionByPerson' element={
+          <SearchTransactionByPerson transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} personList={personList} />
         } />
-        <Route path='/searchCertificateByVaccine' element={
-          <SearchCertificateByVaccine transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} personList={personList} />
+        <Route path='/searchTransactionByVaccine' element={
+          <SearchTransactionByVaccine transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} personList={personList} />
         } />
-        <Route path='/searchCertificateByCountry' element={
-          <SearchCertificateByCountry transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} personList={personList} />
+        <Route path='/searchTransactionByVaccinationSite' element={
+          <SearchTransactionByVaccinationSite transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} vaccinationSiteList={vaccinationSiteList} personList={personList} />
         } />
 
       </Routes>
