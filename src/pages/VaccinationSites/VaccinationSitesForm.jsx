@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 
 const VaccinationSitesForm = (props) => {
 
   const { vaccineList, personList } = props;
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +36,7 @@ const VaccinationSitesForm = (props) => {
       fieldset.disabled = false;
     }
     alert('New Vaccination Site Added');
-    location.assign('/vaccinationSites');
+    navigate('/vaccinationSites');
   };
 
   return (

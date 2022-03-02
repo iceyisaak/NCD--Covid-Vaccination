@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 const PersonForm = () => {
+
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +39,7 @@ const PersonForm = () => {
     }
 
     alert('New Person Added');
-    location.assign('/persons');
+    navigate('/persons');
 
   };
 
@@ -72,14 +75,23 @@ const PersonForm = () => {
             placeholder='e.g. abc@efg.com'
             type='email'
           />
-          <label htmlFor="photo" className='mb-1' >
+          <label htmlFor="phone" className='mb-1' >
             Phone
           </label>
           <input
             autoComplete="off"
-            id="email"
+            id="phone"
             className='form-input mb-1'
             placeholder='e.g. ###-###-###'
+          />
+          <label htmlFor="address" className='mb-1' >
+            Address
+          </label>
+          <input
+            autoComplete="off"
+            id="address"
+            className='form-input mb-1'
+            placeholder='e.g. Wyndrich Str. 21 22138 Katzendorf'
           />
           <label htmlFor="birthdate" className='mb-1' >
             Birthdate

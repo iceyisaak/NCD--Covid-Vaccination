@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 const TransactionForm = (props) => {
 
   const { vaccineList, vaccinationSiteList, personList } = props;
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +38,7 @@ const TransactionForm = (props) => {
       fieldset.disabled = false;
     }
     alert('New Certificate Added');
-    location.assign('/transactions');
+    navigate('/transactions');
   };
 
   return (

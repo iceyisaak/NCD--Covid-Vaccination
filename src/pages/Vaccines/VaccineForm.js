@@ -1,14 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 const VaccineForm = () => {
 
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
     const { name, manufacturer, type } = e.target.elements;
-
-    // console.log('e.target.element:', e.target.elements);
 
 
     try {
@@ -35,7 +35,7 @@ const VaccineForm = () => {
     }
 
     alert('New Vaccine Added');
-    location.assign('/vaccines');
+    navigate('/vaccines');
 
   };
 
