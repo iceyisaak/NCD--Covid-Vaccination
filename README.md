@@ -41,7 +41,7 @@ This app allows user to log the Vaccination Information along with people and va
   - id: string;
   - name: string; //Comirnaty
   - manufacturer: string; //Pfiezer-BioNTech
-  - type: string; //Intramuscular Injection
+  - type: string; // mRNA 
 
 - VaccinationSites
   - id: string;

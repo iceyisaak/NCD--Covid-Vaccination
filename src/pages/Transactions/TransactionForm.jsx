@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 const TransactionForm = (props) => {
 
-  const { vaccineList, vaccinationSiteList, personList } = props;
+  // const { vaccineList, vaccinationSiteList, personList } = props;
   const navigate = useNavigate();
+
+  const [vaccineList, setVaccineList] = useState([]);
+  const [vaccinationSiteList, setVaccinationSiteList] = useState([]);
+  const [personList, setPersonList] = useState([]);
+
+  useEffect(() => {
+    window.contract.getVaccines().then(setVaccineList);
+    window.contract.getVaccinationSites().then(setVaccinationSiteList);
+    window.contract.getPersons().then(setPersonList);
+    // window.contract.getTransactions().then(setTransactionList);
+  }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -66,7 +77,7 @@ const TransactionForm = (props) => {
           <label htmlFor="application_date" className='mb-1'>
             Application Date
           </label>
-          <input id="application_date" className='form-input mb-1' placeholder='e.g. Germany' type='date' />
+          <input id="application_date" className='form-input mb-1' type='date' />
           <label htmlFor="vaccine_lot" className='mb-1'>
             Vaccine Lot
           </label>

@@ -46,11 +46,11 @@ const VaccinationSitesForm = (props) => {
           <label htmlFor="name" className='mb-1'>
             Name
           </label>
-          <input id="name" className='form-input mb-1' placeholder='e.g. St. Tom Hospital' />
+          <input id="name" className='form-input mb-1' placeholder='e.g. St. Tim Hospital' />
           <label htmlFor="address" className='mb-1'>
             Address
           </label>
-          <input id="address" className='form-input mb-1' placeholder='e.g. Germany' />
+          <input id="address" className='form-input mb-1' placeholder='e.g. Ricci Str. 11 44666 Bello Porto' />
           <label htmlFor="type" className='mb-1'>
             Type
           </label>
