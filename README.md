@@ -6,6 +6,68 @@ Forked from [NCD--Covid-Vaccination](https://github.com/Learn-NEAR/NCD--Covid-Va
 
 This app allows user to log the Vaccination Information along with people and vaccination sites involved.
 
+# Functions:
+
+```
+<!-- Vaccine Record: Which vaccines are available  -->
+- addVaccine()
+- getVaccines()
+- getVaccinesByID()
+  
+<!-- VaccinationSite Record: Venues involved -->
+- addVaccinationSite()
+- getVaccinationSites()
+- getVaccinationSiteByID()
+
+<!-- Person Record: Who got involved -->
+- addPerson()
+- getPersons()
+- getPersonByID()
+
+<!-- Transaction Record: Who got vaccinated, which vaccine, and where -->
+- addTransaction()
+- getTransactions()
+- getTransactionByID()
+- getTransactionsByPersonID()
+- getTransactionsByVaccineID()
+- getTransactionsByVaccinationSiteID()
+```
+
+
+# Models:
+
+```
+- Vaccines
+  - id: string;
+  - name: string; //Comirnaty
+  - manufacturer: string; //Pfiezer-BioNTech
+  - type: string; //Intramuscular Injection
+
+- VaccinationSites
+  - id: string;
+  - name: string;
+  - address: string;
+  - type: string;
+  
+- Persons
+  - id: string;
+  - nationality: string;
+  - name: string;
+  - email: string;
+  - phone: string; 
+  - address: string;
+  - birthdate: string;
+  - citizen_id: string; 
+  
+- Transactions
+  - id: string;
+  - vaccine_id: string;
+  - person_id: string;
+  - vaccination_site_id: string;
+  - application_date: string;
+  - vaccine_lot: string;
+  - digital_stamp: string;
+```
 
 ### Front End: ReactJS
 
@@ -54,9 +116,10 @@ Quick Start
 To run this project locally:
 
 1. Prerequisites: Make sure you've installed [Node.js] ≥ 12
-2. Install dependencies: `yarn install`
-3. Run the local development server: `yarn dev` (see `package.json` for a
-   full list of `scripts` you can run with `yarn`)
+2. Install dependencies: `yarn install` 
+3. In folder `/contract/` install dependencies using: `yarn install`
+4. Go back to root of project
+5. Run the local development server: `yarn dev` (see `package.json` for a full list of `scripts` you can run with `yarn`)
 
 Now you'll have a local development environment backed by the NEAR TestNet!
 
