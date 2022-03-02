@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-const TransactionForm = (props) => {
+const TransactionForm = () => {
 
-  // const { vaccineList, vaccinationSiteList, personList } = props;
   const navigate = useNavigate();
 
   const [vaccineList, setVaccineList] = useState([]);
@@ -15,7 +14,6 @@ const TransactionForm = (props) => {
     window.contract.getVaccines().then(setVaccineList);
     window.contract.getVaccinationSites().then(setVaccinationSiteList);
     window.contract.getPersons().then(setPersonList);
-    // window.contract.getTransactions().then(setTransactionList);
   }, []);
 
   const onSubmit = async (e) => {
