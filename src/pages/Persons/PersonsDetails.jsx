@@ -20,7 +20,7 @@ const PersonsDetails = () => {
 
   return (
     <>
-      {console.log('pers: ', pers),
+      {
         pers &&
         <>
           <div className='list'>
