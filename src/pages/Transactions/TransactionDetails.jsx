@@ -5,18 +5,10 @@ const TransactionDetails = () => {
 
   const { transactionId } = useParams();
   const navigate = useNavigate();
-  // const [cer, setCer] = useState({});
   const [transaction, setTransaction] = useState({});
 
-  // const fetchTransaction = async () => {
-  //   const res = await contract.getTransactionByID({ id: transactionId });
-  //   setCer(res[0]);
-  // };
-
   const fetchTransaction = async () => {
-    // if (searchTerm !== '') {
     console.log('transactionId: ', transactionId);
-    // const res = await contract.getTransactionsByPersonID({ id: transactionId });
     const res = await contract.getTransactionByID({ id: transactionId });
     if (res) {
       for (let i = 0; i < res.length; i++) {
@@ -33,11 +25,10 @@ const TransactionDetails = () => {
         console.log('person: ', person);
         res[i].person_name = person[0].name;
       }
-      setTransaction(res);
+      setTransaction(res[0]);
     } else {
       setTransaction(null);
     }
-    // }
   };
 
   useEffect(() => {
