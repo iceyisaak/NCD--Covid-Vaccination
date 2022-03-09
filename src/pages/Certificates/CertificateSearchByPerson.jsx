@@ -129,18 +129,18 @@ const CertificateSearchByPerson = (props) => {
         /> */}
         {console.log('searchResult: ', searchResult)}
         {/* {console.log('person-ui: ', person)} */}
-        {searchResult.map((sR, i) =>
-          <div className='certificate-info' key={i}>
-            <ul className='person-info'>
-              <li>Name: {sR.person_name} </li>
-              <li>Nationality: {sR.person_nationality} </li>
-            </ul>
-            <ul className='person-info'>
-              <li>Birthdate: {sR.person_birthdate} </li>
-              <li>Email: {sR.person_email} </li>
-            </ul>
-          </div>
-        )}
+        {/* {searchResult.map((sR, i) => */}
+        <div className='certificate-info'>
+          <ul className='person-info'>
+            <li>Name: {searchResult[0].person_name} </li>
+            <li>Nationality: {searchResult[0].person_nationality} </li>
+          </ul>
+          <ul className='person-info'>
+            <li>Birthdate: {searchResult[0].person_birthdate} </li>
+            <li>Email: {searchResult[0].person_email} </li>
+          </ul>
+        </div>
+        {/* )} */}
         <div className="list">
           <table className=''>
             <thead className='table-head'>
