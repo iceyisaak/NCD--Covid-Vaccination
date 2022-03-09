@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import QRCode from "react-qr-code";
 import Modal from '../../components/modal/Modal';
+import './Certificates.scss';
 
-const TransactionSearchByPerson = (props) => {
+const CertificateSearchByPerson = (props) => {
 
   const { personList } = props;
   const [searchResult, setSearchResult] = useState([]);
@@ -37,6 +39,9 @@ const TransactionSearchByPerson = (props) => {
           let person = await contract.getPersonByID({ id: res[i].person_id });
           console.log('person: ', person);
           res[i].person_name = person[0].name;
+          res[i].person_nationality = person[0].nationality;
+          res[i].person_email = person[0].email;
+          res[i].person_birthdate = person[0].birthdate;
         }
         setSearchResult(res);
       } else {
@@ -57,13 +62,13 @@ const TransactionSearchByPerson = (props) => {
 
   return (
     <>
-      <h1>Search Transaction by Person</h1>
+      <h1>Search Certificate </h1>
       < >
         <div className='margin-center mb-1'>
           <form onSubmit={onSubmit} className='form'>
 
             <label htmlFor="person_id" className='mb-1'>
-              Search Transaction by Person
+              Search by Name
             </label>
             <select name="person_id" id="person_id" className='form-input mb-1'>
               {personList.map((p, i) => <option value={p.id} key={i}>{p.name}</option>)}
@@ -77,7 +82,7 @@ const TransactionSearchByPerson = (props) => {
       <div className='list'>
         {showResult ?
           searchResult.length === 0 ?
-            <p>No Vaccine Transaction</p> :
+            <p>No Vaccine Certificate</p> :
             <>
               <table className='table'>
                 <thead className='table-head'>
@@ -108,21 +113,38 @@ const TransactionSearchByPerson = (props) => {
                 </tbody >
               </table >
               <button className="mt-1" onClick={handleModalOpen}>
-                Get Transaction
+                Get Certificate
               </button>
             </>
           : null
         }
       </div>
-      <button onClick={() => navigate('/transactions')}>Back</button>
+      <button onClick={() => navigate('/')}>Back</button>
 
       <Modal isModalOpen={isModalOpen} handleModalOpen={handleModalOpen}>
-        <h1>Vaccine Transaction</h1>
+
+        <h2 className='modal-header'>Vaccine Certificate</h2>
+        {/* <QRCode
+          value={sR.person_id}
+        /> */}
+        {console.log('searchResult: ', searchResult)}
+        {/* {console.log('person-ui: ', person)} */}
+        {searchResult.map((sR, i) =>
+          <div className='certificate-info' key={i}>
+            <ul className='person-info'>
+              <li>Name: {sR.person_name} </li>
+              <li>Nationality: {sR.person_nationality} </li>
+            </ul>
+            <ul className='person-info'>
+              <li>Birthdate: {sR.person_birthdate} </li>
+              <li>Email: {sR.person_email} </li>
+            </ul>
+          </div>
+        )}
         <div className="list">
           <table className=''>
             <thead className='table-head'>
               <tr>
-                <td className='px-1'>Name</td>
                 <td className='px-1'>Vaccine</td>
                 <td className='px-1'>Date</td>
                 <td className='px-1'>Vaccination Site</td>
@@ -131,9 +153,6 @@ const TransactionSearchByPerson = (props) => {
             <tbody>
               {searchResult.map((sR, i) =>
                 <tr key={i}>
-                  <td className='px-1'>
-                    {sR.person_name}
-                  </td>
                   <td className='px-1'>
                     {sR.vaccine_name}
                   </td>
@@ -153,4 +172,4 @@ const TransactionSearchByPerson = (props) => {
   );
 };
 
-export default TransactionSearchByPerson;
+export default CertificateSearchByPerson;

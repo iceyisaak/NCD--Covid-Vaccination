@@ -27,11 +27,11 @@ main {
 
 h1 {
   // background-image: url(assets/logo-black.svg);
-  background-position: center 1em;
+  background-position: center 1rem;
   background-repeat: no-repeat;
-  background-size: auto 1.5em;
+  background-size: auto 1.5rem;
   margin-top: 0;
-  padding: 3.5em 0 0.5em;
+  padding: 3.5rem 0 0.5rem;
   text-align: center;
   font-size: 2rem;
   color: #efefef;
@@ -176,6 +176,10 @@ aside {
   margin-bottom: 4rem;
 }
 
+.mt-1 {
+  margin-top: 1rem;
+}
+
 .mx-1 {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -219,6 +223,10 @@ aside {
 
 .table {
   width: 50%;
+
+  &-head {
+    font-weight: bold;
+  }
 }
 
 .row-name {

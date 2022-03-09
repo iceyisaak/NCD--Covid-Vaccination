@@ -21,6 +21,9 @@ const Dashboard = () => {
           Persons
         </button>
         <button onClick={() => navigate('/transactions')} className='btn mb-1'>
+          Transactions
+        </button>
+        <button onClick={() => navigate('/searchCertificateByPerson')} className='btn mb-1'>
           Certificates
         </button>
       </main>

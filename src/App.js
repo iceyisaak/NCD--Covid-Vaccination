@@ -28,12 +28,15 @@ import TransactionSearchByPerson from './pages/Transactions/TransactionSearchByP
 import TransactionSearchByVaccine from './pages/Transactions/TransactionSearchByVaccine';
 import TransactionSearchByVaccinationSite from './pages/Transactions/TransactionSearchByVaccinationSite';
 
+import CertificateSearchByPerson from './pages/Certificates/CertificateSearchByPerson';
+
 import './styles/global.scss';
 
 const { networkId } = getConfig(process.env.NODE_ENV || 'development');
 
 export default function App() {
   // use React Hooks to store greeting in component state
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [vaccines, setVaccines] = useState();
   const [vaccineList, setVaccineList] = useState([]);
   const [vaccinationSiteList, setVaccinationSiteList] = useState([]);
@@ -91,7 +94,13 @@ export default function App() {
           <TransactionSearchByVaccinationSite transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} vaccinationSiteList={vaccinationSiteList} personList={personList} />
         } />
 
+        <Route path='/searchCertificateByPerson' element={
+          <CertificateSearchByPerson transactions={transactions} transactionList={transactionList} vaccineList={vaccineList} vaccinationSiteList={vaccinationSiteList} personList={personList} />
+        } />
+
       </Routes>
+
+
     </>
   );
 }

@@ -1,0 +1,59 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40rem;
+  height: 40rem;
+  z-index: 3;
+  // background: #1a1a1a;
+  background: #e3e3e3;
+  color: #1a1a1a;
+
+  &-header {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+  }
+}
+
+table,
+th,
+td {
+  border: 0.01rem solid;
+  border-collapse: collapse;
+}
+
+tr {
+  &:nth-child(odd),
+  &:nth-child(even) {
+    background: transparent;
+  }
+}
+
+.btn-close {
+  position: absolute;
+  right: 2rem;
+  top: 1.5rem;
+  cursor: pointer;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.person-info {
+  list-style: none;
+  width: 50%;
+}
+
+.certificate-info {
+  display: flex;
+}
