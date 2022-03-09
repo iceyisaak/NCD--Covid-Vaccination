@@ -11,6 +11,7 @@ const CertificateSearchByPerson = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showResult, setShowResult] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [personDetail, setPersonDetail] = useState([]);
 
   const navigate = useNavigate();
 
@@ -26,6 +27,15 @@ const CertificateSearchByPerson = (props) => {
     if (searchTerm !== '') {
       const res = await contract.getTransactionsByPersonID({ id: searchTerm });
       if (res) {
+
+        let person = await contract.getPersonByID({ id: searchTerm });
+        setPersonDetail(person);
+        // console.log('person: ', person);
+        // // res[i].person_name = person[0].name;
+        // // res[i].person_nationality = person[0].nationality;
+        // // res[i].person_email = person[0].email;
+        // // res[i].person_birthdate = person[0].birthdate;
+
         for (let i = 0; i < res.length; i++) {
 
           let vaccine = await contract.getVaccineByID({ id: res[i].vaccine_id });
@@ -36,12 +46,13 @@ const CertificateSearchByPerson = (props) => {
           console.log('vaccination_site: ', vaccination_site);
           res[i].vaccination_site_name = vaccination_site[0].name;
 
-          let person = await contract.getPersonByID({ id: res[i].person_id });
-          console.log('person: ', person);
-          res[i].person_name = person[0].name;
-          res[i].person_nationality = person[0].nationality;
-          res[i].person_email = person[0].email;
-          res[i].person_birthdate = person[0].birthdate;
+          // let person = await contract.getPersonByID({ id: res[i].person_id });
+          // console.log('person: ', person);
+          // // res[i].person_name = person[0].name;
+          // // res[i].person_nationality = person[0].nationality;
+          // // res[i].person_email = person[0].email;
+          // // res[i].person_birthdate = person[0].birthdate;
+
         }
         setSearchResult(res);
       } else {
@@ -49,6 +60,8 @@ const CertificateSearchByPerson = (props) => {
       }
     }
   };
+
+  console.log('personDetail: ', personDetail);
 
   useEffect(() => {
     fetchTransactionsByPersonID();
@@ -127,17 +140,17 @@ const CertificateSearchByPerson = (props) => {
         {/* <QRCode
           value={sR.person_id}
         /> */}
-        {console.log('searchResult: ', searchResult)}
+        {console.log('personDetail-ui: ', personDetail)}
         {/* {console.log('person-ui: ', person)} */}
         {/* {searchResult.map((sR, i) => */}
         <div className='certificate-info'>
           <ul className='person-info'>
-            <li>Name: {searchResult[0].person_name} </li>
-            <li>Nationality: {searchResult[0].person_nationality} </li>
+            <li>Name: {personDetail.name} </li>
+            <li>Nationality: {personDetail.nationality} </li>
           </ul>
           <ul className='person-info'>
-            <li>Birthdate: {searchResult[0].person_birthdate} </li>
-            <li>Email: {searchResult[0].person_email} </li>
+            <li>Birthdate: {personDetail.birthdate} </li>
+            <li>Email: {personDetail.email} </li>
           </ul>
         </div>
         {/* )} */}
