@@ -29,12 +29,7 @@ const CertificateSearchByPerson = (props) => {
       if (res) {
 
         let person = await contract.getPersonByID({ id: searchTerm });
-        setPersonDetail(person);
-        // console.log('person: ', person);
-        // // res[i].person_name = person[0].name;
-        // // res[i].person_nationality = person[0].nationality;
-        // // res[i].person_email = person[0].email;
-        // // res[i].person_birthdate = person[0].birthdate;
+        setPersonDetail(person[0]);
 
         for (let i = 0; i < res.length; i++) {
 
@@ -45,13 +40,6 @@ const CertificateSearchByPerson = (props) => {
           let vaccination_site = await contract.getVaccinationSiteByID({ id: res[i].vaccination_site_id });
           console.log('vaccination_site: ', vaccination_site);
           res[i].vaccination_site_name = vaccination_site[0].name;
-
-          // let person = await contract.getPersonByID({ id: res[i].person_id });
-          // console.log('person: ', person);
-          // // res[i].person_name = person[0].name;
-          // // res[i].person_nationality = person[0].nationality;
-          // // res[i].person_email = person[0].email;
-          // // res[i].person_birthdate = person[0].birthdate;
 
         }
         setSearchResult(res);
@@ -110,7 +98,7 @@ const CertificateSearchByPerson = (props) => {
                   {searchResult.map((sR, i) =>
                     <tr key={i}>
                       <td className='px-1'>
-                        {sR.person_name}
+                        {personDetail.name}
                       </td>
                       <td className='px-1'>
                         {sR.vaccine_name}
@@ -137,23 +125,20 @@ const CertificateSearchByPerson = (props) => {
       <Modal isModalOpen={isModalOpen} handleModalOpen={handleModalOpen}>
 
         <h2 className='modal-header'>Vaccine Certificate</h2>
-        {/* <QRCode
-          value={sR.person_id}
-        /> */}
+        <div className='qr-code'>
+          <QRCode value={personDetail.id} size={200} />
+        </div>
         {console.log('personDetail-ui: ', personDetail)}
-        {/* {console.log('person-ui: ', person)} */}
-        {/* {searchResult.map((sR, i) => */}
         <div className='certificate-info'>
           <ul className='person-info'>
-            <li>Name: {personDetail.name} </li>
-            <li>Nationality: {personDetail.nationality} </li>
+            <li><span className='font-bold'>Name:</span> {personDetail.name} </li>
+            <li><span className='font-bold'>Nationality:</span> {personDetail.nationality} </li>
           </ul>
           <ul className='person-info'>
-            <li>Birthdate: {personDetail.birthdate} </li>
-            <li>Email: {personDetail.email} </li>
+            <li><span className='font-bold'>Birthdate:</span> {personDetail.birthdate} </li>
+            <li><span className='font-bold'>Email:</span> {personDetail.email} </li>
           </ul>
         </div>
-        {/* )} */}
         <div className="list">
           <table className=''>
             <thead className='table-head'>
