@@ -10,7 +10,7 @@ const TransactionAdd = (props) => {
   return (
     <div className=''>
       <h1>
-        Add Certificate
+        Add Transaction
       </h1>
       <div className='margin-center'>
         <TransactionForm

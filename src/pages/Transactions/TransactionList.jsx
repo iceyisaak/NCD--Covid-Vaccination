@@ -37,47 +37,39 @@ const TransactionList = () => {
       {showData.length === 0 ?
         <p>List is Empty</p> :
         <table className='table'>
-          <tbody>
+          <thead className='table-head'>
             <tr>
-              <td>
-                Person
-              </td>
-              <td>
-                Vaccine
-              </td>
-              <td>
-                Vaccination Site
-              </td>
-              <td>
-                Date
-              </td>
-              <td>
-                Vaccine Lot
-              </td>
+              <td className='px-1'>Person Name</td>
+              <td className='px-1'>Vaccine</td>
+              <td className='px-1'>Vaccination Site</td>
+              <td className='px-1'>Date</td>
+              <td className='px-1'>Vaccine Lot</td>
             </tr>
+          </thead>
+          <tbody>
             {showData.map((t, i) =>
               <tr key={i}>
-                <td>
+                <td className='px-1'>
                   <Link to={`/transactions/${t.id}`}>
                     {t.person_name}
                   </Link>
                 </td>
-                <td>
+                <td className='px-1'>
                   <Link to={`/transactions/${t.id}`}>
                     {t.vaccine_name}
                   </Link>
                 </td>
-                <td>
+                <td className='px-1'>
                   <Link to={`/transactions/${t.id}`}>
                     {t.vaccination_site_name}
                   </Link>
                 </td>
-                <td>
+                <td className='px-1'>
                   <Link to={`/transactions/${t.id}`}>
                     {t.application_date}
                   </Link>
                 </td>
-                <td>
+                <td className='px-1'>
                   <Link to={`/transactions/${t.id}`}>
                     {t.vaccine_lot}
                   </Link>

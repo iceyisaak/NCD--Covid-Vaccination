@@ -222,10 +222,11 @@ aside {
 }
 
 .table {
-  width: 50%;
+  width: 70%;
 
   &-head {
     font-weight: bold;
+    text-transform: uppercase;
   }
 }
 
@@ -264,15 +265,21 @@ aside {
   font-weight: bold;
 }
 
-tr {
+thead > tr {
   height: 3rem;
-  &:hover {
-    box-shadow: 0 0 10em rgba(255, 255, 255, 0.2) inset;
-  }
-  &:nth-child(odd) {
-    background-color: $stripe-odd;
-  }
-  &:nth-child(even) {
-    background-color: $stripe-even;
+}
+
+tbody {
+  tr {
+    height: 3rem;
+    &:hover {
+      box-shadow: 0 0 10em rgba(255, 255, 255, 0.2) inset;
+    }
+    &:nth-child(odd) {
+      background-color: $stripe-odd;
+    }
+    &:nth-child(even) {
+      background-color: $stripe-even;
+    }
   }
 }

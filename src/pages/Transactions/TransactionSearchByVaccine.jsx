@@ -55,7 +55,7 @@ const TransactionSearchByVaccine = (props) => {
             <select name="vaccine_id" id="person_id" className='form-input mb-1'>
               {vaccineList.map((v, i) => <option value={v.id} key={i}>{v.name}</option>)}
             </select>
-            <button>Submit</button>
+            <button className='btn'>Submit</button>
           </form>
         </div>
       </>
@@ -65,6 +65,13 @@ const TransactionSearchByVaccine = (props) => {
           searchResult.length === 0 ?
             <p>No Data</p> :
             <table className='table'>
+              <thead className='table-head'>
+                <tr>
+                  <td className='px-1'>Person Name</td>
+                  <td className='px-1'>Date</td>
+                  <td className='px-1'>Vaccination Site</td>
+                </tr>
+              </thead>
               <tbody>
                 {searchResult.map((sR, i) =>
                   <tr key={i}>

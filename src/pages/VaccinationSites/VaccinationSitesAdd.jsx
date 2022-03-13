@@ -10,7 +10,7 @@ const VaccinationSitesAdd = (props) => {
   return (
     <div className=''>
       <h1>
-        Add Certificate
+        Add Vaccination Site
       </h1>
       <div className='margin-center'>
         <VaccinationSitesForm

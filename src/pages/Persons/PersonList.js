@@ -15,6 +15,11 @@ const PersonList = (props) => {
       {personList.length === 0 ?
         <p>List is Empty</p> :
         <table className='table'>
+          <thead className='table-head'>
+            <tr>
+              <td className='px-1'>Person Name</td>
+            </tr>
+          </thead>
           <tbody >
             {personList.map((p, i) =>
               <tr key={i} >

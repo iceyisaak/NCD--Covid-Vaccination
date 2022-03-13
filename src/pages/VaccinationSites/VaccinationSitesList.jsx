@@ -14,6 +14,13 @@ const VaccinationSitesList = (props) => {
       {vaccinationSiteList.length === 0 ?
         <p>List is Empty</p> :
         <table className='table'>
+          <thead className='table-head'>
+            <tr>
+              <td className='px-1'>Site Name</td>
+              <td className='px-1'>Site Address</td>
+              <td className='px-1'>Site Type</td>
+            </tr>
+          </thead>
           <tbody>
             {
               vaccinationSiteList.map((vS, i) =>

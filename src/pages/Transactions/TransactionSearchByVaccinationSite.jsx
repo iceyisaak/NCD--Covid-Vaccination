@@ -69,6 +69,14 @@ const TransactionSearchByVaccinationSite = (props) => {
           searchResult.length === 0 ?
             <p>No Vaccine Certificate</p> :
             <table className='table'>
+              <thead className='table-head'>
+                <tr>
+                  <td className='px-1'>Vaccination Site</td>
+                  <td className='px-1'>Person Name</td>
+                  <td className='px-1'>Vaccine</td>
+                  <td className='px-1'>Date</td>
+                </tr>
+              </thead>
               <tbody>
                 {searchResult.map((sR, i) =>
                   <tr key={i}>
@@ -79,7 +87,7 @@ const TransactionSearchByVaccinationSite = (props) => {
                       {sR.person_name}
                     </td>
                     <td className='px-1'>
-                      {sR.vaccine_id_name}
+                      {sR.vaccine_name}
                     </td>
                     <td className='px-1'>
                       {sR.application_date}
