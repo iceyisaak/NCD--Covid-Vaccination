@@ -170,6 +170,7 @@ export function getTransactionsByPersonID(id: string): Array<Transaction> | null
 }
 
 
+
 // Method to query certificate by vaccine id
 export function getTransactionsByVaccineID(id: string): Array<Transaction> | null {
   assert(id.length > 0, "ID is required");
@@ -182,6 +183,7 @@ export function getTransactionsByVaccineID(id: string): Array<Transaction> | nul
   }
   return result;
 }
+
 
 // Method to consult certificate by Country
 export function getTransactionsByVaccinationSiteID(id: string): Array<Transaction> | null {

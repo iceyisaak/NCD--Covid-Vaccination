@@ -34,11 +34,9 @@ const CertificateSearchByPerson = (props) => {
         for (let i = 0; i < res.length; i++) {
 
           let vaccine = await contract.getVaccineByID({ id: res[i].vaccine_id });
-          console.log('vaccine: ', vaccine);
           res[i].vaccine_name = vaccine[0].name;
 
           let vaccination_site = await contract.getVaccinationSiteByID({ id: res[i].vaccination_site_id });
-          console.log('vaccination_site: ', vaccination_site);
           res[i].vaccination_site_name = vaccination_site[0].name;
 
         }
@@ -48,8 +46,6 @@ const CertificateSearchByPerson = (props) => {
       }
     }
   };
-
-  console.log('personDetail: ', personDetail);
 
   useEffect(() => {
     fetchTransactionsByPersonID();

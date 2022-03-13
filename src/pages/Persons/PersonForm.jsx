@@ -9,7 +9,7 @@ const PersonForm = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const { nationality, name, photo, birthdate } = e.target.elements;
+    const { nationality, name, birthdate } = e.target.elements;
 
     try {
 

@@ -11,9 +11,6 @@ const Modal = (props) => {
     return null;
   } else {
 
-
-    console.log('isModalOpen-Modal:', isModalOpen);
-
     return createPortal(
 
       <>

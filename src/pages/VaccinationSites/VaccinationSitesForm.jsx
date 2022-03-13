@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 
-const VaccinationSitesForm = (props) => {
+const VaccinationSitesForm = () => {
 
-  const { vaccineList, personList } = props;
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {

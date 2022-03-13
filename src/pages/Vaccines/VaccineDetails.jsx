@@ -21,7 +21,7 @@ const VaccineDetails = () => {
 
   return (
     <>
-      {console.log('vac: ', vac),
+      {
         vac &&
         <>
           <div className='list'>

@@ -5,12 +5,12 @@ const Home = ({ login }) => {
     <main>
       <h1>NEAR Vac Dapp</h1>
       <p>
-        This is a very simple Todo dapp created with create-near-app ReactJS template on the NEAR blockchain. The smart contract is written in AssembleyScript. It allows users to:
+        This is a dapp created with create-near-app ReactJS template on the NEAR blockchain. The smart contract is written in AssembleyScript. It allows users to:
       </p>
       <ol>
-        <li>See Entered Tasks</li>
-        <li>Add a Task</li>
-        <li>Mark a Task as Done/Undone</li>
+        <li>Add vaccination information: Vaccines used, People involved, Vaccination Sites, and Vaccination Log</li>
+        <li>Search Vaccination Record: Who got vaccinated, which vaccine, when and where</li>
+        <li>Issue Vaccination Certificates with QR Code</li>
       </ol>
       <p>
         Go ahead and click the button below to try it out:

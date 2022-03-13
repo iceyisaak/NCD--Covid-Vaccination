@@ -8,21 +8,17 @@ const TransactionDetails = () => {
   const [transaction, setTransaction] = useState({});
 
   const fetchTransaction = async () => {
-    console.log('transactionId: ', transactionId);
     const res = await contract.getTransactionByID({ id: transactionId });
     if (res) {
       for (let i = 0; i < res.length; i++) {
 
         let vaccine = await contract.getVaccineByID({ id: res[i].vaccine_id });
-        console.log('vaccine: ', vaccine);
         res[i].vaccine_name = vaccine[0].name;
 
         let vaccination_site = await contract.getVaccinationSiteByID({ id: res[i].vaccination_site_id });
-        console.log('vaccination_site: ', vaccination_site);
         res[i].vaccination_site_name = vaccination_site[0].name;
 
         let person = await contract.getPersonByID({ id: res[i].person_id });
-        console.log('person: ', person);
         res[i].person_name = person[0].name;
       }
       setTransaction(res[0]);
@@ -38,7 +34,6 @@ const TransactionDetails = () => {
 
   return (
     <>
-      {console.log('transaction: ', transaction)}
       {
         transaction &&
         <>

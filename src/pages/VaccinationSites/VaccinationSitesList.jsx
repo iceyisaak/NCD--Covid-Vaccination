@@ -15,7 +15,7 @@ const VaccinationSitesList = (props) => {
         <p>List is Empty</p> :
         <table className='table'>
           <tbody>
-            {console.log('vaccinationSiteList: ', vaccinationSiteList),
+            {
               vaccinationSiteList.map((vS, i) =>
                 <tr key={i}>
                   <td className='px-1'>
