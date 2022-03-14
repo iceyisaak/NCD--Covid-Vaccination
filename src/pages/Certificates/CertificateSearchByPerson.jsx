@@ -6,7 +6,6 @@ import './Certificates.scss';
 
 const CertificateSearchByPerson = () => {
 
-  // const { personList } = props;
   const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showResult, setShowResult] = useState(false);

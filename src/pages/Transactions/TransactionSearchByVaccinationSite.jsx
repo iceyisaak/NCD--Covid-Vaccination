@@ -8,7 +8,6 @@ const TransactionSearchByVaccinationSite = () => {
   const [showResult, setShowResult] = useState(false);
   const [vaccinationSiteList, setVaccinationSiteList] = useState([]);
 
-
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
