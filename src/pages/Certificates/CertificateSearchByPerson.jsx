@@ -4,14 +4,15 @@ import QRCode from "react-qr-code";
 import Modal from '../../components/modal/Modal';
 import './Certificates.scss';
 
-const CertificateSearchByPerson = (props) => {
+const CertificateSearchByPerson = () => {
 
-  const { personList } = props;
+  // const { personList } = props;
   const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showResult, setShowResult] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [personDetail, setPersonDetail] = useState([]);
+  const [personList, setPersonList] = useState([]);
 
   const navigate = useNavigate();
 
@@ -22,6 +23,9 @@ const CertificateSearchByPerson = (props) => {
     setShowResult(true);
   };
 
+  useEffect(() => {
+    window.contract.getPersons().then(setPersonList);
+  }, []);
 
   const fetchTransactionsByPersonID = async () => {
     if (searchTerm !== '') {
@@ -124,7 +128,6 @@ const CertificateSearchByPerson = (props) => {
         <div className='qr-code'>
           <QRCode value={personDetail.id} size={200} />
         </div>
-        {console.log('personDetail-ui: ', personDetail)}
         <div className='certificate-info'>
           <ul className='person-info'>
             <li><span className='font-bold'>Name:</span> {personDetail.name} </li>

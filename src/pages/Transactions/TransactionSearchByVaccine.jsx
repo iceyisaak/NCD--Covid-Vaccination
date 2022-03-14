@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const TransactionSearchByVaccine = (props) => {
+const TransactionSearchByVaccine = () => {
 
-  const { vaccineList } = props;
   const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showResult, setShowResult] = useState(false);
+  const [vaccineList, setVaccineList] = useState([]);
 
   const navigate = useNavigate();
 
@@ -16,6 +16,10 @@ const TransactionSearchByVaccine = (props) => {
     setSearchTerm(vaccine_id.value);
     setShowResult(true);
   };
+
+  useEffect(() => {
+    window.contract.getVaccines().then(setVaccineList);
+  }, []);
 
   const fetchTransactionsByVaccineID = async () => {
     if (searchTerm !== '') {

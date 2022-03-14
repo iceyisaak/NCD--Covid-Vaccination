@@ -4,11 +4,12 @@ import Modal from '../../components/modal/Modal';
 
 const TransactionSearchByPerson = (props) => {
 
-  const { personList } = props;
+  // const { personList } = props;
   const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showResult, setShowResult] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [personList, setPersonList] = useState([]);
 
   const navigate = useNavigate();
 
@@ -19,11 +20,16 @@ const TransactionSearchByPerson = (props) => {
     setShowResult(true);
   };
 
+  useEffect(() => {
+    window.contract.getPersons().then(setPersonList);
+  }, []);
+
 
   const fetchTransactionsByPersonID = async () => {
     if (searchTerm !== '') {
       const res = await contract.getTransactionsByPersonID({ id: searchTerm });
       if (res) {
+
         for (let i = 0; i < res.length; i++) {
 
           let vaccine = await contract.getVaccineByID({ id: res[i].vaccine_id });
@@ -34,6 +40,7 @@ const TransactionSearchByPerson = (props) => {
 
           let person = await contract.getPersonByID({ id: res[i].person_id });
           res[i].person_name = person[0].name;
+
         }
         setSearchResult(res);
       } else {

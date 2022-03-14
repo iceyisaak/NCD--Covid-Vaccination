@@ -16,16 +16,16 @@ const Transactions = () => {
           Back
         </button>
         <button onClick={() => navigate('/searchTransactionByPerson')} className='mx-1'>
-          Search Certificate By Person
+          Search By Person
         </button>
         <button onClick={() => navigate('/searchTransactionByVaccine')} className='mx-1'>
-          Search Certificate By Vaccine
+          Search By Vaccine
         </button>
         <button onClick={() => navigate('/searchTransactionByVaccinationSite')} className='mx-1'>
-          Search Certificate By Vaccination Site
+          Search By Vaccination Site
         </button>
         <button onClick={() => navigate('/addTransaction')} className='mx-1'>
-          Add Certificate
+          Add Transaction
         </button>
       </div>
       <TransactionList />
